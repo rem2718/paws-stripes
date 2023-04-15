@@ -5,6 +5,6 @@ const handover = async (req, res) => {
     debug('handover');
 };
 
-exports = {
+module.exports = {
     handover,
 }

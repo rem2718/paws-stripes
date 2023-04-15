@@ -1,10 +1,10 @@
 const debug = require('debug')('app:api');
-// const Adoption = require('../models/adoptionModel');
+// const Adopt = require('../models/adoptModel');
 
 const adopt = async (req, res) => {
     debug('adopt');
 };
 
-exports = {
-    adopt,
+module.exports = {
+    adopt
 }

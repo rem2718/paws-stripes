@@ -5,6 +5,6 @@ const rescue = async (req, res) => {
     debug('rescue');
 };
 
-exports = {
+module.exports = {
     rescue,
 }

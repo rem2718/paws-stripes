@@ -5,6 +5,6 @@ const createVolunteer = async (req, res) => {
     debug('create volunteer');
 };
 
-exports = {
+module.exports = {
     createVolunteer,
 }

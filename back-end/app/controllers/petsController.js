@@ -5,6 +5,6 @@ const getPets = async (req, res) => {
     debug('get pets');
 };
 
-exports = {
+module.exports = {
     getPets,
 }

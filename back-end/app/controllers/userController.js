@@ -21,12 +21,10 @@ const deleteUser = async (req, res) => {
     debug('delete user');
 };
 
-
-
-exports = {
+module.exports = {
     createUser,
     loginUser,
     getUser,
     updateUser,
-    deleteUser,
+    deleteUser
 }
