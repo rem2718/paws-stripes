@@ -3,6 +3,11 @@
   <head>
     <%- include('./partials/head')%>
     <style>
+      body {
+        background-image: url("/images/backgrounds/background-1.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
       /* Style the form container */
       .form-container {
         width: 50%;
@@ -62,6 +67,9 @@
     </style>
   </head>
   <body>
+    <header>
+      <header><%- include('./partials/navbar', {active: 'who'})%></header>
+    </header>
     <h2>signup Page</h2>
     <div class="form-container">
       <form action="/api/user/signup" method="post">
@@ -83,7 +91,6 @@
 
         <button type="submit" class="sign-in-button">Sign up</button>
       </form>
-
     </div>
   </body>
 </html>

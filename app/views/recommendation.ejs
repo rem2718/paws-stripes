@@ -2,9 +2,17 @@
 <html lang="en">
   <head>
     <%- include('./partials/head')%>
+    <style>
+      body {
+        background-image: url("/images/backgrounds/background-2.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
   </head>
   <body>
-    <p>RECOMMENDATION</p>
+    <header><%- include('./partials/navbar', {active: 'requests'})%></header>
+    <h1>RECOMMENDATION</h1>
     <a href="/api/request/adopt/1"
       ><button class="btn btn-primary">Adopt</button>
     </a>

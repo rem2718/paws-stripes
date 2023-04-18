@@ -3,6 +3,7 @@ const debug = require('debug')('app:api');
 
 const createExperience = async (req, res) => {
     debug('submit an experience');
+    res.render('response');
 };
 
 const getExperiences = async (req, res) => {
@@ -12,6 +13,7 @@ const getExperiences = async (req, res) => {
 
 const getExperience = async (req, res) => {
     debug('get an experience');
+    res.render('adoption-experiences');
 };
 
 const deleteExperience = async (req, res) => {
