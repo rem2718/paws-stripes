@@ -16,11 +16,16 @@ const rescue = async (req, res) => {
     res.render('response');
 };
 
+const volunteer = async (req, res) => {
+    debug('volunteer');
+    res.render('response');
+};
+
 const recommend = async (req, res) => {
     debug('recommend');
     res.render('recommendation');
 }
-
+//reguler get
 const getStatus = async (req, res) => {
     debug('get request status');
 };
@@ -33,6 +38,7 @@ module.exports = {
     adopt,
     handover,
     rescue,
+    volunteer,
     recommend,
     updateStatus,
 };

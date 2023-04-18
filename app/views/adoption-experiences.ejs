@@ -3,6 +3,11 @@
   <head>
     <%- include('./partials/head')%>
   <style>
+    body {
+			background-image: url("/images/backgrounds/background-4.png");
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
     .card {
       width: 200px;
       height: 300px;
@@ -31,6 +36,10 @@
   </style>
 </head>
 <body>
+  <header>
+    <%- include('./partials/navbar', {active: 'experiences'}) %>
+  </header>
+  <h1>Adoption Experiences</h1>
   <a href="/api/experiences"><button>all experiences</button></a>
   <a href="/api/experiences/1"><button>my experiences</button></a>
   <a href="/requests/experience-form"><button>add</button></a>

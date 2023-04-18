@@ -3,6 +3,11 @@
   <head>
     <%- include('./partials/head')%>
     <style>
+      body {
+        background-image: url("/images/backgrounds/background-6.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
       /* Style the form container */
       .form-container {
         width: 50%;
@@ -62,9 +67,10 @@
     </style>
   </head>
   <body>
+    <header><%- include('./partials/navbar', {active: 'requests'})%></header>
     <h2>Volunteer Form</h2>
     <div class="form-container">
-      <form action="/api/volunteer" method="post">
+      <form action="/api/request/volunteer" method="post">
         <label for="username"><b>Username/Email</b></label>
         <input
           type="text"

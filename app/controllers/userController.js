@@ -4,13 +4,15 @@ const path = require('path');
 
 const createUser = async (req, res) => {
     debug('create user');
-    res.sendFile(path.join(__dirname, '../public/index.html'));
+    res.render('index');
 };
 
 const loginUser = async (req, res) => {
     debug('login user');
-    res.sendFile(path.join(__dirname, '../public/index.html'));
+    res.render('index');
 };
+
+// const getPets;
 
 const getUser = async (req, res) => {
     debug('get user');

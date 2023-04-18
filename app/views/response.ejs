@@ -2,9 +2,16 @@
 <html lang="en">
   <head>
     <%- include('./partials/head')%>
+    <style>
+      body {
+        background-image: url("/images/backgrounds/background-7.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
   </head>
-
   <body>
-    <p>RESPONSE</p>
+    <header><%- include('./partials/navbar', {active: 'requests'})%></header>
+    <h1>RESPONSE</h1>
   </body>
 </html>

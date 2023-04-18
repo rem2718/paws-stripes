@@ -3,6 +3,11 @@
   <head>
     <%- include('./partials/head')%>
     <style>
+      body {
+			background-image: url("/images/backgrounds/background-6.png");
+			background-repeat: no-repeat;
+			background-size: cover;
+		  }
       /* Style the form container */
       .form-container {
         width: 50%;
@@ -62,6 +67,9 @@
     </style>
   </head>
   <body>
+    <header>
+      <%- include('./partials/navbar', {active: 'requests'})%>
+      </header>
     <h2>Handover Form</h2>
     <div class="form-container">
       <form action="/api/request/handover" method="post">
