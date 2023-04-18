@@ -4,7 +4,7 @@
     <%- include('./partials/head')%>
     <style>
       body {
-        background-image: url("/images/backgrounds/background-7.png");
+        background-image: url("/images/backgrounds/background-2.png");
         background-repeat: no-repeat;
         background-size: cover;
       }
@@ -12,6 +12,10 @@
   </head>
   <body>
     <header><%- include('./partials/navbar', {active: 'requests'})%></header>
-    <h1>RESPONSE</h1>
+    <h1>RECOMMENDATION</h1>
+    <a href="/api/request/adopt/1"
+      ><button class="btn btn-primary">Adopt</button>
+    </a>
+    <a href="/api/pets"><button class="btn btn-primary">Cancel</button> </a>
   </body>
 </html>

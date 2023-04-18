@@ -2,6 +2,16 @@
 <html lang="en">
   <head>
     <%- include('./partials/head')%>
+    <style>
+      body {
+        background-image: url("/images/backgrounds/background-5.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <% var active = 'faqs'; %>
+    <header><%- include('./partials/navbar', {active: 'faqs'})%></header>
+  </body>
 </html>
