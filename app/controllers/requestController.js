@@ -16,11 +16,6 @@ const rescue = async (req, res) => {
     res.render('response');
 };
 
-const experience = async (req, res) => {
-    debug('experience');
-    res.render('response');
-};
-
 const recommend = async (req, res) => {
     debug('recommend');
     res.render('recommendation');
@@ -38,7 +33,6 @@ module.exports = {
     adopt,
     handover,
     rescue,
-    experience,
     recommend,
     updateStatus,
 };
