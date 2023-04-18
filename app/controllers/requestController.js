@@ -2,7 +2,8 @@ const debug = require('debug')('app:api');
 // const Handover = require('../models/requestModel');
 
 const request = async (req, res) => {
-    debug('handover');
+    debug('request');
+    res.render('response');
 };
 
 const getStatus = async (req, res) => {
