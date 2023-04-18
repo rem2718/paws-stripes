@@ -7,6 +7,7 @@ const createExperience = async (req, res) => {
 
 const getExperiences = async (req, res) => {
     debug('get experiences');
+    res.render('adoption-experiences');
 };
 
 const getExperience = async (req, res) => {

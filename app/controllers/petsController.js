@@ -1,4 +1,5 @@
 const debug = require('debug')('app:api');
+const path = require('path');
 // const Pets = require('../models/petModel');
 
 const createPet = async (req, res) => {
@@ -7,6 +8,7 @@ const createPet = async (req, res) => {
 
 const getPets = async (req, res) => {
     debug('get pets');
+    res.render('meet-our-pets.ejs');
 };
 
 const updatePet = async (req, res) => {

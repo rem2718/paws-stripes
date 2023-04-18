@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <%- include('./partials/head')%>
-  <style>
+    <style>
       /* Style the form container */
       .form-container {
         width: 50%;
@@ -11,14 +11,15 @@
         padding: 20px;
         text-align: center;
       }
-      
+
       /* Style the form heading */
       h2 {
         margin-top: 0;
       }
-      
+
       /* Style the form inputs */
-      input[type=text], input[type=password] {
+      input[type="text"],
+      input[type="password"] {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
@@ -26,10 +27,10 @@
         border: 1px solid #ccc;
         box-sizing: border-box;
       }
-      
+
       /* Style the sign in button */
       .sign-in-button {
-        background-color: #4CAF50;
+        background-color: #4caf50;
         color: white;
         padding: 14px 20px;
         margin: 8px 0;
@@ -37,12 +38,12 @@
         border-radius: 4px;
         cursor: pointer;
       }
-      
+
       /* Style the sign in button on hover */
       .sign-in-button:hover {
         background-color: #3e8e41;
       }
-      
+
       /* Style the create account button */
       .create-account-button {
         background-color: #f44336;
@@ -53,7 +54,7 @@
         border-radius: 4px;
         cursor: pointer;
       }
-      
+
       /* Style the create account button on hover */
       .create-account-button:hover {
         background-color: #da190b;
@@ -63,18 +64,31 @@
   <body>
     <h2>Login Page</h2>
     <div class="form-container">
-      
-      
-      <form>
+      <form action="/api/user/login" method="post">
         <label for="username"><b>Username/Email</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
-  
+        <input
+          type="text"
+          placeholder="Enter Username"
+          name="username"
+          required
+        />
+
         <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
-  
+        <input
+          type="password"
+          placeholder="Enter Password"
+          name="password"
+          required
+        />
+
         <button type="submit" class="sign-in-button">Sign In</button>
       </form>
-      <p>Don't have an account?<br> <button class="create-account-button">Click here to join!</button></p>
+      <p>
+        Don't have an account?<br />
+        <a href="/signup"
+          ><button class="create-account-button">Click here to join!</button></a
+        >
+      </p>
     </div>
   </body>
 </html>

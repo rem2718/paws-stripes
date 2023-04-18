@@ -1,4 +1,9 @@
 {
+  "name": "paws-and-stripes",
+  "description": "",
+  "main": "app.js",
+  "author": "Rem & Ayat & Ward",
+  "license": "GNU",
   "dependencies": {
     "debug": "^4.3.4",
     "dotenv": "^16.0.3",

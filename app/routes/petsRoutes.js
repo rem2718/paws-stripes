@@ -1,6 +1,6 @@
 const express = require('express');
 const petsController = require('../controllers/petsController');
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 
 router.post('/', petsController.createPet);
 router.get('/', petsController.getPets);
