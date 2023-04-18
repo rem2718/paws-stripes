@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/head')%>
+    <style>
+      body {
+			background-image: url("/images/backgrounds/background-1.png");
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+    </style>
+</head>
+<body>
+  <% var active = 'who'; %>
+    <header>
+      <%- include('./partials/navbar', {active: 'who'})%>
+      <a href="/login"><button>Login</button></a>
+    </header>
+    <div class="container" id = "who">
+        <ul>
+     <li><a class="active" href="#mission">Our mission</a></li>
+     <li><a href="#clinic">The Clinic</a></li>
+     <li><a href="#program">TNR program</a></li>
+     <li><a href="#services">Our Services</a></li>
+     <li><a href="#contact">Contact Us</a></li>
+   </ul>
+       </div>
+       <div class="container">
+         <h2>Our Mission</h2>
+         <p>Our shelter aims to provide a home for abandoned animals.</p>
+         
+       </div> 
+</html>
