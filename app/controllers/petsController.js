@@ -8,7 +8,7 @@ const createPet = async (req, res) => {
 
 const getPets = async (req, res) => {
     debug('get pets');
-    res.render('meet-our-pets.ejs');
+    res.render('meet-our-pets', { isLoggedIn: req.cookies.isLoggedIn || false });
 };
 
 const updatePet = async (req, res) => {

@@ -67,9 +67,7 @@
     </style>
   </head>
   <body>
-    <header>
-      <header><%- include('./partials/navbar', {active: 'who'})%></header>
-    </header>
+     <%- include('./partials/header', {active: 'who'})%>
     <h2>signup Page</h2>
     <div class="form-container">
       <form action="/api/user/signup" method="post">
