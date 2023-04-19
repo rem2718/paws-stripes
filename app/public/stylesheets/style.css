@@ -1,3 +1,5 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Kirang+Haerang&family=Londrina+Solid&family=Press+Start+2P&family=Roboto+Mono&family=Swanky+and+Moo+Moo&display=swap');
 :root {
     /* colors */
     --dark-green:#435C53;
@@ -17,10 +19,9 @@
     --red: #FAC2BB;
     --purple: #D2D2E2;
     /* fonts */
-    --par1-font: 'Monomaniac One', sans-serif;
-    --par2-font: 'Kirang Haerang', sans-serif;
-    --header1-font: 'Londrina Solid', sans-serif;
-    --header2-font: 'Swanky and Moo Moo', sans-serif;
-    
-
+    --par1-font: 'Roboto Mono', monospace;
+    --par2-font: 'Kirang Haerang', cursive;
+    --header1-font: 'Londrina Solid', cursive;
+    --header2-font: 'Swanky and Moo Moo', cursive;
+    --error-font: 'Press Start 2P', cursive;
 }

@@ -1,15 +1,19 @@
-
+const debug = require('debug')('app:middleware');
 const jwt = require('jsonwebtoken');
 
 const auth = function (req, res, next) {
     const token = req.header('x-auth-token');
-    if (!token) res.status(401).send('access denied, no token provided');
+    let err = 401;
+    let msg = 'access denied, no token provided';
+    if (!token) return res.status(err).render('error-responses.ejs',{err, msg});
     try {
-        const decoded = jwt.vertify(token, env.process.PRIVATE_KEY);
+        const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
         req.user = decoded;
         next();
     } catch (exp) {
-        res.status(400).send('Invalid token');
+        err = 400;
+        msg = 'Cat detected a bad request..';
+        return res.status(err).render('error-responses.ejs',{err, msg});
     }
 }
 
