@@ -8,10 +8,6 @@ router.get('/', (req, res) => {
 
 router.use('/requests', requests);
 
-router.get('/rescue-form', (req, res) => {
-    res.render('rescue-form');
-});
-
 router.get('/faqs', (req, res) => {
     res.render('faqs');
 });

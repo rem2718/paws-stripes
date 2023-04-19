@@ -1,10 +1,10 @@
 const express = require('express');
-const petsController = require('../controllers/petsController');
-const router = express.Router({mergeParams: true});
+const controller = require('../controllers/petsController');
+const router = express.Router({ mergeParams: true });
 
-router.post('/', petsController.createPet);
-router.get('/', petsController.getPets);
-router.put('/:id', petsController.updatePet);
-router.delete('/:id', petsController.deletePet);
+router.post('/', controller.createPet);
+router.get('/', controller.getPets);
+router.put('/:id', controller.updatePet);
+router.delete('/:id', controller.deletePet);
 
 module.exports = router;
