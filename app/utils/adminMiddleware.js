@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken');
 
 const admin = function (req, res, next) {
-    if (!req.user.isAdmin) res.status(403).send('Access denied');
+    let err = 403;
+    let msg = 'access denied, forbidden';
+    if (!req.user.isAdmin) return res.status(err).render('error-responses', { err, msg });
 
     next();
 }
