@@ -1,10 +1,11 @@
 const express = require('express');
+const auth = require('../utils/authMiddleware');
 const controller = require('../controllers/experienceController');
 const router = express.Router({ mergeParams: true });
 
-router.post('/', controller.createExperience);
+router.post('/',[auth], controller.createExperience);
 router.get('/', controller.getExperiences);
 router.get('/:id', controller.getExperience);
-router.delete('/', controller.deleteExperience);
+router.delete('/',[auth], controller.deleteExperience);
 
 module.exports = router;

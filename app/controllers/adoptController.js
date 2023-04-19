@@ -3,12 +3,12 @@ const debug = require('debug')('app:api');
 
 const adopt = async (req, res) => {
     debug('adopt');
-    res.render('response');
+    res.redirect('/requests/response');
 };
 
 const recommend = async (req, res) => {
     debug('recommend');
-    res.render('recommendation');
+    res.render('recommendation', { isLoggedIn: req.cookies.isLoggedIn || false });
 }
 //reguler get
 const getStatus = async (req, res) => {
