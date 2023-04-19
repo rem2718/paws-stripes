@@ -16,6 +16,7 @@ const loginUser = async (req, res) => {
 
 const getUser = async (req, res) => {
     debug('get user');
+    res.render('response');
 };
 
 const updateUser = async (req, res) => {
