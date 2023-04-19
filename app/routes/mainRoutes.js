@@ -3,13 +3,13 @@ const requests = require('./requestsRoutes');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.send('/index.html');
+    res.render('index.ejs');
 });
 
 router.use('/requests', requests);
 
-router.get('/rescue-form', (req, res) => {
-    res.render('rescue-form');
+router.get('/faqs', (req, res) => {
+    res.render('faqs');
 });
 
 router.get('/login', (req, res) => {

@@ -1,21 +1,21 @@
 const debug = require('debug')('app:api');
 // const Handover = require('../models/requestModel');
 
-const volunteer = async (req, res) => {
-    debug('volunteer');
+const rescue = async (req, res) => {
+    debug('rescue');
     res.render('response');
 };
 
 //reguler get
 const getStatus = async (req, res) => {
-    debug('get volunteer status');
+    debug('get rescue status');
 };
 
 const updateStatus = async (req, res) => {
-    debug('change volunteer status');
+    debug('change rescue status');
 };
 
 module.exports = {
-    volunteer,
+    rescue,
     updateStatus,
 };

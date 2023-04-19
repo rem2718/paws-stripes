@@ -1,20 +1,21 @@
 const debug = require('debug')('app:api');
 // const Handover = require('../models/requestModel');
 
-const request = async (req, res) => {
-    debug('request');
+const handover = async (req, res) => {
+    debug('handover');
     res.render('response');
 };
 
+//reguler get
 const getStatus = async (req, res) => {
-    debug('get request status');
+    debug('get handover status');
 };
 
 const updateStatus = async (req, res) => {
-    debug('change request status');
+    debug('change handover status');
 };
 
 module.exports = {
-    request,
+    handover,
     updateStatus,
 };

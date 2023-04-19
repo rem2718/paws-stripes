@@ -3,6 +3,11 @@
   <head>
     <%- include('./partials/head')%>
     <style>
+      body {
+        background-image: url("/images/backgrounds/background-4.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
       .card {
         width: 300px;
         height: 400px;
@@ -30,6 +35,8 @@
     </style>
   </head>
   <body>
+    <header><%- include('./partials/navbar', {active: 'pets'}) %></header>
+    <h1>Meet Our Family</h1>
     <div class="grid">
       <div class="card">
         <img src="" alt="Card 1" />
@@ -42,9 +49,9 @@
             Dislikes:
           </p>
         </div>
-        <form method="POST" action="/api/request">
-          <button type="submit" class="btn btn-primary">Adopt</button>
-        </form>
+        <a href="/api/adopt/1"
+          ><button class="btn btn-primary">Adopt</button>
+        </a>
       </div>
       <div class="card">
         <img
@@ -60,9 +67,9 @@
             Dislikes:
           </p>
         </div>
-        <form method="POST" action="/api/request">
-          <button type="submit" class="btn btn-primary">Adopt</button>
-        </form>
+        <a href="/api/adopt/1"
+          ><button class="btn btn-primary">Adopt</button>
+        </a>
       </div>
       <div class="card">
         <img
@@ -78,9 +85,9 @@
             Dislikes:
           </p>
         </div>
-        <form method="POST" action="/api/request">
-          <button type="submit" class="btn btn-primary">Adopt</button>
-        </form>
+        <a href="/api/adopt/1"
+          ><button class="btn btn-primary">Adopt</button>
+        </a>
       </div>
       <div class="card">
         <img
@@ -96,9 +103,9 @@
             Dislikes:
           </p>
         </div>
-        <form method="POST" action="/api/request">
-          <button type="submit" class="btn btn-primary">Adopt</button>
-        </form>
+        <a href="/api/adopt/1"
+          ><button class="btn btn-primary">Adopt</button>
+        </a>
       </div>
       <div class="card">
         <img
@@ -114,9 +121,9 @@
             Dislikes:
           </p>
         </div>
-        <form method="POST" action="/api/request">
-          <button type="submit" class="btn btn-primary">Adopt</button>
-        </form>
+        <a href="/api/adopt/1"
+          ><button class="btn btn-primary">Adopt</button>
+        </a>
       </div>
       <div class="card">
         <img
@@ -132,9 +139,9 @@
             Dislikes:
           </p>
         </div>
-        <form method="POST" action="/api/request">
-          <button type="submit" class="btn btn-primary">Adopt</button>
-        </form>
+        <a href="/api/adopt/1"
+          ><button class="btn btn-primary">Adopt</button>
+        </a>
       </div>
     </div>
   </body>
