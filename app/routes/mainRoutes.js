@@ -3,29 +3,54 @@ const requests = require('./requestsRoutes');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('index', { isLoggedIn: req.cookies.isLoggedIn || false });
+    res.render('index', { cookies: req.cookies || false });
 });
 
 router.use('/requests', requests);
 
 router.get('/experiences', (req, res) => {
-    res.render('adoption-experiences', { isLoggedIn: req.cookies.isLoggedIn || false });
+    res.render('adoption-experiences', { cookies: req.cookies || false });
 });
 
 router.get('/faqs', (req, res) => {
-    res.render('faqs', { isLoggedIn: req.cookies.isLoggedIn || false });
+    res.render('faqs', { cookies: req.cookies || false });
 });
 
 router.get('/login', (req, res) => {
-    res.render('login', { isLoggedIn: req.cookies.isLoggedIn || false });
+    res.render('login', { cookies: req.cookies || false });
 });
 
 router.get('/signup', (req, res) => {
-    res.render('signup', { isLoggedIn: req.cookies.isLoggedIn || false });
+    res.render('signup', { cookies: req.cookies || false });
 });
 
 router.get('/account', (req, res) => {
-    res.render('account', { isLoggedIn: req.cookies.isLoggedIn || false });
+    res.render('account', { cookies: req.cookies || false });
 })
+
+router.get('/err-response/:err', (req, res) => {
+    let err;
+    let msg;
+    switch (req.params.err) {
+        case 'Bad Request':
+            msg = 'Cat detected a bad request..';
+            err = 400;
+            break;
+        case 'Unauthorized':
+            msg = 'oh no! You have to login to fill this form';
+            err = 401;
+            break;
+        case 'Forbidden':
+            msg = 'access denied, forbidden';
+            err = 403;
+            break;
+        default:
+            msg = req.params.err;
+            err = 400;
+            break;
+    }
+
+    res.status(err).render("err-response", { err, msg });
+});
 
 module.exports = router;

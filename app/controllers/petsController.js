@@ -40,9 +40,11 @@ const createPet = async (req, res) => {
     debug('create pet');
 };
 
+// get request
+// return pets
 const getPets = async (req, res) => {
     debug('get pets');
-    res.render('meet-our-pets', { isLoggedIn: req.cookies.isLoggedIn || false, pets });
+    res.render('meet-our-pets', { cookies: req.cookies || false, pets });
 };
 
 const updatePet = async (req, res) => {
