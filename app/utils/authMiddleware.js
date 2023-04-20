@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const auth = function (req, res, next) {
     const token = req.cookies.token;
     let err = 401;
-    let msg = 'access denied, no token provided';
+    let msg = 'oh no! You have to login to fill this form';
     if (!token) return res.status(err).render('error-responses.ejs', { err, msg });
     try {
         const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
