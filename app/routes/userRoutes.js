@@ -5,6 +5,7 @@ const router = express.Router({ mergeParams: true });
 
 router.post('/signup', controller.createUser);
 router.post('/login', controller.loginUser);
+router.post('/logout', controller.logoutUser);
 
 router.get('/:id', [auth], controller.getUser);
 router.put('/:id', [auth], controller.updateUser);
