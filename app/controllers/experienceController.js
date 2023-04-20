@@ -3,6 +3,7 @@ const debug = require('debug')('app:api');
 // TO-DO: pagination, null values
 const experiences = [
     {
+        _id: "123",
         petID: "1234",
         petName: "Leonard",
         image: null,
@@ -13,8 +14,9 @@ const experiences = [
         userFirstName: "Lamia",
         userLastName: "Mohammed",
     }, {
+        _id: "12",
         petID: "123w4",
-        name: "Leonard",
+        petName: "Leonard",
         image: null,
         experience: "I really liked the service everyone was nice, love my animal so much!:…",
         isAnon: true,
@@ -23,6 +25,7 @@ const experiences = [
         userFirstName: "Lamia",
         userLastName: "Mohammed",
     }, {
+        _id: "1",
         petID: "1234f",
         petName: "Leonard",
         image: null,
@@ -41,7 +44,12 @@ const createExperience = async (req, res) => {
 };
 
 const like = async (req, res) => {
-    debug('like or remove like');
+    if (req.body.like === "like") {
+        // increment likes
+    } else {
+        // decrement likes
+    }
+    res.send({ likes: 5, id: req.params.id });
 };
 
 const getExperiences = async (req, res) => {
@@ -51,11 +59,13 @@ const getExperiences = async (req, res) => {
 
 const getExperience = async (req, res) => {
     debug('get an experience');
-    res.render('adoption-experiences', { isLoggedIn: req.cookies.isLoggedIn || false });
+    res.send(experiences);
 };
 
 const deleteExperience = async (req, res) => {
+    // delete experience
     debug('delete an experience');
+    res.send({ id: req.params.id });
 };
 
 module.exports = {

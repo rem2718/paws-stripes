@@ -33,16 +33,17 @@
         padding: 10px;
       }
     </style>
-    <script src="/scripts/experiences.js"></script>
   </head>
   <body>
     <%- include('./partials/header', {active: 'experiences'}) %>
     <h1>Adoption Experiences</h1>
     <% if (isLoggedIn) { %>
-    <a href="/api/experiences"><button>all experiences</button></a>
-    <a href="/api/experiences/1"><button>my experiences</button></a>
+    <button id="all">all experiences</button>
+    <!-- cookies -->
+    <button id="one">my experiences</button>
     <a href="/requests/experience-form"><button>add</button></a>
     <% } %>
     <div id="cards-container" class="grid"></div>
+    <script src="/scripts/experiences.js"></script>
   </body>
 </html>
