@@ -21,7 +21,11 @@
     <div class="container pt-5">
       <div class="row">
         <div class="col">
+          <% if (err == 401) { %>
+          <image src="/images/gifs/dog.gif"></image>
+          <% } else { %>
           <image src="/images/pngs/cat-<%=err%>.png"></image>
+          <% } %>
         </div>
         <div class="col">
           <h2>meow..<%=err%>:</h2>

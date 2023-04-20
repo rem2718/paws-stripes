@@ -11,12 +11,7 @@
     </style>
 </head>
 <body>
-  <% var active = 'who'; %>
-    <header>
-      <image src="/paws-stripes-logo.svg" style="max-width: 250px; max-height: 125px;" ></image>
-      <%- include('./partials/navbar', {active: 'who'})%>
-      <a href="/login"><button>Login</button></a>
-    </header>
+      <%- include('./partials/header', {active: 'who'})%>
     <div class="container" id = "who">
         <ul>
      <li><a class="active" href="#mission">Our mission</a></li>

@@ -3,7 +3,7 @@ const debug = require('debug')('app:api');
 
 const handover = async (req, res) => {
     debug('handover');
-    res.render('response');
+    res.redirect('../requests/response');
 };
 
 //reguler get

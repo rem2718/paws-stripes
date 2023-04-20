@@ -33,116 +33,33 @@
         padding: 10px;
       }
     </style>
+    <% const arrPrint = (arr) => { let output = ""; arr.forEach(function
+    (element) { output += `${element}, `; }); return output.slice(0, -2); }; %>
   </head>
   <body>
-    <header><%- include('./partials/navbar', {active: 'pets'}) %></header>
+    <%- include('./partials/header', {active: 'pets'}) %>
     <h1>Meet Our Family</h1>
     <div class="grid">
+      <% pets.forEach(pet => { %>
       <div class="card">
-        <img src="" alt="Card 1" />
+        <img src="<%=pet.image%>" alt="Card 1" />
         <div class="card-text">
-          <p>
-            ID: <br />
-            Name:<br />
-            Age:<br />
-            Likes: f<br />
-            Dislikes:
-          </p>
+          <ul>
+            <li>Pet ID: <%=pet.petID%></li>
+            <li>Name: <%=pet.name%></li>
+            <li>Type: <%=pet.type%></li>
+            <li>Breed: <%=pet.breed%></li>
+            <li>Age: <%=pet.age%></li>
+            <li>Personality: <%=arrPrint(pet.personality)%></li>
+            <li>Likes: <%=arrPrint(pet.likes)%></li>
+            <li>Dislikes: <%=arrPrint(pet.dislikes)%></li>
+          </ul>
         </div>
-        <a href="/api/adopt/1"
+        <a href="/api/adopt/<%=pet.petID%>"
           ><button class="btn btn-primary">Adopt</button>
         </a>
       </div>
-      <div class="card">
-        <img
-          src="https://via.placeholder.com/300x200.png?text=Image+2"
-          alt="Card 2"
-        />
-        <div class="card-text">
-          <p>
-            ID: <br />
-            Name:<br />
-            Age:<br />
-            Likes: f<br />
-            Dislikes:
-          </p>
-        </div>
-        <a href="/api/adopt/1"
-          ><button class="btn btn-primary">Adopt</button>
-        </a>
-      </div>
-      <div class="card">
-        <img
-          src="https://via.placeholder.com/300x200.png?text=Image+3"
-          alt="Card 3"
-        />
-        <div class="card-text">
-          <p>
-            ID: <br />
-            Name:<br />
-            Age:<br />
-            Likes: f<br />
-            Dislikes:
-          </p>
-        </div>
-        <a href="/api/adopt/1"
-          ><button class="btn btn-primary">Adopt</button>
-        </a>
-      </div>
-      <div class="card">
-        <img
-          src="https://via.placeholder.com/300x200.png?text=Image+4"
-          alt="Card 4"
-        />
-        <div class="card-text">
-          <p>
-            ID: <br />
-            Name:<br />
-            Age:<br />
-            Likes: f<br />
-            Dislikes:
-          </p>
-        </div>
-        <a href="/api/adopt/1"
-          ><button class="btn btn-primary">Adopt</button>
-        </a>
-      </div>
-      <div class="card">
-        <img
-          src="https://via.placeholder.com/300x200.png?text=Image+5"
-          alt="Card 5"
-        />
-        <div class="card-text">
-          <p>
-            ID: <br />
-            Name:<br />
-            Age:<br />
-            Likes: f<br />
-            Dislikes:
-          </p>
-        </div>
-        <a href="/api/adopt/1"
-          ><button class="btn btn-primary">Adopt</button>
-        </a>
-      </div>
-      <div class="card">
-        <img
-          src="https://via.placeholder.com/300x200.png?text=Image+6"
-          alt="Card 6"
-        />
-        <div class="card-text">
-          <p>
-            ID: <br />
-            Name:<br />
-            Age:<br />
-            Likes: f<br />
-            Dislikes:
-          </p>
-        </div>
-        <a href="/api/adopt/1"
-          ><button class="btn btn-primary">Adopt</button>
-        </a>
-      </div>
+      <% }); %>
     </div>
   </body>
 </html>

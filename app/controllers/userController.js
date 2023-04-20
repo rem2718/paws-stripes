@@ -1,22 +1,35 @@
 const debug = require('debug')('app:api');
 const path = require('path');
+const jwt = require('jsonwebtoken');
 // const User = require('../models/userModel');
 
 const createUser = async (req, res) => {
     debug('create user');
-    res.render('index');
+    res.redirect('/');
 };
 
 const loginUser = async (req, res) => {
     debug('login user');
-    res.render('index');
+    const userID = "1234";
+    const token = jwt.sign({ _id: "643ef5bc40e0e89ba7958f02", isAdmin: false }, process.env.PRIVATE_KEY);
+    const att = {
+        // maxAge: 5000,
+        secure: true,
+        httpOnly: true,
+        sameSite: 'lax'
+    }
+    res.cookie("token", token, att).cookie("isLoggedIn", true, att).cookie("userID", userID, att).redirect('/');
 };
+
+const logoutUser = async (re, res) => {
+    debug('logout user');
+    res.clearCookie('token').clearCookie('isLoggedIn').redirect('/');
+}
 
 // const getPets;
 
 const getUser = async (req, res) => {
     debug('get user');
-    res.render('response');
 };
 
 const updateUser = async (req, res) => {
@@ -30,7 +43,8 @@ const deleteUser = async (req, res) => {
 module.exports = {
     createUser,
     loginUser,
+    logoutUser,
     getUser,
     updateUser,
-    deleteUser
+    deleteUser,
 };
