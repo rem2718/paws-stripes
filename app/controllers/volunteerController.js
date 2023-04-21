@@ -9,9 +9,18 @@ const volunteer = async (req, res) => {
     res.redirect('../requests/response');
 };
 
-//reguler get
+//get request
+const getHours = async (req, res) => {
+    const userID = req.params.id;
+    debug('get volunteer hours');
+    res.send({ hours: 4 });
+};
+
+//get request
 const getStatus = async (req, res) => {
-    debug('get volunteer status');
+    const userID = req.params.id;
+    debug('get volunteer hours');
+    res.send({ requestID: "3456", status: "pending" });
 };
 
 const updateStatus = async (req, res) => {
@@ -20,5 +29,7 @@ const updateStatus = async (req, res) => {
 
 module.exports = {
     volunteer,
+    getHours,
+    getStatus,
     updateStatus,
 };

@@ -29,18 +29,22 @@ const logoutUser = async (re, res) => {
     res.clearCookie('token').clearCookie('isAuthenticated').clearCookie('userID').redirect('/');
 }
 
-// const getPets;
-
+//get request 
 const getUser = async (req, res) => {
+    const userID = req.params.id;
     debug('get user');
+    res.send({ userID: "1234", username: "lamia" });
 };
 
 const updateUser = async (req, res) => {
     debug('update user');
 };
 
+// delete request
 const deleteUser = async (req, res) => {
+    const userID = req.params.id;
     debug('delete user');
+    res.clearCookie('token').clearCookie('isAuthenticated').clearCookie('userID').send({ userID: userID });
 };
 
 module.exports = {
