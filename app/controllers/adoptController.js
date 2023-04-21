@@ -17,9 +17,11 @@ const recommend = async (req, res) => {
     res.render('recommendation', { cookies: req.cookies || false });
 }
 
-// api
+// get request
 const getStatus = async (req, res) => {
+    const userID = req.params.id;
     debug('get adopt status');
+    res.send({requestID:"3456", status: "pending"});
 };
 
 // api
@@ -30,5 +32,6 @@ const updateStatus = async (req, res) => {
 module.exports = {
     adopt,
     recommend,
+    getStatus,
     updateStatus,
 };

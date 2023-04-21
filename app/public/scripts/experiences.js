@@ -1,3 +1,15 @@
+function status(response) {
+    if (response.status >= 200 && response.status < 300) {
+        return Promise.resolve(response)
+    } else {
+        return Promise.reject(new Error(response.statusText))
+    }
+};
+
+function json(response) {
+    return response.json()
+}
+
 function likeBtnListener() {
     var buttons = document.querySelectorAll(".like-btn");
     console.log(buttons);
@@ -87,18 +99,6 @@ function displayCards(experiences, isDel) {
     likeBtnListener();
     delBtnListener();
 };
-
-function status(response) {
-    if (response.status >= 200 && response.status < 300) {
-        return Promise.resolve(response)
-    } else {
-        return Promise.reject(new Error(response.statusText))
-    }
-};
-
-function json(response) {
-    return response.json()
-}
 
 function displayExperiences(id, isDel) {
     fetch(`/api/experiences/${id}`, {
