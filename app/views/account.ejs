@@ -13,8 +13,27 @@
   <body>
     <%- include('./partials/header', {active: 'faqs'})%>
     <h2>ACCOUNT PAGE</h2>
+    <h3>your account details</h3>
+    <p id="details" class="container"></p>
+    <h3>request status history</h3>
+    <div id="req-container" class="container">
+      <h4>adoption requests:</h4>
+      <p id="adopt"></p>
+      <h4>handover requests:</h4>
+      <p id="handover"></p>
+      <h4>rescue requests:</h4>
+      <p id="rescue"></p>
+      <h4>volunteer requests:</h4>  
+      <p id="volunteer"></p> 
+    </div>
+    <h3>volunteer activity</h3>
+    <p id="hours"><p>
+      <p>not a volunteer? You can apply <a href="/requests/volunteer">here</a></p>
+    <button id="delete-acc">Delete Account<button>
+
     <form method="POST" action="/api/user/logout">
       <button type="submit">Logout</button>
     </form>
+    <script src="/scripts/account.js"></script>
   </body>
 </html>
