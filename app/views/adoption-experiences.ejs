@@ -37,7 +37,7 @@
   <body>
     <%- include('./partials/header', {active: 'experiences'}) %>
     <h1>Adoption Experiences</h1>
-    <% if (isLoggedIn) { %>
+    <% if (cookies.isAuthenticated) { %>
     <button id="all">all experiences</button>
     <!-- cookies -->
     <button id="one">my experiences</button>

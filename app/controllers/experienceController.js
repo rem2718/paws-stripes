@@ -38,12 +38,20 @@ const experiences = [
     },
 
 ];
+
+// post request
+// take the attribute names from ward
 const createExperience = async (req, res) => {
+    req.body.attribute
     debug('submit an experience');
     res.redirect('../requests/response');
 };
 
+// put request 
+// output number of likes, experience id
+// like is just a string {"like", "remove like"}
 const like = async (req, res) => {
+    debug("like");
     if (req.body.like === "like") {
         // increment likes
     } else {
@@ -52,20 +60,28 @@ const like = async (req, res) => {
     res.send({ likes: 5, id: req.params.id });
 };
 
+// get request
+// no params
+// return all experiences 
+// TO-DO pagination
 const getExperiences = async (req, res) => {
     debug('get experiences');
     res.send(experiences);
 };
 
+// get the user experiences
 const getExperience = async (req, res) => {
+    const userID = req.params.id;
     debug('get an experience');
     res.send(experiences);
 };
 
+// delete request
+// only return the experience id
 const deleteExperience = async (req, res) => {
-    // delete experience
+    const experienceID = re.params.id; 
     debug('delete an experience');
-    res.send({ id: req.params.id });
+    res.send({ id: experienceID});
 };
 
 module.exports = {

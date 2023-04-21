@@ -55,7 +55,7 @@
           >
         </li>
       </ul>
-      <% if (isLoggedIn) {%>
+      <% if (cookies.isAuthenticated) {%>
       <a class="col-2" href="/account"><button>Account</button></a>
       <% } else { %>
       <a class="col-2" href="/login"><button>Login</button></a>
