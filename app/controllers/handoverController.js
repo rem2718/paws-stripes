@@ -13,11 +13,12 @@ const handover = async (req, res) => {
 const getStatus = async (req, res) => {
     const userID = req.params.id;
     debug('get handover status');
-    res.send({ requestID: "3476", status: "accepted" });
+    res.send([{ requestID: "3a456", status: "pending" }, { requestID: "343k56", status: "accepted" }]);
 };
 
 const updateStatus = async (req, res) => {
     debug('change handover status');
+    res.send({ id: req.params.id, status: req.body.status });
 };
 
 module.exports = {

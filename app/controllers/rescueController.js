@@ -13,11 +13,12 @@ const rescue = async (req, res) => {
 const getStatus = async (req, res) => {
     const userID = req.params.id;
     debug('get rescue status');
-    res.send({ requestID: "3459", status: "rejected" });
+    res.send([{ requestID: "36456", status: "pending" }, { requestID: "343u56", status: "rejected" }]);
 };
 
 const updateStatus = async (req, res) => {
     debug('change rescue status');
+    res.send({ id: req.params.id, status: req.body.status });
 };
 
 module.exports = {

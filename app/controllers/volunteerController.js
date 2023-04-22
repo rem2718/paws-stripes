@@ -20,11 +20,12 @@ const getHours = async (req, res) => {
 const getStatus = async (req, res) => {
     const userID = req.params.id;
     debug('get volunteer hours');
-    res.send({ requestID: "3456", status: "pending" });
+    res.send([{ requestID: "34q56", status: "pending" }, { requestID: "343f56", status: "pending" }]);
 };
 
 const updateStatus = async (req, res) => {
     debug('change volunteer status');
+    res.send({ id: req.params.id, status: req.body.status });
 };
 
 module.exports = {

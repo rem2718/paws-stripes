@@ -12,10 +12,26 @@
   </head>
   <body>
     <%- include('./partials/header', {active: 'requests'})%>
-    <h1>RECOMMENDATION</h1>
-    <a href="/api/adopt/1"
-      ><button class="btn btn-primary">Adopt</button>
-    </a>
-    <a href="/api/pets"><button class="btn btn-primary">Cancel</button> </a>
+    <h1 id="recommend" data-adopt-id="<%=adoptID%>" >RECOMMENDATION</h1>
+    <h3>based on what you have told us, we think you should adopt this pet!</h3>
+    <div class="card">
+      <img id="image" src="" alt="Card 1" />
+      <div class="card-text">
+        <ul>
+          <li>Pet ID: <p id="petID"></p></li>
+          <li>Name: <p id="name"></p></li>
+          <li>Type: <p id="type"></p></li>
+          <li>Breed: <p id="breed"></p></li>
+          <li>Age: <p id="age"></p></li>
+          <li>Personality: <p id="personality"></p></li>
+        </ul>
+      </div>
+      <a id="adopt-btn" href=""
+        ><button class="btn btn-primary">Adopt</button>
+      </a>
+      <button id="shuffle-btn">Shuffle</button>
+      <a href="/api/pets"><button class="btn btn-primary">Cancel</button> </a>
+    </div>
+    <script src="/scripts/recommendation.js"></script>
   </body>
 </html>

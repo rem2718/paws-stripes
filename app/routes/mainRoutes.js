@@ -28,6 +28,10 @@ router.get('/account', (req, res) => {
     res.render('account', { cookies: req.cookies || false });
 })
 
+router.get('/meet-our-pets', (req, res) => {
+    res.render('meet-our-pets', { cookies: req.cookies || false });
+});
+
 router.get('/err-response/:err', (req, res) => {
     let err;
     let msg;
@@ -44,6 +48,9 @@ router.get('/err-response/:err', (req, res) => {
             msg = 'access denied, forbidden';
             err = 403;
             break;
+        case 'Not Found':
+            msg = 'page not found :\( please check the URL and try again';
+            err = 404;
         default:
             msg = req.params.err;
             err = 400;

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head')%>
+
+<head>
+  <%- include('./partials/head')%>
     <style>
       body {
-			background-image: url("/images/backgrounds/background-6.png");
-			background-repeat: no-repeat;
-			background-size: cover;
-		  }
+        background-image: url("/images/backgrounds/background-6.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
       /* Style the form container */
       .form-container {
         width: 50%;
@@ -65,30 +67,28 @@
         background-color: #da190b;
       }
     </style>
-  </head>
-  <body>
-    <%- include('./partials/header', {active: 'rescue'})%>
+</head>
+
+<body>
+  <%- include('./partials/header', {active: 'rescue' })%>
     <h2>Rescue Form</h2>
     <div class="form-container">
       <form action="/api/rescue" method="post">
-        <label for="username"><b>Username/Email</b></label>
-        <input
-          type="text"
-          placeholder="Enter Username"
-          name="username"
-          required
-        />
-
-        <label for="password"><b>Password</b></label>
-        <input
-          type="password"
-          placeholder="Enter Password"
-          name="password"
-          required
-        />
-
-        <button type="submit" class="sign-in-button">submit</button>
-      </form>
+        <div class="row">
+          <div class="col-6">
+            <label for="username"><b>Username/Email</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required />
+          </div>
+          <div class="col-6">
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required />
+          </div>
+        </div>
     </div>
-  </body>
+
+    <button type="submit" class="sign-in-button">submit</button>
+    </form>
+    </div>
+</body>
+
 </html>
