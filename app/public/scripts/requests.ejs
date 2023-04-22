@@ -1,76 +1,38 @@
 <script>
-    const status = (response) => {
-        if (response.status >= 200 && response.status < 300) {
-            return Promise.resolve(response)
-        } else {
-            return Promise.reject(new Error(response.statusText))
-        }
-    };
-
-    const json = (response) => {
-        return response.json()
-    }
-
     const changeStatus = (type, reqID, status) => {
-        fetch(`/api/${type}/status/${reqID}`, {
-            method: 'PUT',
-            credentials: 'include',
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify({
-                status: status
-            })
-        })
-            .then(status)
-            .then(json)
-            .then((response) => {
-                console.log(response);
-                document.getElementById(`status-${response.id}`).innerHTML = response.status;
-                document.getElementById(`accept-${response.id}`).remove();
-                document.getElementById(`reject-${response.id}`).remove();
-
-            })
-            .catch((error) => {
-                console.log(error);
-                window.location.href = `/err-response/${error.message}`;
-            });
+        const body = {
+            status: status
+        }
+        putRequest(`/api/${type}/status/${reqID}`, body, (response) => {
+            console.log(response);
+            document.getElementById(`status-${response.id}`).innerHTML = response.status;
+            document.getElementById(`accept-${response.id}`).remove();
+            document.getElementById(`reject-${response.id}`).remove();
+        });
     }
 
-    const getRequest = (type) => {
-        fetch(`/api/${type}/status/<%=cookies.userID%>`, {
-            credentials: 'include',
-            headers: {
-                "Content-type": "application/json"
-            },
-        })
-            .then(status)
-            .then(json)
-            .then((response) => {
-                console.log(response);
-                var div = document.getElementById(type);
-                div.className = "container p-5 my-5 bg-dark text-white";
-                div.innerHTML = ``;
-                response.forEach(req => {
-                    div.innerHTML += `
-                    <p>requestID: ${req.requestID} <b id='status-${req.requestID}'>status: ${req.status}</b></p> `;
-                    if (req.status === "pending") {
-                        div.innerHTML += `                   
-                        <button id="accept-${req.requestID}" class="btn btn-info" onclick="changeStatus('${type}', '${req.requestID}', 'accepted')">accept</button>
-                        <button id="reject-${req.requestID}" class="btn btn-danger" onclick="changeStatus('${type}', '${req.requestID}', 'rejected')">reject</button>
-                        `;
-                    }
-                });
-
-            })
-            .catch((error) => {
-                console.log(error.message);
-                window.location.href = `/err-response/${error.message}`;
+    const getRequests = (type) => {
+        getRequest(`/api/${type}/status/<%=cookies.userID%>`, (response) => {
+            console.log(response);
+            var div = document.getElementById(type);
+            div.className = "container p-5 my-5 bg-dark text-white";
+            div.innerHTML = ``;
+            response.forEach(req => {
+                div.innerHTML += `
+                <p>requestID: ${req.requestID} <b id='status-${req.requestID}'>status: ${req.status}</b></p> `;
+                if (req.status === "pending") {
+                    div.innerHTML += `                   
+                    <button id="accept-${req.requestID}" class="btn btn-info" onclick="changeStatus('${type}', '${req.requestID}', 'accepted')">accept</button>
+                    <button id="reject-${req.requestID}" class="btn btn-danger" onclick="changeStatus('${type}', '${req.requestID}', 'rejected')">reject</button>
+                    `;
+                }
             });
+        });
     }
 
-    getRequest('adopt');
-    getRequest('handover');
-    getRequest('rescue');
-    getRequest('volunteer');
+    getRequests('adopt');
+    getRequests('handover');
+    getRequests('rescue');
+    getRequests('volunteer');
+
 </script>
