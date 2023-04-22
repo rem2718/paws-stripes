@@ -3,7 +3,7 @@ const debug = require('debug')('app:api');
 
 const volunteer = async (req, res) => {
     debug('volunteer');
-    res.render('response');
+    res.redirect('../requests/response');
 };
 
 //reguler get
