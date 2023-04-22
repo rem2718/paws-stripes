@@ -30,9 +30,10 @@
         });
     }
 
-    getRequests('adopt');
-    getRequests('handover');
-    getRequests('rescue');
-    getRequests('volunteer');
-
+    if ('<%= cookies.userType %>' === "admin") {
+        getRequests('adopt');
+        getRequests('handover');
+        getRequests('rescue');
+        getRequests('volunteer');
+    }
 </script>

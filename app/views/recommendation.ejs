@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head')%>
+
+<head>
+  <%- include('./partials/head')%>
     <style>
       body {
         background-image: url("/images/backgrounds/background-2.png");
@@ -9,30 +10,37 @@
         background-size: cover;
       }
     </style>
-  </head>
-  <body>
-    <%- include('./partials/header', {active: 'requests'})%>
-    <h1 id="recommend" data-adopt-id="<%=adoptID%>" >RECOMMENDATION</h1>
+</head>
+
+<body>
+  <%- include('./partials/header', {active: 'requests' })%>
+    <h1 id="recommend" data-adopt-id="<%=adoptID%>">RECOMMENDATION</h1>
     <h3>based on what you have told us, we think you should adopt this pet!</h3>
     <div class="card">
       <img id="image" src="" alt="Card 1" />
       <div class="card-text">
         <ul>
-          <li>Pet ID: <p id="petID"></p></li>
-          <li>Name: <p id="name"></p></li>
-          <li>Type: <p id="type"></p></li>
-          <li>Breed: <p id="breed"></p></li>
-          <li>Age: <p id="age"></p></li>
-          <li>Personality: <p id="personality"></p></li>
+          <li>Pet ID: <p id="petID"></p>
+          </li>
+          <li>Name: <p id="name"></p>
+          </li>
+          <li>Type: <p id="type"></p>
+          </li>
+          <li>Breed: <p id="breed"></p>
+          </li>
+          <li>Age: <p id="age"></p>
+          </li>
+          <li>Personality: <p id="personality"></p>
+          </li>
         </ul>
       </div>
-      <a id="adopt-btn" href=""
-        ><button class="btn btn-primary">Adopt</button>
+      <a id="adopt-btn" href=""><button class="btn btn-primary">Adopt</button>
       </a>
-      <button id="shuffle-btn">Shuffle</button>
+      <button id="shuffle-btn" onclick="shuffle()">Shuffle</button>
       <a href="/api/pets"><button class="btn btn-primary">Cancel</button> </a>
     </div>
-    <%- include("../public/scripts/apiController.ejs")%>
-    <script src="/scripts/recommendation.js"></script>
-  </body>
+    <script src="/scripts/apiController.js"></script>
+    <%- include("../public/scripts/recommendation.ejs")%>
+</body>
+
 </html>
