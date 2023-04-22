@@ -14,7 +14,7 @@ var pets = [
         "dislikes": ["sun", "babies"],
         "image": null
     }, {
-        "petID": "1234",
+        "petID": "123w4",
         "name": "Leonard",
         "type": "cat",
         "breed": "Persian",
@@ -24,7 +24,7 @@ var pets = [
         "dislikes": ["sun", "babies"],
         "image": null
     }, {
-        "petID": "1234",
+        "petID": "12g34",
         "name": "Leonard",
         "type": "cat",
         "breed": "Persian",
@@ -35,24 +35,29 @@ var pets = [
         "image": null
     }];
 
-
+// post request
 const createPet = async (req, res) => {
     debug('create pet');
+    res.redirect("/meet-our-pets");
 };
 
 // get request
 // return pets
 const getPets = async (req, res) => {
     debug('get pets');
-    res.render('meet-our-pets', { cookies: req.cookies || false, pets });
+    res.send(pets);
 };
 
+// POST request
 const updatePet = async (req, res) => {
     debug('update pet');
+    res.send(req.body);
 };
 
+// delete request
 const deletePet = async (req, res) => {
     debug('delete pet');
+    res.send({ id: req.params.id });
 };
 
 module.exports = {

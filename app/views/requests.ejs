@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head')%>
+
+<head>
+  <%- include('./partials/head')%>
     <style>
       body {
-			background-image: url("/images/backgrounds/background-3.png");
-			background-repeat: no-repeat;
-			background-size: cover;
-		  }
+        background-image: url("/images/backgrounds/background-3.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
       .card-container {
         display: flex;
         flex-wrap: wrap;
@@ -45,46 +47,61 @@
         margin-right: 20px;
       }
     </style>
-  </head>
-  <body>
-   <%- include('./partials/header', {active: 'requests'}) %>
-    <h1>Forms</h1>
-    <div class="card-container">
-      <div class="card">
-        <img src=" " alt="Card 1" />
-        <div class="card-text">
-          <h2>Adoption Form</h2>
+</head>
+
+<body>
+  <%- include('./partials/header', {active: 'requests' }) %>
+    <%if (cookies.userType !="admin" ) { %>
+      <h1>Forms</h1>
+      <div class="card-container">
+        <div class="card">
+          <img src=" " alt="Card 1" />
+          <div class="card-text">
+            <h2>Adoption Form</h2>
+          </div>
+          <a href="/requests/adoption-form">here</a>
         </div>
-        <a href="/requests/adoption-form">here</a>
-      </div>
-      <div class="card">
-        <img src=" " alt="Card 2" />
-        <div class="card-text">
-          <h2>Volunteer Form</h2>
+        <div class="card">
+          <img src=" " alt="Card 2" />
+          <div class="card-text">
+            <h2>Volunteer Form</h2>
+          </div>
+          <a href="/requests/volunteer-form">here</a>
         </div>
-        <a href="/requests/volunteer-form">here</a>
-      </div>
-      <div class="card">
-        <img src=" " alt="Card 3" />
-        <div class="card-text">
-          <h2>Report a Rescue</h2>
+        <div class="card">
+          <img src=" " alt="Card 3" />
+          <div class="card-text">
+            <h2>Report a Rescue</h2>
+          </div>
+          <a href="/requests/rescue-form">here</a>
         </div>
-        <a href="/requests/rescue-form">here</a>
-      </div>
-      <div class="card">
-        <img src=" " alt="Card 4" />
-        <div class="card-text">
-          <h2>Experience Form</h2>
+        <div class="card">
+          <img src=" " alt="Card 4" />
+          <div class="card-text">
+            <h2>Experience Form</h2>
+          </div>
+          <a href="/requests/experience-form">here</a>
         </div>
-        <a href="/requests/experience-form">here</a>
-      </div>
-      <div class="card">
-        <img src=" " alt="Card 5" />
-        <div class="card-text">
-          <h2>Handover Form</h2>
+        <div class="card">
+          <img src=" " alt="Card 5" />
+          <div class="card-text">
+            <h2>Handover Form</h2>
+          </div>
+          <a href="/requests/handover-form">here</a>
         </div>
-        <a href="/requests/handover-form">here</a>
       </div>
-    </div>
-  </body>
+      <% } else {%>
+        <h2>Requests status</h2>
+        <h4>adoption requests:</h4>
+        <div id="adopt"></div>
+        <h4>handover requests:</h4>
+        <div id="handover"></div>
+        <h4>rescue requests:</h4>
+        <div id="rescue"></div>
+        <h4>volunteer requests:</h4>
+        <div id="volunteer"></div>
+        <% } %>
+          <%- include("../public/scripts/requests.ejs")%>
+</body>
+
 </html>

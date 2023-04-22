@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head')%>
+
+<head>
+  <%- include('./partials/head')%>
     <style>
       body {
         background-image: url("/images/backgrounds/background-4.png");
         background-repeat: no-repeat;
         background-size: cover;
       }
+
       .card {
         width: 200px;
         height: 300px;
@@ -33,17 +35,20 @@
         padding: 10px;
       }
     </style>
-  </head>
-  <body>
-    <%- include('./partials/header', {active: 'experiences'}) %>
+</head>
+
+<body>
+  <%- include('./partials/header', {active: 'experiences' }) %>
     <h1>Adoption Experiences</h1>
-    <% if (cookies.isAuthenticated) { %>
-    <button id="all">all experiences</button>
-    <!-- cookies -->
-    <button id="one">my experiences</button>
-    <a href="/requests/experience-form"><button>add</button></a>
-    <% } %>
-    <div id="cards-container" class="grid"></div>
-    <script src="/scripts/experiences.js"></script>
-  </body>
+    <% if (cookies.isAuthenticated && cookies.userType !="admin" ) { %>
+      <button onclick="displayExperiences('', false)">all experiences</button>
+      <!-- cookies -->
+      <button onclick="displayExperiences('<%=cookies.userID%>', true)">my experiences</button>
+      <a href="/requests/experience-form"><button>add</button></a>
+      <% } %>
+        <div id="cards-container" class="grid"></div>
+        <%- include("../public/scripts/experiences.ejs") %>
+   
+</body>
+
 </html>
