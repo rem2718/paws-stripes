@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head')%>
+
+<head>
+  <%- include('./partials/head')%>
     <style>
       body {
         background-image: url("/images/backgrounds/background-4.png");
         background-repeat: no-repeat;
         background-size: cover;
       }
+
       .card {
         width: 300px;
         height: 400px;
@@ -33,33 +35,47 @@
         padding: 10px;
       }
     </style>
-    <% const arrPrint = (arr) => { let output = ""; arr.forEach(function
-    (element) { output += `${element}, `; }); return output.slice(0, -2); }; %>
-  </head>
-  <body>
-    <%- include('./partials/header', {active: 'pets'}) %>
+</head>
+
+<body>
+  <%- include('./partials/header', {active: 'pets' }) %>
     <h1>Meet Our Family</h1>
-    <div class="grid">
-      <% pets.forEach(pet => { %>
-      <div class="card">
-        <img src="<%=pet.image%>" alt="Card 1" />
-        <div class="card-text">
-          <ul>
-            <li>Pet ID: <%=pet.petID%></li>
-            <li>Name: <%=pet.name%></li>
-            <li>Type: <%=pet.type%></li>
-            <li>Breed: <%=pet.breed%></li>
-            <li>Age: <%=pet.age%></li>
-            <li>Personality: <%=arrPrint(pet.personality)%></li>
-            <li>Likes: <%=arrPrint(pet.likes)%></li>
-            <li>Dislikes: <%=arrPrint(pet.dislikes)%></li>
-          </ul>
+    <% if (cookies.userType==="admin" ) { %>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+        add pet
+      </button>
+      <% } %>
+        <div id="cards-container" class="grid">
         </div>
-        <a href="/api/adopt/<%=pet.petID%>"
-          ><button class="btn btn-primary">Adopt</button>
-        </a>
-      </div>
-      <% }); %>
-    </div>
-  </body>
+        <div class="modal" id="myModal">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Add Pet</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                <form action="/api/pets" method="post">
+                  <label for="name"><b>pet name:</b></label><br>
+                  <input type="text" name="name" required /><br>
+                  <label for="type"><b>pet type:</b></label><br>
+                  <input type="text" name="type" required /><br>
+                  <label for="breed"><b>pet breed:</b></label><br>
+                  <input type="text" name="breed" required /><br>
+                  <label for="age"><b>pet age:</b></label><br>
+                  <input type="text" name="age" required /><br>
+                  <label for="personality"><b>pet personality:</b></label><br>
+                  <input type="text" name="personality" required /><br>
+                  <button type="submit" class="sign-in-button">submit</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%- include('../public/scripts/pets.ejs')%>
+</body>
+
 </html>

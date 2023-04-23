@@ -5,6 +5,7 @@ const controller = require('../controllers/handoverController');
 const router = express.Router({ mergeParams: true });
 
 router.post('/', controller.handover);
-router.put('/:id', [auth, admin], controller.updateStatus);
+router.get('/status/:id', [auth], controller.getStatus)
+router.put('/status/:id', [auth, admin], controller.updateStatus);
 
 module.exports = router;

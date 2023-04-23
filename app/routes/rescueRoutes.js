@@ -5,6 +5,7 @@ const controller = require('../controllers/rescueController');
 const router = express.Router({ mergeParams: true });
 
 router.post('/', controller.rescue);
-router.put('/:id', [auth, admin], controller.updateStatus);
+router.get('/status/:id', [auth], controller.getStatus);
+router.put('/status/:id', [auth, admin], controller.updateStatus);
 
 module.exports = router;

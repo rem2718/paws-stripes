@@ -8,58 +8,36 @@
 <header>
   <div class="h fluid-container">
     <div class="row">
-      <image
-        class="col-2"
-        src="/paws-stripes-logo.svg"
-        style="max-width: 250px; max-height: 125px"
-      ></image>
+      <image class="col-2" src="/paws-stripes-logo.svg" style="max-width: 250px; max-height: 125px"></image>
       <ul class="nav nav-pills col-8">
         <li class="nav-item">
-          <a class="nav-link <%= active === 'who' ? 'active' : '' %>" href="/"
-            >Who Are We?</a
-          >
+          <a class="nav-link <%= active === 'who' ? 'active' : '' %>" href="/">Who Are We?</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link <%= active === 'pets' ? 'active' : '' %>"
-            href="/api/pets"
-            >Meet Our Pets!</a
-          >
+          <a class="nav-link <%= active === 'pets' ? 'active' : '' %>" href="/meet-our-pets">Meet Our Pets!</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link <%= active === 'requests' ? 'active' : '' %>"
-            href="/requests"
-            >Requests</a
-          >
+          <a class="nav-link <%= active === 'requests' ? 'active' : '' %>" href="/requests">Requests</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link <%= active === 'experiences' ? 'active' : '' %>"
-            href="/experiences"
-            >Adoption Experiences</a
-          >
+          <a class="nav-link <%= active === 'experiences' ? 'active' : '' %>" href="/experiences">Adoption
+            Experiences</a>
         </li>
-        <li class="nav-item">
-          <a
-            class="nav-link <%= active === 'rescue' ? 'active' : '' %>"
-            href="/requests/rescue-form"
-            >Report a Rescue</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link <%= active === 'faqs' ? 'active' : '' %>"
-            href="/faqs"
-            >FAQs</a
-          >
-        </li>
+        <% if (cookies.userType !="admin" ) { %>
+          <li class="nav-item">
+            <a class="nav-link <%= active === 'rescue' ? 'active' : '' %>" href="/requests/rescue-form">Report a
+              Rescue</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= active === 'faqs' ? 'active' : '' %>" href="/faqs">FAQs</a>
+          </li>
+          <% } %>
       </ul>
-      <% if (isLoggedIn) {%>
-      <a class="col-2" href="/account"><button>Account</button></a>
-      <% } else { %>
-      <a class="col-2" href="/login"><button>Login</button></a>
-      <% } %>
+      <% if (cookies.isAuthenticated) {%>
+        <a class="col-2" href="/account"><button>Account</button></a>
+        <% } else { %>
+          <a class="col-2" href="/login"><button>Login</button></a>
+          <% } %>
     </div>
   </div>
 </header>

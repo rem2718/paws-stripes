@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head')%>
+
+<head>
+  <%- include('./partials/head')%>
     <style>
       body {
         background-image: url("/images/backgrounds/background-1.png");
@@ -9,12 +10,47 @@
         background-size: cover;
       }
     </style>
-  </head>
-  <body>
-    <%- include('./partials/header', {active: 'faqs'})%>
+</head>
+
+<body>
+  <%- include('./partials/header', {active: 'faqs' })%>
     <h2>ACCOUNT PAGE</h2>
-    <form method="POST" action="/api/user/logout">
-      <button type="submit">Logout</button>
+    <h3>your account details</h3>
+    <form id="form">
+      <label for="username"><b>Username/Email</b></label>
+      <input id="username" type="text" name="username" class="input" onchange="disableOrEnable()" />
+
+      <label for="userID"><b>userID</b></label>
+      <input id="userID" type="text" name="userID" class="input" readonly />
+
+      <label for="email"><b>email</b></label>
+      <input id="email" type="email" name="email" class="input" onchange="disableOrEnable()" />
     </form>
-  </body>
+    <button id="update-acc" onclick="update()" disabled>update</button>
+    </p>
+    <%console.log(cookies)%>
+      <% if (cookies.userType !="admin" ) {%>
+        <h3>request status history</h3>
+        <div id="req-container" class="container">
+          <h4>adoption requests:</h4>
+          <p id="adopt"></p>
+          <h4>handover requests:</h4>
+          <p id="handover"></p>
+          <h4>rescue requests:</h4>
+          <p id="rescue"></p>
+          <h4>volunteer requests:</h4>
+          <p id="volunteer"></p>
+        </div>
+        <h3>volunteer activity</h3>
+        <p id="hours">
+        <p>
+        <p>not a volunteer? You can apply <a href="/requests/volunteer">here</a></p>
+        <button id="delete-acc" onclick="deleteAcc()">Delete Account<button>
+            <% } %>
+              <form method="POST" action="/api/user/logout">
+                <button type="submit">Logout</button>
+              </form>
+              <%- include("../public/scripts/account.ejs")%>
+</body>
+
 </html>
