@@ -42,7 +42,7 @@ const experiences = [
 // post request
 // take the attribute names from ward
 const createExperience = async (req, res) => {
-    req.body.attribute
+    req.body
     debug('submit an experience');
     res.redirect('../requests/response');
 };
@@ -65,6 +65,7 @@ const like = async (req, res) => {
 // return all experiences 
 // TO-DO pagination
 const getExperiences = async (req, res) => {
+    
     debug('get experiences');
     res.send(experiences);
 };

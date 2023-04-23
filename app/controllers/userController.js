@@ -3,7 +3,7 @@ const path = require('path');
 const jwt = require('jsonwebtoken');
 // const User = require('../models/userModel');
 
-// post request
+// post request, signup
 // take the attribute names from ward
 const createUser = async (req, res) => {
     debug('create user');
@@ -31,7 +31,7 @@ const logoutUser = async (req, res) => {
     res.clearCookie('token').clearCookie('isAuthenticated').clearCookie('userID').clearCookie('userType').redirect('/');
 }
 
-//get request 
+//get request account details in account page
 const getUser = async (req, res) => {
     const userID = req.params.id;
     debug('get user');
