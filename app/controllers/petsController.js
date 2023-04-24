@@ -37,19 +37,22 @@ var pets = [
 
 // post request
 const createPet = async (req, res) => {
+    // req.body.
     debug('create pet');
     res.redirect("/meet-our-pets");
 };
 
 // get request
 // return pets
+// pagination
 const getPets = async (req, res) => {
     debug('get pets');
     res.send(pets);
 };
 
-// POST request
+// put request
 const updatePet = async (req, res) => {
+    // body
     debug('update pet');
     res.send(req.body);
 };

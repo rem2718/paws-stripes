@@ -4,18 +4,19 @@ const debug = require('debug')('app:api');
 // post request
 // take the attribute names from ward
 const handover = async (req, res) => {
-    req.params.attribute
+    req.body.attribute
     debug('handover');
     res.redirect('../requests/response');
 };
 
-//get request
+//get request type, breed, timestamps, status
 const getStatus = async (req, res) => {
     const userID = req.params.id;
     debug('get handover status');
     res.send([{ requestID: "3a456", status: "pending" }, { requestID: "343k56", status: "accepted" }]);
 };
 
+// put , reject, accept
 const updateStatus = async (req, res) => {
     debug('change handover status');
     res.send({ id: req.params.id, status: req.body.status });

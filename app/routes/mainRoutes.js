@@ -32,6 +32,10 @@ router.get('/meet-our-pets', (req, res) => {
     res.render('meet-our-pets', { cookies: req.cookies || false });
 });
 
+router.get('/loading', (req, res) => {
+    res.render('loading', { cookies: req.cookies || false });
+});
+
 router.get('/err-response/:err', (req, res) => {
     let err;
     let msg;
@@ -41,7 +45,7 @@ router.get('/err-response/:err', (req, res) => {
             err = 400;
             break;
         case 'Unauthorized':
-            msg = 'oh no! You have to login to fill this form';
+            msg = 'oh no! You have to login first';
             err = 401;
             break;
         case 'Forbidden':

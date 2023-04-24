@@ -1,132 +1,58 @@
 <script>
-    const status = (response) => {
-        if (response.status >= 200 && response.status < 300) {
-            return Promise.resolve(response)
-        } else {
-            return Promise.reject(new Error(response.statusText))
-        }
-    };
-
-    const json = (response) => {
-        return response.json()
+    const disableOrEnable = () => {
+        if (curUsername != document.getElementById('username').value || curEmail != document.getElementById('email').value) 
+            document.getElementById("update-acc").disabled = false;
+        else 
+            document.getElementById("update-acc").disabled = true;  
     }
 
     const deleteAcc = () => {
-        fetch(`/api/user/<%=cookies.userID%>`, {
-            method: 'delete',
-            credentials: 'include',
-            headers: {
-                "Content-type": "application/json"
-            },
+        deleteRequest(`/api/user/<%=cookies.userID%>`, () => {
+            window.location.href = "/";
         })
-            .then(status)
-            .then(() => {
-                window.location.href = "/";
-            })
-            .catch((error) => {
-                console.log(error.message);
-                window.location.href = `/err-response/${error.message}`;
-            });
     }
 
     const getHours = () => {
-        fetch(`/api/volunteer/hours/<%=cookies.userID%>`, {
-            credentials: 'include',
-            headers: {
-                "Content-type": "application/json"
-            },
-        })
-            .then(json)
-            .then((response) => {
-                var hourDiv = document.getElementById("hours");
-                hourDiv.innerHTML = `completed hours of volunteering: ${response.hours} hours`
-            })
-            .catch((error) => {
-                console.log(error.message);
-                window.location.href = `/err-response/${error.message}`;
-            });
+        getRequest(`/api/volunteer/hours/<%=cookies.userID%>`, (response) => {
+            var hourDiv = document.getElementById("hours");
+            hourDiv.innerHTML = `completed hours of volunteering: ${response.hours} hours`
+        });
     }
 
     var curUsername;
     var curEmail;
     const getUserInfo = () => {
-        fetch(`/api/user/<%=cookies.userID%>`, {
-            credentials: 'include',
-            headers: {
-                "Content-type": "application/json"
-            },
+        getRequest(`/api/user/<%=cookies.userID%>`, (response) => {
+            curUsername = response.username;;
+            curEmail = response.email;
+            document.getElementById('username').value = response.username;
+            document.getElementById('userID').value = response.userID;
+            document.getElementById('email').value = response.email;
         })
-            .then(json)
-            .then((response) => {
-                curUsername = response.username;;
-                curEmail = response.email;
-                document.getElementById('username').value = response.username;
-                document.getElementById('userID').value = response.userID;
-                document.getElementById('email').value = response.email;
-            })
-            .catch((error) => {
-                console.log(error.message);
-                window.location.href = `/err-response/${error.message}`;
-            });
     }
 
     const getReqSt = (type) => {
-        fetch(`/api/${type}/status/<%=cookies.userID%>`, {
-            credentials: 'include',
-            headers: {
-                "Content-type": "application/json"
-            },
-        })
-            .then(status)
-            .then(json)
-            .then((response) => {
-                var div = document.getElementById(type);
-                response.forEach(req => {
-                    div.innerHTML += `<p>requestID: ${req.requestID}, status: ${req.status}</p>`
-                });
-
+        getRequest(`/api/${type}/status/<%=cookies.userID%>`, (response) => {
+            var div = document.getElementById(type);
+            response.forEach(req => {
+                div.innerHTML += `<p>requestID: ${req.requestID}, status: ${req.status}</p>`
             })
-            .catch((error) => {
-                console.log(error.message);
-                window.location.href = `/err-response/${error.message}`;
-            });
+        })
     }
 
-    const disableOrEnable = () => {
-        console.log(curUsername);
-        if (curUsername != document.getElementById('username').value || curEmail != document.getElementById('email').value) {
-            document.getElementById("update-acc").disabled = false;
-        } else {
-            document.getElementById("update-acc").disabled = true;
-        }
-    }
+
 
     const update = () => {
-        event.preventDefault();
-        fetch(`/api/user/<%=cookies.userID%>`, {
-            method: 'put',
-            credentials: 'include',
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify({
-                username: document.getElementById('username').value,
-                email: document.getElementById('email').value
-            })
+        const body = {
+            username: document.getElementById('username').value,
+            email: document.getElementById('email').value
+        }
+        putRequest(`/api/user/<%=cookies.userID%>`, body, (response) => {
+            curUsername = response.username;
+            curEmail = response.email;
+            document.getElementById("update-acc").disabled = true;
+            console.log("response updated!", response);
         })
-            .then(status)
-            .then(json)
-            .then((response) => {
-                curUsername = response.username;
-                curEmail = response.email;
-                console.log(curUsername);
-                document.getElementById("update-acc").disabled = true;
-                console.log("response updated!", response);
-            })
-            .catch((error) => {
-                console.log(error.message);
-                window.location.href = `/err-response/${error.message}`;
-            });
     }
 
     getUserInfo();

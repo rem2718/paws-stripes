@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
-const debug = require('debug')('app:database')
-mongoose.connect('mongodb+srv://rem:paws2020@paws-and-stripes.ovdm3cw.mongodb.net/test', {
+const debug = require('debug')('app:database');
+
+mongoose.connect(process.env.DB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-  .then(() => console.log('Connected to MongoDB'))
+  .then(() => debug('Connected to MongoDB'))
   .catch((err) => console.error(err));
 
-  module.exports = mongoose.connection;
+module.exports = mongoose.connection;

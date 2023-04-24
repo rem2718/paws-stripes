@@ -1,94 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head')%>
-    <style>
-      body {
-			background-image: url("/images/backgrounds/background-6.png");
-			background-repeat: no-repeat;
-			background-size: cover;
-		  }
-      /* Style the form container */
-      .form-container {
-        width: 50%;
-        margin: 50px auto;
-        border: 1px solid black;
-        padding: 20px;
-        text-align: center;
-      }
 
-      /* Style the form heading */
-      h2 {
-        margin-top: 0;
-      }
+<head>
+  <%- include('./partials/head')%>
+    <link href="/stylesheets/forms.css" rel="stylesheet" />
+</head>
 
-      /* Style the form inputs */
-      input[type="text"],
-      input[type="password"] {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-      }
+<body class="form">
+  <%- include('./partials/header', {active: 'requests' })%>
+    <h1><span class="white-word">Experience</span> <span class="green-word">Form</span></h1>
+    <hr>
+    </hr>
+    <div class="container mt-3">
+      <form class="p-5" action="/api/experiences" method="post">
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="animal-picture">Provide us a picture of the adopted animal:</label><br><br>
+            <input type="file" id="animal-picture" name="animal-picture" accept="image/*">
+          </div>
+          <div class="col-6">
+            <label for="adoption-experience">Please share your adoption experience and your kind feedback on the
+              volunteering services that the shelter provides:</label>
+            <textarea class="form-control" rows="2" id="adoption-experience" name="adoption-experience"></textarea>
+          </div>
+        </div>
 
-      /* Style the sign in button */
-      .sign-in-button {
-        background-color: #4caf50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="share-post">Do you wish to share this experience post on our website?</label>
+            <select id="share-post" name="share-post" class="form-select">
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label for="anonymous-post">Do you prefer your experience post to be anonymous?</label>
+            <select id="anonymous-post" name="anonymous-post" class="form-select">
+              <option value="yes">Yes</option><br>
+              <option value="no">No</option>
+            </select>
+          </div>
+        </div>
+        <div class="row p-2">
+          <div class="col-10"></div>
+          <div class="col-2">
+            <button class="button" type="submit">Submit</button>
+          </div>
+        </div>
 
-      /* Style the sign in button on hover */
-      .sign-in-button:hover {
-        background-color: #3e8e41;
-      }
 
-      /* Style the create account button */
-      .create-account-button {
-        background-color: #f44336;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
 
-      /* Style the create account button on hover */
-      .create-account-button:hover {
-        background-color: #da190b;
-      }
-    </style>
-  </head>
-  <body>
-      <%- include('./partials/header', {active: 'requests'})%>
-    <h2>Experience Form</h2>
-    <div class="form-container">
-      <form action="/api/experiences" method="post">
-        <label for="username"><b>Username/Email</b></label>
-        <input
-          type="text"
-          placeholder="Enter Username"
-          name="username"
-          required
-        />
-
-        <label for="password"><b>Password</b></label>
-        <input
-          type="password"
-          placeholder="Enter Password"
-          name="password"
-          required
-        />
-
-        <button type="submit" class="sign-in-button">submit</button>
       </form>
     </div>
-  </body>
+</body>
+
 </html>
