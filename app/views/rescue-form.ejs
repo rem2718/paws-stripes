@@ -3,92 +3,54 @@
 
 <head>
   <%- include('./partials/head')%>
-    <style>
-      body {
-        background-image: url("/images/backgrounds/background-6.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-
-      /* Style the form container */
-      .form-container {
-        width: 50%;
-        margin: 50px auto;
-        border: 1px solid black;
-        padding: 20px;
-        text-align: center;
-      }
-
-      /* Style the form heading */
-      h2 {
-        margin-top: 0;
-      }
-
-      /* Style the form inputs */
-      input[type="text"],
-      input[type="password"] {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-      }
-
-      /* Style the sign in button */
-      .sign-in-button {
-        background-color: #4caf50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-
-      /* Style the sign in button on hover */
-      .sign-in-button:hover {
-        background-color: #3e8e41;
-      }
-
-      /* Style the create account button */
-      .create-account-button {
-        background-color: #f44336;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-
-      /* Style the create account button on hover */
-      .create-account-button:hover {
-        background-color: #da190b;
-      }
-    </style>
+    <link href="/stylesheets/forms.css" rel="stylesheet" />
 </head>
 
-<body>
-  <%- include('./partials/header', {active: 'rescue' })%>
-    <h2>Rescue Form</h2>
-    <div class="form-container">
-      <form action="/api/rescue" method="post">
-        <div class="row">
-          <div class="col-6">
-            <label for="username"><b>Username/Email</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required />
-          </div>
-          <div class="col-6">
-            <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required />
-          </div>
-        </div>
-    </div>
+<body class="form">
+  <h1><span class="white-word">Rescue</span> <span class="green-word">Form</span></h1>
+  <hr>
+  <div class="container mt-3">
+    <form class="p-5" action="/api/rescue" method="post">
+      <div class="row p-2">
+        <div class="col-6">
+          <label for="location"><b>Enter Google Maps URL of rescue location</b></label><br>
+          <input class="form-control" type="url" id="location" name="location">
 
-    <button type="submit" class="sign-in-button">submit</button>
+        </div>
+        <div class="col-6">
+          <label for="photo"><b>Provide an image of the animal to be rescued:</b></label><br><br>
+          <input type="file" id="photo" name="photo">
+        </div>
+      </div>
+
+      <div class="row p-2">
+        <div class="col-6">
+          <label for="ques"><b>Is the animal suffering from clinical condition?</b></label><br>
+          <input class="form-check-input" type="radio" name="question" id="yes-clinical" value="yes">
+          <label class="form-check-label" class="form-check-label" for="yes-clinical">Yes</label><br>
+          <input class="form-check-input" type="radio" name="question" id="no-clinical" value="no">
+          <label class="form-check-label" class="form-check-label" for="no-clinical">No</label>
+        </div>
+        <div class="col-6">
+          <label for="ques1"><b>Can you foster the animal till the animal is rescued?</b></label><br>
+          <input class="form-check-input" type="radio" name="question1" id="yes-foster" value="yes">
+          <label class="form-check-label" for="yes-foster">Yes</label><br>
+          <input class="form-check-input" type="radio" name="question1" id="no-foster" value="no">
+          <label class="form-check-label" for="no-foster">No</label>
+        </div>
+      </div>
+
+      <div class="row p-2">
+        <div class="col-6">
+          <label for="ques2"><b>When did you first see the animal?</b></label><br>
+          <input type="datetime-local" id="first-sighting" name="first-sighting">
+        </div>
+        <div class="col-6 d-flex justify-content-end px-5">
+          <button class="button" type="submit">Submit</button>
+        </div>
+      </div>
     </form>
-    </div>
+  </div>
 </body>
 
 </html>

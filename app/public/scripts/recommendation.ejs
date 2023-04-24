@@ -1,0 +1,35 @@
+<script>
+    var pets;
+    var index = 0;
+
+    const shuffle = () => {
+        index = (index + 1) % pets.length;
+        console.log(index);
+        document.getElementById('image').src = null;
+        document.getElementById('petID').innerHTML = `${pets[index].petID}`;
+        document.getElementById('name').innerHTML = `${pets[index].name}`;
+        document.getElementById('type').innerHTML = `${pets[index].type}`;
+        document.getElementById('breed').innerHTML = `${pets[index].breed}`;
+        document.getElementById('age').innerHTML = `${pets[index].age}`;
+        document.getElementById('personality').innerHTML = `${arrPrint(pets[index].personality)}`;
+        document.getElementById('adopt-btn').setAttribute('href', `/api/adopt/${pets[index].petID}`);
+    }
+
+    const getRecommendation = (adoptID) => {
+        getRequest(`/api/adopt/recommendation/${adoptID}`, (response) => {
+            pets = response;
+            document.getElementById('image').src = null;
+            document.getElementById('petID').innerHTML = `${pets[0].petID}`;
+            document.getElementById('name').innerHTML = `${pets[0].name}`;
+            document.getElementById('type').innerHTML = `${pets[0].type}`;
+            document.getElementById('breed').innerHTML = `${pets[0].breed}`;
+            document.getElementById('age').innerHTML = `${pets[0].age}`;
+            document.getElementById('personality').innerHTML = `${arrPrint(pets[0].personality)}`;
+            document.getElementById('adopt-btn').setAttribute('href', `/api/adopt/${pets[0].petID}`);
+        });
+    };
+
+    const adoptID = document.getElementById("recommend").getAttribute('data-adopt-id');
+    getRecommendation(adoptID);
+
+</script>

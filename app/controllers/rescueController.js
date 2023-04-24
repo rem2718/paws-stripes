@@ -9,7 +9,7 @@ const rescue = async (req, res) => {
     res.redirect('../requests/response');
 };
 
-// get request
+// get request, same as handover
 const getStatus = async (req, res) => {
     const userID = req.params.id;
     debug('get rescue status');
