@@ -1,0 +1,86 @@
+@import url("/stylesheets/style.css");
+
+.div {
+    background-image: url("/images/div-7.svg"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
+    color: var(--dark-blue);
+    font-family: var(--par1-font);
+    font-weight: bold;  
+    max-width: 900px;
+    height:300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    font-family: var(--header1-font);
+    margin: 20px 180px 5px 180px;
+    font-size: 4rem;
+}
+
+body {
+    background-image: url("/images/backgrounds/background-1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+hr {
+    border-color: var(--dark-green);
+    border-width: 4px;
+    margin: 5px 180px 10px 180px;
+}
+
+.green-word {
+    color: var(--green);
+}
+
+.white-word {
+    color: var(--white);
+}
+
+.button2 {
+    padding: 10px 20px;
+    background-color: var(--dark-green);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+.button2:hover {
+    background-color: var(--light-green);
+}
+
+.cat {
+    scale: 15%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.dont {
+    color: var(--white);
+    font-family: var(--header1-font);
+    font-size: 2rem;
+}
+
+.button {
+    padding: 20px 40px;
+    background-color: transparent;
+    background-image: url('/images/orange button.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    color: var(--light-blue);
+    font-family: var(--error-font);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-image: url('/images/orange button-2.svg');
+}

@@ -1,0 +1,30 @@
+@import url("/stylesheets/style.css");
+
+body {
+  background: var(--beige);
+}
+
+.error-message {
+  font-family: var(--error-font);
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--dark-blue);
+}
+
+.button {
+  padding: 10px 30px;
+  background-color: transparent;
+  background-image: url('/images/orange button.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: var(--light-blue);
+  border: none;
+  border-radius: 5px;
+  font-family: var(--error-font);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-image: url('/images/orange button-2.svg');
+}

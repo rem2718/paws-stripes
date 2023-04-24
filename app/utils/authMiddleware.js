@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const auth = function (req, res, next) {
     const token = req.cookies.token;
     // if (!token) return res.status(401).send({ msg: 'oh no! You have to login to fill this form' });
-    if (!token) return res.status(401).render("err-response", { err: 401, msg: 'oh no! You have to login to fill this form' });
+    if (!token) return res.status(401).render("err-response", { err: 401, msg: 'oh no! You have to login first' });
     try {
         const user = jwt.verify(token, process.env.PRIVATE_KEY);
         req.user = user;
