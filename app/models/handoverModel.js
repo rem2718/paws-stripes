@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const JoiObjectId = require('joi-objectid');
 Joi.objectId = JoiObjectId(Joi);
-const User = require('./userModel');
 
 
 const handoverSchema = new mongoose.Schema({
@@ -13,14 +12,14 @@ const handoverSchema = new mongoose.Schema({
     petType: {type: String, min: 5, required: true, enum:["cat", "dog", "rabbit", "fish", "turtle", "hamster", "guinea pig", "bird", "frog"], required: true},
     handoverAddress: {type: String, required: true,
         validate: {
-            validator: function(v){
+            validator: (v) => {
                 return /^(https?:\/\/)(www\.google\.com\/maps\/|goo\.gl\/maps\/)[^\s]+$/i.test(v);
             },
             message: "Must provide a google maps valid URL!"
         }},
     petAge: {type: Number, min: 0, 
         validate: {
-            validator: function(v){
+            validator: (v) => {
                 return Number.isInteger(v) && v >= 0;
             },
             message: "age should be a positive integer!"
@@ -29,7 +28,7 @@ const handoverSchema = new mongoose.Schema({
         set: v => Math.round(v)},
     petImage: {type: Buffer, required: true,
         validate: {
-            validator: function(v){
+            validator: (v) => {
                 return v.length <= 10485760; //image is 10 mbs max. we can modify
             },
             message: "image should be less than 10 MB!"
@@ -48,7 +47,7 @@ const handoverSchema = new mongoose.Schema({
         default: []},
     status:  {type: String, required: true, enum:["pending", "approved", "rejected", "in progress"]},
       validate: {
-         validator: function(v){
+         validator: (v) => {
             return v;
          },
          message: "request status should not be null"
@@ -57,7 +56,7 @@ const handoverSchema = new mongoose.Schema({
 
 const Handover = mongoose.model('Handover', handoverSchema);
 
-function validateHandover(handover){
+const validateHandover = (handover) => {
     const schema = Joi.object({
         user: Joi.string().objectId().required(),
         handoverReason: Joi.string().min(5).max(500).trim().required(),
@@ -69,7 +68,7 @@ function validateHandover(handover){
         petImage: Joi.binary().required().max(10485760),
         petPersonality: Joi.array().items(Joi.string().valid('fun', 'social', 'calm', 'active', 'loves people', 'hates people', 'loves to eat', 'picky eater', 'likes attention', 'prefers to be alone', 'bold', 'aggressive', 'shy', 'patient', 'intelligent', 'clumsy', 'curious', 'likes to play', 'confident', 'timid', 'enjoys routine')),
         status: Joi.string().valid('pending', 'approved', 'rejected', 'in progress').required(),
-});
+    });
 
     return Joi.validate(handover, schema);
 }

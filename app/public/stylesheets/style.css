@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Kirang+Haerang&family=Londrina+Solid&family=Press+Start+2P&family=Roboto+Mono&family=Swanky+and+Moo+Moo&display=swap');
+
 :root {
     /* colors */
     --dark-green:#435C53;
@@ -10,7 +11,7 @@
     --beige: #EDDBD0;
     --light-brown: #E7C2A5;
     --brown: #D4AA89;
-    --dark-blue: #3A5F74;
+    --dark-blue: #29414F;
     --light-blue: #3A5F74;
     --pink: #EBCAD3;
     --blue: #BED8E3;
