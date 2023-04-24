@@ -10,7 +10,7 @@ const adoptSchema = new mongoose.Schema({
    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
    phoneNumber:{type:String, ref:'User.phoneNumber'},
    pet: {type: mongoose.Schema.Types.ObjectId, ref: 'Pet', required: true}, 
-   status: {type: String, required: true, enum:["pending", "approved", "rejected", "in progress"],
+   status: {type: String, required: true, enum:["pending", "approved", "rejected", "in progress"], //change
       validate: {
          validator: function(v){
             return v;
