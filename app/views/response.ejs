@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head')%>
-    <style>
-      body {
-        background-image: url("/images/backgrounds/background-7.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-    </style>
-  </head>
-  <body>
-   <%- include('./partials/header', {active: 'requests'})%>
-    <h1>RESPONSE</h1>
-  </body>
+
+<head>
+  <%- include('./partials/head')%>
+    <link href="/stylesheets/response.css" rel="stylesheet" />
+</head>
+
+<body>
+  <%- include('./partials/header', {active: 'requests' })%>
+
+    <body class="response">
+      <h1><span class="white-word">Success!</span></h1>
+      <hr>
+      </hr>
+      <div class="container-sm message-box py-5 mb-5">
+        <img class="mb-4" src="/images/icons/sent.svg" alt="Image">
+        <p class="white-word p-2"> Purfect! We sent your request</p>
+        <p class="blue-word"> We will inform you once we process it</p>
+
+
+      </div>
+    </body>
+
 </html>

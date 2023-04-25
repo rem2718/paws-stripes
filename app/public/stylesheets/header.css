@@ -1,0 +1,48 @@
+@import url("/stylesheets/style.css");
+
+.h {
+    background-image: url("/images/header bar.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: var(--par2-font);
+    font-size: 15pt;
+}
+
+.logo {
+    max-width: 230px; 
+    max-height: 125px
+}
+
+.login {
+    background-color: transparent;
+    border: 0px;
+    color: var(--white);
+    font-size: 20pt;
+}
+
+.login-img {
+    padding-top: 20pt;
+    max-width: 50px;
+}
+
+.nu {
+    padding-left: 50px;
+    text-decoration: none;
+}
+
+.nav-link {
+    color: var(--white);
+}
+
+.red-word {
+    color: var(--red);
+}
+
+.nav-link:hover {
+    color: var(--grey);
+}
+
+.active-item {
+    background-color: var(--grey);
+    border-radius: 20px;
+}

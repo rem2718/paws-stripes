@@ -11,18 +11,19 @@ body {
   color: var(--dark-blue);
 }
 
-.button {
-  padding: 10px 30px;
-  background-color: transparent;
-  background-image: url('/images/orange button.svg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  color: var(--light-blue);
-  border: none;
-  border-radius: 5px;
-  font-family: var(--error-font);
-  font-size: 1rem;
-  cursor: pointer;
+.err-button {
+    background-color: transparent;
+    background-image: url('/images/orange button.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    color: var(--light-blue);
+    border: none;
+    border-radius: 5px;
+    width: 250px;
+    font-family: var(--error-font);
+    font-size: 1rem;
+    cursor: pointer;
 }
 
 .button:hover {

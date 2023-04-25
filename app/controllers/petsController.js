@@ -54,7 +54,7 @@ const getPets = async (req, res) => {
 const updatePet = async (req, res) => {
     // body
     debug('update pet');
-    res.send(req.body);
+    res.send({ petID: req.params.id, name: req.body.name, type: req.body.type, breed: req.body.breed, age: req.body.age, personality: req.body.personality });
 };
 
 // delete request

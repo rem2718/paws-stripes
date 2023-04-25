@@ -14,27 +14,26 @@
       <div class="container row">
         <div class="col-6">
           <form action="/api/user/login" method="post">
-            <label for="username">Email:</label>
-            <input type="text" class="form-control" id="username">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" name="email">
             <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password">
+            <input type="password" class="form-control" name="password">
             <div class="row pt-5">
               <div class="col-6">
-                <input class="form-check-input" type="radio" name="admin" value="admin">
-                <label class="form-check-label" for="pet-experience">admin</label><br>
-                <input class="form-check-input" type="radio" name="user" value="user" checked>
-                <label class="form-check-label" for="pet-experience">user</label>
+                <input class="form-check-input" type="radio" name="userType" value="admin">
+                <label class="form-check-label" for="userType">admin</label><br>
+                <input class="form-check-input" type="radio" name="userType" value="user" checked>
+                <label class="form-check-label" for="userType">user</label>
               </div>
-              <div class="col-6">
-                <button class="button2" type="submit">Sign in</button>
+              <div class="col-6 d-flex justify-content-end">
+                <button class="button" type="submit">Sign in</button>
               </div>
             </div>
           </form>
         </div>
         <div class="col-6 p-5">
           <h5 class="dont">Don't have an account?</h5>
-          <a href="/signup"><button class="button">here to join!</button></a>
-          <img class="cat" src="/images/icons/cat.svg" alt="cat image">
+          <a href="/signup"><button class="join-button p-5">click here to join!</button></a>
         </div>
       </div>
     </div>

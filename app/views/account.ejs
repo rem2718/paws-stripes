@@ -28,8 +28,7 @@
     </form>
     <button id="update-acc" onclick="update()" disabled>update</button>
     </p>
-    <%console.log(cookies)%>
-      <% if (cookies.userType !="admin" ) {%>
+      <% if (user.userType !="admin" ) {%>
         <h3>request status history</h3>
         <div id="req-container" class="container">
           <h4>adoption requests:</h4>
@@ -43,7 +42,7 @@
         </div>
         <h3>volunteer activity</h3>
         <p id="hours">
-        <p>
+        </p>
         <p>not a volunteer? You can apply <a href="/requests/volunteer">here</a></p>
         <button id="delete-acc" onclick="deleteAcc()">Delete Account<button>
             <% } %>
