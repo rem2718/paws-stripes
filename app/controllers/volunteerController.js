@@ -20,7 +20,7 @@ const getHours = async (req, res) => {
 const getStatus = async (req, res) => {
     const userID = req.params.id;
     debug('get volunteer hours');
-    res.send([{ requestID: "34q56", status: "pending" }, { requestID: "343f56", status: "pending" }]);
+    res.send([{ type: "gg", breed: "ghgfd", timestamp: "2:00am", status: "pending" }, { type: "asdf", breed: "ghgfd", timestamp: "2:00am", status: "pending" }]);
 };
 
 const updateStatus = async (req, res) => {

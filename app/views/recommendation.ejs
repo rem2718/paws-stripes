@@ -3,41 +3,49 @@
 
 <head>
   <%- include('./partials/head')%>
-    <style>
-      body {
-        background-image: url("/images/backgrounds/background-2.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-    </style>
+    <link href="/stylesheets/recommendation.css" rel="stylesheet" />
 </head>
 
 <body>
   <%- include('./partials/header', {active: 'requests' })%>
-    <h1 id="recommend" data-adopt-id="<%=adoptID%>">RECOMMENDATION</h1>
-    <h3>based on what you have told us, we think you should adopt this pet!</h3>
-    <div class="card">
-      <img id="image" src="" alt="Card 1" />
-      <div class="card-text">
-        <ul>
-          <li>Pet ID: <p id="petID"></p>
-          </li>
-          <li>Name: <p id="name"></p>
-          </li>
-          <li>Type: <p id="type"></p>
-          </li>
-          <li>Breed: <p id="breed"></p>
-          </li>
-          <li>Age: <p id="age"></p>
-          </li>
-          <li>Personality: <p id="personality"></p>
-          </li>
-        </ul>
+    <h1 id="recommend" data-adopt-id="<%=adoptID%>"><span class="white-word">Pet</span> <span
+        class="green-word">Recommendation</span></h1>
+    <hr>
+    </hr>
+    <div class="message-box container mx-5 mb-5 px-5 pt-5 pb-2 mx-auto">
+      <h5><b>Based on what you have told us, we think you should adopt this pet!</b></h5>
+      <div class="row d-flex justify-content-center p-2">
+        <div style="padding:0;" class="col-4 img d-flex justify-content-end align-items-center">
+          <img id="image" src="/cat.png" alt="pet" />
+        </div>
+        <div class="col-8 info d-flex justify-content-start align-items-center">
+          <ul style="padding:0 35px; margin:0">
+            <li><b>Pet ID:</b> <span id="petID"></span>
+            </li>
+            <li><b>Name:</b> <span id="name"></span>
+            </li>
+            <li><b>Type:</b> <span id="type"></span>
+            </li>
+            <li><b>Breed:</b> <span id="breed"></span>
+            </li>
+            <li><b>Age:</b> <span id="age"></span>
+            </li>
+            <li><b>Personality:</b> <span id="personality"></span>
+            </li>
+          </ul>
+        </div>
       </div>
-      <a id="adopt-btn" href=""><button class="btn btn-primary">Adopt</button>
-      </a>
-      <button id="shuffle-btn" onclick="shuffle()">Shuffle</button>
-      <a href="/meet-our-pets"><button class="btn btn-primary">Cancel</button> </a>
+      <div class="row d-flex justify-content-center px-5 mx-5 my-3">
+        <div class="col-4  d-flex justify-content-end">
+          <a id="adopt-btn"><button class="button"><img class="icon" src="/images/icons/paw.svg"> Adopt</button></a>
+        </div>
+        <div class="col-4 d-flex justify-content-center">
+          <button id="shuffle-btn" class="shuffle" onclick="shuffle()"></button>
+        </div>
+        <div class="col-4  d-flex justify-content-start">
+          <a href="/meet-our-pets"><button class="btn btn-lg btn-danger">Cancel</button> </a>
+        </div>
+      </div>
     </div>
     <script src="/scripts/apiController.js"></script>
     <%- include("../public/scripts/recommendation.ejs")%>

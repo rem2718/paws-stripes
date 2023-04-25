@@ -1,7 +1,9 @@
 <script>
+
     const displayCards = (experiences, isDel) => {
-        const container = document.getElementById("cards-container");
-        container.innerHTML = '';
+        let i = 0;
+        const cols = document.querySelectorAll(".col-4");
+        cols.forEach(col => col.innerHTML = "");
         experiences.forEach(experience => {
             const card = document.createElement("div");
             card.className = "card";
@@ -22,7 +24,7 @@
                                 <button onclick="like(event, '${experience._id}')" class="like-btn"></button>
                             </div>
                             <div class="col-2">
-                                <p id="likes-${experience._id}">${experience.likes}</p>
+                                <p id="likes-${experience._id}">${experience.numOfLikes}</p>
                             </div>
                             <div class="col-6">
                             </div>
@@ -39,7 +41,7 @@
                                 <button onclick="like(event, '${experience._id}')" class="like-btn"></button>
                             </div>
                             <div class="col-2">
-                                <p id="likes-${experience._id}">${experience.likes}</p>
+                                <p id="likes-${experience._id}">${experience.numOfLikes}</p>
                             </div>
                             <div class="col-2">
                             </div>
@@ -50,7 +52,8 @@
                     `;
             }
             card.innerHTML = content;
-            container.appendChild(card);
+            document.getElementById(`c${i + 1}`).appendChild(card);
+            i++;
         });
     };
 
@@ -74,11 +77,17 @@
         })
     }
 
-    const displayExperiences = (id, isDel) => {
-        getRequest(`/api/experiences/${id}`, (response) => {
-            displayCards(response, isDel);
+    const displayExperiences = (id = "", isDel = false, num = 1) => {
+        num = pagination(event, num);
+        getRequest(`/api/experiences/${id}?pageNumber=${num}&pageSize=6`, (response) => {
+            if (response.end) {
+                document.getElementById('next').parentNode.classList.add("disabled");
+            } else {
+                document.getElementById('next').parentNode.classList.remove("disabled");
+            }
+            displayCards(response.experiences, isDel);
         })
     }
 
-    displayExperiences("", false);
+    displayExperiences();
 </script>

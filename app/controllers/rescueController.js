@@ -13,7 +13,7 @@ const rescue = async (req, res) => {
 const getStatus = async (req, res) => {
     const userID = req.params.id;
     debug('get rescue status');
-    res.send([{ requestID: "36456", status: "pending" }, { requestID: "343u56", status: "rejected" }]);
+    res.send([{ type: "gg", breed: "ghgfd", timestamp: "2:00am", status: "pending" }, { type: "asdf", breed: "ghgfd", timestamp: "2:00am", status: "pending" }]);
 };
 
 const updateStatus = async (req, res) => {

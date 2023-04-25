@@ -9,7 +9,7 @@ const experiences = [
         image: null,
         experience: "I really liked the service everyone was nice, love my animal so much!:…",
         isAnon: false,
-        likes: 5,
+        numOfLikes: 5,
         userID: "12345",
         userFirstName: "Lamia",
         userLastName: "Mohammed",
@@ -20,7 +20,7 @@ const experiences = [
         image: null,
         experience: "I really liked the service everyone was nice, love my animal so much!:…",
         isAnon: true,
-        likes: 7,
+        numOfLikes: 7,
         userID: "12345",
         userFirstName: "Lamia",
         userLastName: "Mohammed",
@@ -31,7 +31,40 @@ const experiences = [
         image: null,
         experience: "I really liked the service everyone was nice, love my animal so much!:…",
         isAnon: false,
-        likes: 0,
+        numOfLikes: 0,
+        userID: "12345",
+        userFirstName: "Lamia",
+        userLastName: "Mohammed",
+    }, {
+        _id: "1423",
+        petID: "12364",
+        petName: "Leonard",
+        image: null,
+        experience: "I really liked the service everyone was nice, love my animal so much!:…",
+        isAnon: false,
+        numOfLikes: 5,
+        userID: "127345",
+        userFirstName: "Lamia",
+        userLastName: "Mohammed",
+    }, {
+        _id: "1221",
+        petID: "123w14",
+        petName: "Leonard",
+        image: null,
+        experience: "I really liked the service everyone was nice, love my animal so much!:…",
+        isAnon: true,
+        numOfLikes: 7,
+        userID: "12345",
+        userFirstName: "Lamia",
+        userLastName: "Mohammed",
+    }, {
+        _id: "1467",
+        petID: "1234534f",
+        petName: "Leonard",
+        image: null,
+        experience: "I really liked the service everyone was nice, love my animal so much!:…",
+        isAnon: false,
+        numOfLikes: 0,
         userID: "12345",
         userFirstName: "Lamia",
         userLastName: "Mohammed",
@@ -67,14 +100,14 @@ const like = async (req, res) => {
 const getExperiences = async (req, res) => {
     
     debug('get experiences');
-    res.send(experiences);
+    res.send({experiences, end:false});
 };
 
 // get the user experiences
 const getExperience = async (req, res) => {
     const userID = req.params.id;
     debug('get an experience');
-    res.send(experiences);
+    res.send({experiences, end:false});
 };
 
 // delete request

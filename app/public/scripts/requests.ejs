@@ -5,9 +5,9 @@
         }
         putRequest(`/api/${type}/status/${reqID}`, body, (response) => {
             console.log(response);
-            document.getElementById(`status-${response.id}`).innerHTML = response.status;
-            document.getElementById(`accept-${response.id}`).remove();
-            document.getElementById(`reject-${response.id}`).remove();
+            document.getElementById(`res-${response.id}`).remove();
+            document.getElementById(`div-${response.id}`).remove();
+            document.getElementById(`hr-${response.id}`).remove();
         });
     }
 
@@ -15,17 +15,33 @@
         getRequest(`/api/${type}/status/<%=user._id%>`, (response) => {
             console.log(response);
             var div = document.getElementById(type);
-            div.className = "container p-5 my-5 bg-dark text-white";
-            div.innerHTML = ``;
+            let content = ``;
             response.forEach(req => {
-                div.innerHTML += `
-                <p>requestID: ${req.requestID} <b id='status-${req.requestID}'>status: ${req.status}</b></p> `;
-                if (req.status === "pending") {
-                    div.innerHTML += `                   
-                    <button id="accept-${req.requestID}" class="btn btn-info" onclick="changeStatus('${type}', '${req.requestID}', 'accepted')">accept</button>
-                    <button id="reject-${req.requestID}" class="btn btn-danger" onclick="changeStatus('${type}', '${req.requestID}', 'rejected')">reject</button>
+                content += `
+                <div id="res-${req.requestID}" class="row py-2">
+                    <div class="col-3">
+                        <span type="button" data-bs-toggle="collapse" data-bs-target="#div-${req.requestID}">
+                            <b>requestID: </b>${req.requestID}
+                        </span>
+                    </div>
+                    <div class="col-4">
+                        <span id='status-${req.requestID}'><b>status: </b>${req.status}</span>
+                    </div>
+                    <div class="col-5 d-flex justify-content-end">
+                        <button class="button" onclick="changeStatus('${type}', '${req.requestID}', 'accepted')">accept</button>&nbsp
+                        <button class="btn btn-danger" onclick="changeStatus('${type}', '${req.requestID}', 'rejected')">reject</button>
+                    </div>
+                </div>
+                <hr id="hr-${req.requestID}" class="b-hr">
+                <div id="div-${req.requestID}" class="collapse pb-3">
+                    Data1: qwfghjnm
+                    Data2: qwfghjnm<br>
+                    Data3: qwfghjnm
+                    Data4: qwfghjnm<br>
+                    Data5: qwfghjnm
+                </div>
                     `;
-                }
+                div.innerHTML = content;
             });
         });
     }
