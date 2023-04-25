@@ -12,8 +12,8 @@
     <hr>
     </hr>
     <div class="container mt-3">
-      <form class="p-5" action="/api/handover" method="post">
-        <div class="row py-2">
+      <form class="p-5" action="/api/handover" method="post" style="max-height: 550px;">
+        <div class="row p-2">
           <div class="col-6">
             <label for="address">Provide a Google Map URL of your address:</label><br><br>
             <input class="form-control" type="url" id="address" name="address">
@@ -24,7 +24,7 @@
           </div>
         </div>
 
-        <div class="row py-2">
+        <div class="row p-2">
           <div class="col-6">
             <label for="foster">Are you able to foster the animal(s) until adopted?</label><br>
             <input class="form-check-input" type="radio" id="foster-yes" name="foster" value="yes">
@@ -38,7 +38,7 @@
           </div>
         </div>
 
-        <div class="row py-2">
+        <div class="row p-2">
           <div class="col-6">
             <label for="breed">What type is your pet?</label>
             <select class="form-select" id="breed" name="breed">
@@ -70,7 +70,7 @@
           </div>
         </div>
 
-        <div class="row py-2">
+        <div class="row p-2">
           <div class="col-6">
             <label for="personality">What is your animal's personality?</label>
             <select class="form-select" id="personality" name="personality[]" multiple>
@@ -110,12 +110,12 @@
           </div>
         </div>
 
-        <div class="row py-2">
+        <div class="row p-2">
           <div class="col-6">
             <label for="photo">Provide a picture of your animal:</label><br>
             <input type="file" id="photo" name="photo">
           </div>
-          <div class="col-6 d-flex justify-content-end px-5">
+          <div class="col-6 d-flex justify-content-end p-2">
             <button type="submit" class="button">submit</button>
           </div>
         </div>

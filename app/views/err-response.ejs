@@ -21,9 +21,9 @@
         <%=msg%>
       </div>
       <% if (err==401) { %>
-        <a href="/login"><button class="button my-5">Login</button></a>
+        <a href="/login"><button class="err-button m-3 p-5">Login</button></a>
         <% } else { %>
-          <button onclick="(() => {history.back()})()" class="button my-5">Go back!</button>
+          <button onclick="(() => {history.back()})()" class="err-button m-3 p-5">Go back!</button>
           <% } %>
 
     </div>

@@ -12,8 +12,8 @@
     <hr>
     </hr>
     <div class="container mt-3">
-      <form class="p-5" action="/api/adopt" method="post">
-        <div class="row py-2">
+      <form class="p-5" action="/api/adopt" method="post" style="max-height: 430px;">
+        <div class="row p-2">
           <div class="col-6">
             <label for="pet-experience">Do you have any previous pet experience?</label><br>
             <input class="form-check-input" type="radio" name="foster" value="yes">
@@ -24,6 +24,7 @@
           <div class="col-6">
             <label for="type">What pet do you want?</label>
             <select name="type" class="form-select">
+              <option value="" disabled selected>Select pet</option>
               <option value="dog">Dog</option>
               <option value="cat">Cat</option>
               <option value="rabbit">Rabbit</option>
@@ -37,7 +38,7 @@
           </div>
         </div>
 
-        <div class="row py-2">
+        <div class="row p-2">
           <div class="col-6">
             <label for="breed">What breed is your animal?</label>
             <select name="breed" class="form-select">
@@ -56,6 +57,7 @@
           <div class="col-6">
             <label for="mbti">What is your mbti?</label>
             <select name="mbti" class="form-select">
+              <option value="" disabled selected>Select mbti</option>
               <option value="ISTJ">ISTJ</option>
               <option value="ISFJ">ISFJ</option>
               <option value="INFJ">INFJ</option>
@@ -76,7 +78,7 @@
           </div>
         </div>
 
-        <div class="row py-2">
+        <div class="row p-2">
           <div class="col-6">
             <label for="num-people">How many people do you live with?</label>
             <div class="row">
@@ -95,6 +97,7 @@
           <div class="col-6">
             <label for="pet-age">How old do you prefer your pet to be?</label>
             <select name="pet-age" class="form-select">
+              <option value="" disabled selected>Select age</option>
               <option value="junior">Junior</option>
               <option value="young-adult">Young Adult</option>
               <option value="mature-adult">Mature Adult</option>
@@ -105,7 +108,7 @@
           </div>
         </div>
 
-        <div class="row py-2">
+        <div class="row p-2">
           <div class="col-6">
             <label for="secure-environment">Are you willing to provide the animal with a secure environment while
               catering to their needs?</label>
@@ -114,7 +117,7 @@
             <input class="form-check-input" type="radio" name="environment" value="no" checked>
             <label class="form-check-label" for="environment-no">No</label>
           </div>
-          <div class="col-6 d-flex justify-content-end px-5">
+          <div class="col-6 d-flex justify-content-end py-5">
             <button type="submit" class="button">Submit</button>
           </div>
         </div>
