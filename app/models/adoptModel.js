@@ -10,13 +10,13 @@ const adoptSchema = new mongoose.Schema({
    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
    phoneNumber:{type:String, ref:'User.phoneNumber'},
    pet: {type: mongoose.Schema.Types.ObjectId, ref: 'Pet', required: true}, 
-   status: {type: String, required: true, enum:["pending", "approved", "rejected", "in progress"], //change
+   status: {type: String, required: true, enum:["pending", "approved", "rejected"], 
       validate: {
          validator: function(v){
             return v;
          },
          message: "request status should not be null"
-      }}
+      }, default: "pending"}
 }, {timestamps: { createdAt: true, updatedAt: false }});
 
 adoptSchema.index({ user: 1, pet: 1 }, { unique: true }); //compound index will be used in controllers
@@ -28,7 +28,7 @@ function validateAdopt(adopt) {
      user: Joi.string().objectId().required(),
      phone: Joi.string().required(),
      pet: Joi.string().objectId().required(),
-     status: Joi.string().valid('pending', 'approved', 'rejected', 'in progress').required()
+     status: Joi.string().valid('pending', 'approved', 'rejected').required().default("pending")
    });
  
    return Joi.validate(adopt, schema);
