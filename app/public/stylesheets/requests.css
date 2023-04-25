@@ -1,0 +1,49 @@
+@import url("/stylesheets/style.css");
+
+.card {
+    border-radius: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    max-width: 250px;
+    border: 0px;
+}
+
+.card img {
+    object-fit: cover;
+    height: 200px;
+    max-width: 300px;
+ 
+}
+
+.card-text {
+    border-radius: 0px 0px 20px 20px;
+    background-color: var(--white);
+    margin: 0px;
+}
+
+h2 {
+    font-family: var(--par1-font);
+    font-weight: bold;
+    color: var(--dark-blue);
+    text-align: center;
+    font-size: 18pt;
+    padding: 10px;
+}
+
+.nu{
+    text-decoration: none;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+body{
+background-image: url("/images/backgrounds/background-3.png");
+background-repeat: no-repeat;
+background-size: cover;
+
+}
+
+

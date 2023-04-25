@@ -2,7 +2,7 @@
 
 body {
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size:cover;
     background-position: center;
 }
 
@@ -20,38 +20,6 @@ form {
     color: var(--dark-blue);
     font-weight: bold;
     font-family:var(--par1-font);
+    margin-bottom: 50px;
 }
 
-h1 {
-    font-family: var(--header1-font);
-    margin: 20px 100px 5px 100px;
-    font-size: 4rem;
-}
-
-hr {
-    border-color: var(--dark-green);
-    border-width: 4px;
-    margin: 5px 80px 10px 80px;
-}
-
-.green-word {
-    color: var(--green);
-}
-
-.white-word {
-    color: var(--white);
-}
-
-.button {
-    padding: 10px 40px;
-    background-color: var(--dark-green);
-    color:var(--white);
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.button:hover {
-    background-color: var(--light-green);
-}
