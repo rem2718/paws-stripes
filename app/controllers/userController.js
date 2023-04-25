@@ -1,37 +1,71 @@
 const debug = require('debug')('app:api');
 const path = require('path');
+const _ = require("lodash");
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-// const User = require('../models/userModel');
+const { User, validate, validateLogin } = require('../models/userModel');
 
-// post request
+// post request, signup
 // take the attribute names from ward
 const createUser = async (req, res) => {
     debug('create user');
-    res.cookie("token", token, att).cookie("isAuthenticated", true, att).cookie("userID", userID, att).redirect('/');
-};
+    let user = req.body;
+    user.isAdmin = false;
+    user.isVolunteer = false;
 
-// ignore it for now
-const loginUser = async (req, res) => {
-    const userType = req.body.userType
-    debug('login user');
-    const userID = "1234";
-    const token = jwt.sign({ _id: "643ef5bc40e0e89ba7958f02", userType }, process.env.PRIVATE_KEY);
+    const { error } = validate(user);
+    if (error) return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
+
+    let existingUser = await User.findOne({ email: user.email });
+    if (existingUser) return  res.status(400).render("err-response", { err: 400, msg: 'You already registered..' });
+
+    user = new User(user);
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt)
+
+    await user.save();
+
+    const token = jwt.sign({ _id: user._id.toString(), type: "user" }, process.env.PRIVATE_KEY);
     const att = {
         maxAge: 24 * 60 * 60 * 1000, //24h
         secure: true,
         httpOnly: true,
         sameSite: 'lax'
     }
-    res.cookie("token", token, att).cookie("isAuthenticated", true, att).cookie("userType", userType, att).cookie("userID", userID, att).redirect('/');
+
+    res.cookie("token", token, att).redirect('/');
+};
+
+// ignore it for now
+const loginUser = async (req, res) => {
+    debug('login user');
+    const { error } = validateLogin(req.body);
+    if (error) return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
+
+    const user = await User.findOne({ email: req.body.email, isAdmin: req.body.userType === 'admin' ? true : false });
+    if (!user) return res.status(400).render("err-response", { err: 400, msg: 'Invalid email or password, try again!' });
+
+    const validPwd = await bcrypt.compare(req.body.password, user.password);
+    if (!validPwd) return res.status(400).render("err-response", { err: 400, msg: 'Invalid email or password, try again!' });
+
+    const token = jwt.sign({ _id: user._id.toString(), type: req.body.userType }, process.env.PRIVATE_KEY);
+    const att = {
+        maxAge: 24 * 60 * 60 * 1000, //24h
+        secure: true,
+        httpOnly: true,
+        sameSite: 'lax'
+    }
+
+    res.cookie("token", token, att).redirect('/');
 };
 
 // post request
 const logoutUser = async (req, res) => {
     debug('logout user');
-    res.clearCookie('token').clearCookie('isAuthenticated').clearCookie('userID').clearCookie('userType').redirect('/');
+    res.clearCookie('token').redirect('/');
 }
 
-//get request 
+//get request account details in account page
 const getUser = async (req, res) => {
     const userID = req.params.id;
     debug('get user');

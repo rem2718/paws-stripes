@@ -1,94 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head')%>
-    <style>
-      body {
-			background-image: url("/images/backgrounds/background-6.png");
-			background-repeat: no-repeat;
-			background-size: cover;
-		  }
-      /* Style the form container */
-      .form-container {
-        width: 50%;
-        margin: 50px auto;
-        border: 1px solid black;
-        padding: 20px;
-        text-align: center;
-      }
 
-      /* Style the form heading */
-      h2 {
-        margin-top: 0;
-      }
+<head>
+  <%- include('./partials/head')%>
+    <link href="/stylesheets/forms.css" rel="stylesheet" />
+</head>
 
-      /* Style the form inputs */
-      input[type="text"],
-      input[type="password"] {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-      }
+<body class="form">
+  <%- include('./partials/header', {active: 'requests' })%>
+    <h1><span class="white-word">Handover</span> <span class="green-word">Form</span></h1>
+    <hr>
+    </hr>
+    <div class="container mt-3">
+      <form class="p-5" action="/api/handover" method="post" style="max-height: 550px;">
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="address">Provide a Google Map URL of your address:</label><br><br>
+            <input class="form-control" type="url" id="address" name="address">
+          </div>
+          <div class="col-6">
+            <label for="reason">Why do you want to handover your pet?</label>
+            <textarea class="form-control" id="reason" name="reason"></textarea>
+          </div>
+        </div>
 
-      /* Style the sign in button */
-      .sign-in-button {
-        background-color: #4caf50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="foster">Are you able to foster the animal(s) until adopted?</label><br>
+            <input class="form-check-input" type="radio" id="foster-yes" name="foster" value="yes">
+            <label class="form-check-label" for="foster-yes">Yes</label><br>
+            <input class="form-check-input" type="radio" id="foster-no" name="foster" value="no">
+            <label class="form-check-label" for="foster-no">No</label>
+          </div>
+          <div class="col-6">
+            <label for="name">What is your pet's name?</label><br>
+            <input type="text" id="name" name="name"><br><br>
+          </div>
+        </div>
 
-      /* Style the sign in button on hover */
-      .sign-in-button:hover {
-        background-color: #3e8e41;
-      }
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="breed">What type is your pet?</label>
+            <select class="form-select" id="breed" name="breed">
+              <option value="cat">Cat</option>
+              <option value="dog">Dog</option>
+              <option value="rabbit">Rabbit</option>
+              <option value="fish">Fish</option>
+              <option value="turtle">Turtle</option>
+              <option value="hamster">Hamster</option>
+              <option value="bird">Bird</option>
+              <option value="guinea-pig">Guinea pig</option>
+              <option value="frog">Frog</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label for="type">What breed is your animal?</label>
+            <select class="form-select" id="breed" name="breed">
+              <option value="">Nothing specific</option>
+              <option value="labrador">Labrador Retriever</option>
+              <option value="golden">Golden Retriever</option>
+              <option value="german">German Shepherd</option>
+              <option value="ragdoll">Ragdoll</option>
+              <option value="persian">Persian</option>
+              <option value="american">American shorthair</option>
+              <option value="lop">Holland Lop</option>
+              <option value="dwarf">Netherland Dwarf</option>
+              <option value="pekin">Pekin Duck</option>
+            </select>
+          </div>
+        </div>
 
-      /* Style the create account button */
-      .create-account-button {
-        background-color: #f44336;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="personality">What is your animal's personality?</label>
+            <select class="form-select" id="personality" name="personality[]" multiple>
+              <option value="fun">Fun</option>
+              <option value="social">Social</option>
+              <option value="calm">Calm</option>
+              <option value="active">Active</option>
+              <option value="loves-people">Loves People</option>
+              <option value="hates-people">Hates People</option>
+              <option value="loves-to-eat">Loves to Eat</option>
+              <option value="picky-eater">Picky Eater</option>
+              <option value="likes-attention">Likes Attention</option>
+              <option value="prefers-to-be-alone">Prefers to Be Alone</option>
+              <option value="bold">Bold</option>
+              <option value="aggressive">Aggressive</option>
+              <option value="shy">Shy</option>
+              <option value="patient">Patient</option>
+              <option value="intelligent">Intelligent</option>
+              <option value="clumsy">Clumsy</option>
+              <option value="curious">Curious</option>
+              <option value="likes-to-play">Likes to Play</option>
+              <option value="confident">Confident</option>
+              <option value="timid">Timid</option>
+              <option value="enjoys-routine">Enjoys Routine</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label for="pet-age">How old do you prefer your pet to be?</label>
+            <select class="form-select" id="pet-age" name="pet-age">
+              <option value="junior">Junior</option>
+              <option value="young-adult">Young Adult</option>
+              <option value="mature-adult">Mature Adult</option>
+              <option value="senior">Senior</option>
+              <option value="geriatric">Geriatric</option>
+              <option value="not-sure">Not sure/Any age</option>
+            </select>
+          </div>
+        </div>
 
-      /* Style the create account button on hover */
-      .create-account-button:hover {
-        background-color: #da190b;
-      }
-    </style>
-  </head>
-  <body>
-      <%- include('./partials/header', {active: 'requests'})%>
-    <h2>Handover Form</h2>
-    <div class="form-container">
-      <form action="/api/handover" method="post">
-        <label for="username"><b>Username/Email</b></label>
-        <input
-          type="text"
-          placeholder="Enter Username"
-          name="username"
-          required
-        />
-
-        <label for="password"><b>Password</b></label>
-        <input
-          type="password"
-          placeholder="Enter Password"
-          name="password"
-          required
-        />
-
-        <button type="submit" class="sign-in-button">submit</button>
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="photo">Provide a picture of your animal:</label><br>
+            <input type="file" id="photo" name="photo">
+          </div>
+          <div class="col-6 d-flex justify-content-end p-2">
+            <button type="submit" class="button">submit</button>
+          </div>
+        </div>
       </form>
     </div>
-  </body>
+</body>
+
 </html>

@@ -1,94 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head')%>
-    <style>
-      body {
-			background-image: url("/images/backgrounds/background-6.png");
-			background-repeat: no-repeat;
-			background-size: cover;
-		  }
-      /* Style the form container */
-      .form-container {
-        width: 50%;
-        margin: 50px auto;
-        border: 1px solid black;
-        padding: 20px;
-        text-align: center;
-      }
 
-      /* Style the form heading */
-      h2 {
-        margin-top: 0;
-      }
+<head>
+  <%- include('./partials/head')%>
+    <link href="/stylesheets/forms.css" rel="stylesheet" />
+</head>
 
-      /* Style the form inputs */
-      input[type="text"],
-      input[type="password"] {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-      }
+<body class="form">
+  <%- include('./partials/header', {active: 'requests' })%>
+    <h1><span class="white-word">Adoption</span> <span class="green-word">Form</span></h1>
+    <hr>
+    </hr>
+    <div class="container mt-3">
+      <form class="p-5" action="/api/adopt" method="post" style="max-height: 430px;">
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="pet-experience">Do you have any previous pet experience?</label><br>
+            <input class="form-check-input" type="radio" name="foster" value="yes">
+            <label class="form-check-label" for="pet-experience">Yes</label><br>
+            <input class="form-check-input" type="radio" name="foster" value="no" checked>
+            <label class="form-check-label" for="pet-experience">No</label>
+          </div>
+          <div class="col-6">
+            <label for="type">What pet do you want?</label>
+            <select name="type" class="form-select">
+              <option value="" disabled selected>Select pet</option>
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+              <option value="rabbit">Rabbit</option>
+              <option value="hamster">Hamster</option>
+              <option value="guinea-pig">Guinea pig</option>
+              <option value="bird">Bird</option>
+              <option value="fish">Fish</option>
+              <option value="turtle">Turtle</option>
+              <option value="frog">Frog</option>
+            </select>
+          </div>
+        </div>
 
-      /* Style the sign in button */
-      .sign-in-button {
-        background-color: #4caf50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="breed">What breed is your animal?</label>
+            <select name="breed" class="form-select">
+              <option value="">Nothing specific</option>
+              <option value="labrador">Labrador Retriever</option>
+              <option value="golden">Golden Retriever</option>
+              <option value="german">German Shepherd</option>
+              <option value="ragdoll">Ragdoll</option>
+              <option value="persian">Persian</option>
+              <option value="american">American shorthair</option>
+              <option value="lop">Holland Lop</option>
+              <option value="dwarf">Netherland Dwarf</option>
+              <option value="pekin">Pekin Duck</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label for="mbti">What is your mbti?</label>
+            <select name="mbti" class="form-select">
+              <option value="" disabled selected>Select mbti</option>
+              <option value="ISTJ">ISTJ</option>
+              <option value="ISFJ">ISFJ</option>
+              <option value="INFJ">INFJ</option>
+              <option value="INTJ">INTJ</option>
+              <option value="ISTP">ISTP</option>
+              <option value="ISFP">ISFP</option>
+              <option value="INFP">INFP</option>
+              <option value="INTP">INTP</option>
+              <option value="ESTP">ESTP</option>
+              <option value="ESFP">ESFP</option>
+              <option value="ENFP">ENFP</option>
+              <option value="ENTP">ENTP</option>
+              <option value="ESTJ">ESTJ</option>
+              <option value="ESFJ">ESFJ</option>
+              <option value="ENFJ">ENFJ</option>
+              <option value="ENTJ">ENTJ</option>
+            </select>
+          </div>
+        </div>
 
-      /* Style the sign in button on hover */
-      .sign-in-button:hover {
-        background-color: #3e8e41;
-      }
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="num-people">How many people do you live with?</label>
+            <div class="row">
+              <div class="col-1">
+                <span>0</span>
+              </div>
+              <div class="col-10">
+                <input type="range" class="form-range" min="0" max="10" name="num-people">
+              </div>
+              <div class="col-1">
+                <span>10</span>
+              </div>
+            </div>
 
-      /* Style the create account button */
-      .create-account-button {
-        background-color: #f44336;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+          </div>
+          <div class="col-6">
+            <label for="pet-age">How old do you prefer your pet to be?</label>
+            <select name="pet-age" class="form-select">
+              <option value="" disabled selected>Select age</option>
+              <option value="junior">Junior</option>
+              <option value="young-adult">Young Adult</option>
+              <option value="mature-adult">Mature Adult</option>
+              <option value="senior">Senior</option>
+              <option value="geriatric">Geriatric</option>
+              <option value="not-sure">Not sure/Any age</option>
+            </select>
+          </div>
+        </div>
 
-      /* Style the create account button on hover */
-      .create-account-button:hover {
-        background-color: #da190b;
-      }
-    </style>
-  </head>
-  <body>
-    <%- include('./partials/header', {active: 'requests'})%>
-    <h2>Adoption Form</h2>
-    <div class="form-container">
-      <form action="/api/adopt" method="post">
-        <label for="username"><b>Username/Email</b></label>
-        <input
-          type="text"
-          placeholder="Enter Username"
-          name="username"
-          required
-        />
-
-        <label for="password"><b>Password</b></label>
-        <input
-          type="password"
-          placeholder="Enter Password"
-          name="password"
-          required
-        />
-
-        <button type="submit" class="sign-in-button">submit</button>
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="secure-environment">Are you willing to provide the animal with a secure environment while
+              catering to their needs?</label>
+            <input class="form-check-input" type="radio" name="environment" value="yes">
+            <label class="form-check-label" for="environment-yes">Yes</label><br>
+            <input class="form-check-input" type="radio" name="environment" value="no" checked>
+            <label class="form-check-label" for="environment-no">No</label>
+          </div>
+          <div class="col-6 d-flex justify-content-end py-5">
+            <button type="submit" class="button">Submit</button>
+          </div>
+        </div>
       </form>
     </div>
-  </body>
+</body>
+
 </html>

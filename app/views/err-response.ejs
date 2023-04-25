@@ -1,38 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head')%>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Kirang+Haerang&family=Londrina+Solid&family=Press+Start+2P&family=Roboto+Mono&family=Swanky+and+Moo+Moo&display=swap');
-      @import url("/stylesheets/style.css");
-      body {
-        background: var(--beige);
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-      h2 {
-        font-family: var(--error-font);
-      }
-      image {
-        scale: 50%;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container pt-5">
-      <div class="row">
-        <div class="col">
-          <% if (err == 401) { %>
-          <image src="/images/gifs/dog.gif"></image>
-          <% } else { %>
-          <image src="/images/pngs/cat-<%=err%>.png"></image>
+
+<head>
+  <%- include('./partials/head')%>
+    <link href="/stylesheets/err-res.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container p-5 my-5 d-flex align-items-center row">
+    <div class="container d-flex justify-content-end col-6">
+      <% if (err==401) { %>
+        <image class="img-fluid w-50" src="/images/gifs/dog.gif"></image>
+        <% } else { %>
+          <image class="img-fluid w-50" src="/images/pngs/cat-<%=err%>.png"></image>
           <% } %>
-        </div>
-        <div class="col">
-          <h2>meow..<%=err%>:</h2>
-          <h2><%=msg%></h2>
-        </div>
-      </div>
     </div>
-  </body>
+    <div class="container text-center col-6">
+      <div class="error-message">meow..<%=err%>:</div>
+      <div class="error-message">
+        <%=msg%>
+      </div>
+      <% if (err==401) { %>
+        <a href="/login"><button class="err-button m-3 p-5">Login</button></a>
+        <% } else { %>
+          <button onclick="(() => {history.back()})()" class="err-button m-3 p-5">Go back!</button>
+          <% } %>
+
+    </div>
+  </div>
+</body>
+
 </html>

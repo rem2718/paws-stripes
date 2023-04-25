@@ -3,78 +3,69 @@
 
 <head>
   <%- include('./partials/head')%>
-    <style>
-      body {
-        background-image: url("/images/backgrounds/background-4.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-
-      .card {
-        width: 300px;
-        height: 400px;
-        background-color: #f2f2f2;
-        border: 1px solid #ddd;
-        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
-        margin: 10px;
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 20px;
-      }
-
-      .card img {
-        width: 100%;
-        height: 70%;
-        object-fit: cover;
-      }
-
-      .card-text {
-        padding: 10px;
-      }
-    </style>
+    <link href="/stylesheets/pets.css" rel="stylesheet" />
 </head>
 
 <body>
   <%- include('./partials/header', {active: 'pets' }) %>
-    <h1>Meet Our Family</h1>
-    <% if (cookies.userType==="admin" ) { %>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-        add pet
-      </button>
+    <h1><span class="white-word">Get to know our</span> <span class="green-word">family</span></h1>
+    <hr>
+    </hr>
+    <% if (user.type === "admin") { %>
+      <button type="button" class="add" data-bs-toggle="modal" data-bs-target="#myModal"></button>
       <% } %>
-        <div id="cards-container" class="grid">
+        <div id="cards-container" class="grid d-flex justify-content-center">
         </div>
         <div class="modal" id="myModal">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title">Add Pet</h4>
+                <h4 class="modal-title"><b>Add Pet</b></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
               </div>
               <div class="modal-body">
-                <form action="/api/pets" method="post">
-                  <label for="name"><b>pet name:</b></label><br>
-                  <input type="text" name="name" required /><br>
-                  <label for="type"><b>pet type:</b></label><br>
-                  <input type="text" name="type" required /><br>
-                  <label for="breed"><b>pet breed:</b></label><br>
-                  <input type="text" name="breed" required /><br>
-                  <label for="age"><b>pet age:</b></label><br>
-                  <input type="text" name="age" required /><br>
-                  <label for="personality"><b>pet personality:</b></label><br>
-                  <input type="text" name="personality" required /><br>
-                  <button type="submit" class="sign-in-button">submit</button>
+                <form class="p-2" action="/api/pets" method="post">
+                  <label for="name">pet name:</label>
+                  <input class="form-control" type="text" name="name" required />
+                  <label for="type">Pet type:</label>
+                  <select name="type" class="form-select" required>
+                    <option value="" disabled selected>Select pet</option>
+                    <option value="dog">Dog</option>
+                    <option value="cat">Cat</option>
+                    <option value="rabbit">Rabbit</option>
+                    <option value="hamster">Hamster</option>
+                    <option value="guinea-pig">Guinea pig</option>
+                    <option value="bird">Bird</option>
+                    <option value="fish">Fish</option>
+                    <option value="turtle">Turtle</option>
+                    <option value="frog">Frog</option>
+                  </select>
+                  <label for="breed">Pet breed:</label>
+                  <select name="breed" class="form-select" required>
+                    <option value="labrador">Labrador Retriever</option>
+                    <option value="golden">Golden Retriever</option>
+                    <option value="german">German Shepherd</option>
+                    <option value="ragdoll">Ragdoll</option>
+                    <option value="persian">Persian</option>
+                    <option value="american">American shorthair</option>
+                    <option value="lop">Holland Lop</option>
+                    <option value="dwarf">Netherland Dwarf</option>
+                    <option value="pekin">Pekin Duck</option>
+                  </select>
+                  <label for="age">Pet age:</label>
+                  <input type="text" name="age" class="form-control" required />
+                  <label for="personality">Pet personality:</label>
+                  <input class="form-control" type="text" name="personality" required />
                 </form>
               </div>
               <div class="modal-footer">
+                <button type="submit" class="button" data-bs-dismiss="modal">submit</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">cancel</button>
               </div>
             </div>
           </div>
         </div>
+        <script src="/scripts/apiController.js"></script>
         <%- include('../public/scripts/pets.ejs')%>
 </body>
 
