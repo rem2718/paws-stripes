@@ -12,7 +12,7 @@
     }
 
     const getRequests = (type) => {
-        getRequest(`/api/${type}/status/<%=cookies.userID%>`, (response) => {
+        getRequest(`/api/${type}/status/<%=user._id%>`, (response) => {
             console.log(response);
             var div = document.getElementById(type);
             div.className = "container p-5 my-5 bg-dark text-white";
@@ -30,7 +30,7 @@
         });
     }
 
-    if ('<%= cookies.userType %>' === "admin") {
+    if ('<%= user.type %>' === "admin") {
         getRequests('adopt');
         getRequests('handover');
         getRequests('rescue');

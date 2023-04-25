@@ -5,60 +5,81 @@
         // else 
         //     document.getElementById("update-acc").disabled = true;  
     }
-    
+
     const displayPets = (pets) => {
         const container = document.getElementById("cards-container");
         container.innerHTML = '';
+        const colors = ['red', 'blue', 'yellow', 'purple', 'green'];
+        let i = 0;
         pets.forEach(pet => {
             const card = document.createElement("div");
-            card.className = "card";
+            let color = colors[i];
+            i = (i + 1) % colors.length;
+            card.className = `card ${color}`;
             card.id = `card-${pet.petID}`;
             card.innerHTML = `
-                <img src="${pet.image}" alt="Card 1" />
-                <div class="card-text">
-                    <ul>
-                        <li>Pet ID: ${pet.petID}
-                        </li>
-                        <li>Name: ${pet.name}
-                        </li>
-                        <li>Type: ${pet.type}
-                        </li>
-                        <li>Breed: ${pet.breed}
-                        </li>
-                        <li>Age: ${pet.age}
-                        </li>
-                        <li>Personality: ${arrPrint(pet.personality)}
-                        </li>
-                    </ul>
-                </div>
-                <% if (cookies.userType !="admin" ) { %>
-                    <a href="/api/adopt/${pet.petID}"><button class="btn btn-primary">Adopt</button></a>
+                <img class="card-img-top" src="/cat.png" alt="pet" />
+                <div class="card-body">
+                    <div class="card-text">
+                            <p id="p-${pet.petID}"><b>Name:</b> ${pet.name}<br>
+                            <b>Pet ID:</b> ${pet.petID}<br>
+                            <b>Type:</b> ${pet.type}<br>
+                            <b>Breed:</b> ${pet.breed}<br>
+                            <b>Age:</b> ${pet.age}<br>
+                            <b>Personality:</b> ${arrPrint(pet.personality)}</p>
+                    </div>
+                <% if (user.userType != "admin" ) { %>
+                    <a href="/api/adopt/${pet.petID}"><button class="button"><img class="paw" src="/images/icons/paw.svg"> Adopt</button></a>
+                    </div>
                 <% } else { %>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-${pet.petID}">edit</button>
-                    <button onclick="deletePet('${pet.petID}')" class="btn btn-primary">Delete</button>
+                    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#modal-${pet.petID}">edit</button>
+                    <button onclick="deletePet('${pet.petID}')" class="btn btn-danger">Delete</button>
+                    </div>
                     <div class="modal" id="modal-${pet.petID}">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Edit Pet</h4>
+                                    <h4 class="modal-title"><b>Edit Pet</b></h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form>
-                                        <label for="name"><b>pet name:</b></label><br>
-                                        <input type="text" name="name" id="name-${pet.petID}" value="${pet.name}" required /><br>
-                                        <label for="type"><b>pet type:</b></label><br>
-                                        <input type="text" name="type" id="type-${pet.petID}" value="${pet.type}" required /><br>
-                                        <label for="breed"><b>pet breed:</b></label><br>
-                                        <input type="text" name="breed" id="breed-${pet.petID}" value="${pet.breed}"  required /><br>
-                                        <label for="age"><b>pet age:</b></label><br>
-                                        <input type="text" name="age" id="age-${pet.petID}" value="${pet.age}"  required /><br>
-                                        <label for="personality"><b>pet personality:</b></label><br>
-                                        <input type="text" name="personality" id="personality-${pet.petID}" value="${arrPrint(pet.personality)}" required /><br>                    
+                                    <form class="p-2" action="/meet-out-pets">
+                                        <label for="name"><b>Pet name:</b></label>
+                                        <input class="form-control" type="text" name="name" id="name-${pet.petID}" value="${pet.name}" required />
+                                        <label for="type"><b>Pet type:</b></label>
+                                        <select name="type" class="form-select"  id="type-${pet.petID}" value="${pet.type}" required>
+                                            <option value="${pet.type}">${pet.type}</option>
+                                            <option value="dog">Dog</option>
+                                            <option value="cat">Cat</option>
+                                            <option value="rabbit">Rabbit</option>
+                                            <option value="hamster">Hamster</option>
+                                            <option value="guinea-pig">Guinea pig</option>
+                                            <option value="bird">Bird</option>
+                                            <option value="fish">Fish</option>
+                                            <option value="turtle">Turtle</option>
+                                            <option value="frog">Frog</option>
+                                        </select>
+                                        <label for="breed"><b>Pet breed:</b></label>
+                                        <select name="breed" class="form-select" id="breed-${pet.petID}" required>
+                                            <option value="${pet.breed}">${pet.breed}</option>
+                                            <option value="labrador">Labrador Retriever</option>
+                                            <option value="golden">Golden Retriever</option>
+                                            <option value="german">German Shepherd</option>
+                                            <option value="ragdoll">Ragdoll</option>
+                                            <option value="persian">Persian</option>
+                                            <option value="american">American shorthair</option>
+                                            <option value="lop">Holland Lop</option>
+                                            <option value="dwarf">Netherland Dwarf</option>
+                                            <option value="pekin">Pekin Duck</option>
+                                        </select>
+                                        <label for="age"><b>Pet age:</b></label>
+                                        <input type="text" name="age" id="age-${pet.petID}" value="${pet.age}" class="form-control" min="0" max="100" required />
+                                        <label for="personality"><b>Pet personality:</b></label>
+                                        <input class="form-control" type="text" name="personality" id="personality-${pet.petID}" value="${pet.personality}" required />               
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="editPet('${pet.petID}')" class="btn btn-info">send</button>
+                                    <button onclick="editPet('${pet.petID}')" data-bs-dismiss="modal" class="button">send</button>
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">cancel</button>
                                 </div>
                             </div>
@@ -88,6 +109,15 @@
         }
         putRequest(`/api/pets/${petID}`, body, (response) => {
             console.log(response);
+            document.getElementById(`p-${petID}`).innerHTML = `
+                <b>Name:</b> ${response.name}<br>
+                <b>Pet ID:</b> ${response.petID}<br>
+                <b>Type:</b> ${response.type}<br>
+                <b>Breed:</b> ${response.breed}<br>
+                <b>Age:</b> ${response.age}<br>
+                <b>Personality:</b> ${response.personality}
+            `;
+
         });
     }
 

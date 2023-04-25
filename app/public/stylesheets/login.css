@@ -42,20 +42,6 @@ hr {
     color: var(--white);
 }
 
-.button2 {
-    padding: 10px 20px;
-    background-color: var(--dark-green);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-
-.button2:hover {
-    background-color: var(--light-green);
-}
-
 .cat {
     scale: 15%;
     margin: 0px;
@@ -68,12 +54,13 @@ hr {
     font-size: 2rem;
 }
 
-.button {
-    padding: 20px 40px;
+.join-button {
     background-color: transparent;
     background-image: url('/images/orange button.svg');
     background-repeat: no-repeat;
     background-size: contain;
+    background-position: center;
+    width: 300px;
     border: none;
     color: var(--light-blue);
     font-family: var(--error-font);
@@ -81,6 +68,6 @@ hr {
     cursor: pointer;
 }
 
-.button:hover {
+.join-button:hover {
     background-image: url('/images/orange button-2.svg');
 }

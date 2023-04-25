@@ -32,7 +32,7 @@ var pets = [
 // for now get it from cookies
 const adopt = async (req, res) => {
     const petID = req.params.id;
-    const userID = req.cookies.userID
+    const userID = req.user._id
     debug('adopt');
     res.redirect('/requests/response');
 };
@@ -43,7 +43,7 @@ const recommend = async (req, res) => {
     req.body;
    
     debug('recommend');
-    res.render('recommendation', { cookies: req.cookies || false, body: req.body});
+    res.render('recommendation', { cookies: req.cookies || false, body: req.body, user: req.user});
 }
 
 // get req

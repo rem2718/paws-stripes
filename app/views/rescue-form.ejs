@@ -7,6 +7,7 @@
 </head>
 
 <body class="form">
+  <%- include('./partials/header', {active: 'requests' })%>
   <h1><span class="white-word">Rescue</span> <span class="green-word">Form</span></h1>
   <hr>
   <div class="container mt-3">
@@ -45,7 +46,7 @@
           <label for="ques2"><b>When did you first see the animal?</b></label><br>
           <input type="datetime-local" id="first-sighting" name="first-sighting">
         </div>
-        <div class="col-6 d-flex justify-content-end px-5">
+        <div class="col-6 d-flex justify-content-end pt-5">
           <button class="button" type="submit">Submit</button>
         </div>
       </div>

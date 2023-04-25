@@ -1,16 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head')%>
-    <style>
-      body {
-        background-image: url("/images/backgrounds/background-5.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-    </style>
-  </head>
-  <body>
- <%- include('./partials/header', {active: 'faqs'})%>
-  </body>
+
+<head>
+  <%- include('./partials/head')%>
+    <link href="/stylesheets/faqs.css" rel="stylesheet" />
+</head>
+
+<body>
+  <%- include('./partials/header', {active: 'faqs' })%>
+    <div class="container mt-3">
+      <div class="row mx-1">
+        <div class="col-3 pt-5 d-flex justify-content-end">
+          <img class="marks" src="/images/icons/question marks.svg" alt="question marks">
+        </div>
+        <div class="col-9">
+          <div class="h1"><span class="white-word">Frequently asked</span> <span class="green-word">questions</span>
+          </div>
+        </div>
+      </div>
+      <hr>
+      </hr>
+
+      <div id="accordion" class="accordion mx-5">
+        <div class="card">
+          <div class="card-header row mx-1">
+            <div class="col-10 px-2">
+              <h5>Adoption Conditions</h5>
+            </div>
+            <div class="col-2">
+              <a class="btn" id="btn-1" onclick="rotate(event)" data-bs-toggle="collapse" href="#collapseOne"
+                style="border:0px;"></a>
+            </div>
+          </div>
+          <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
+            <div class="card-body">
+              All family members and residents must consent to the adoption and responsibility of raising the pet.
+              The welfare of the animal and the suitability of the potential adopter are a priority for the shelter, not
+              necessarily whoever makes the first contact.
+              The potential adopter/s must submit to an interview.
+              A parent must also be part of the adoption process for anyone living with his/her parents; for a dog –
+              under 26 years old, for a cat under 23 years old.
+              Signing the contract gives the shelter the right to visit the adopter’s home and follow up with the pet’s
+              welfare, and also to reclaim the pet if it is
+              in the pet’s best interest.
+              An adoption fee must be paid prior to adoption.
+              No pet will be released unless it’s spayed, neutered, vaccinated, and microchipped
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header row mx-1">
+            <div class="col-10 px-2">
+              <h5>Can I take the pet for a trial period and bring him/her back? Why not?</h5>
+            </div>
+            <div class="col-2">
+              <a class="btn" id="btn-2" onclick="rotate(event)" data-bs-toggle="collapse" href="#collapseTwo"
+                style="border:0px;"></a>
+            </div>
+          </div>
+          <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+            <div class="card-body">
+              Usually, pets take time to familiarize themselves with their new home. Frequent change of homes can cause
+              anxiety to the pets which in turn can affect their future behavior and therefore a chance of successful
+              adoption.
+              As we want to follow the highest standards when helping our pets, we encourage the adopters to research
+              the necessary care involved of the animal you intend to adopt and whether he/she can fit into your
+              lifestyle before you commit to adopt and to this long-term responsibility for possibly 10 years or more.
+              Moreover, after all the time and effort that our volunteers have devoted to these pets, we feel that to
+              then ‘try’ a pet adds to the perception that they are ‘sales rather than souls’, and we vehemently
+              disagree with that perception.
+              Once you have undertaken your research and are certain that you are able to fulfill your responsibilities
+              for the lifetime of the pet, you may apply for adoption. This is in the best interests of both the
+              potential adopter and the pet.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header row mx-1">
+            <div class="col-10 px-2">
+              <h5>Why do you spay and neuter?</h5>
+            </div>
+            <div class="col-2">
+              <a class="btn" id="btn-3" onclick="rotate(event)" data-bs-toggle="collapse" href="#collapseThree"
+                style="border:0px;"></a>
+            </div>
+          </div>
+          <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+            <div class="card-body">
+              Spaying and neutering are considered a responsible practice. A lot of people irresponsibly breed their
+              pets despite the large numbers of unwanted or abandoned pets. Additionally, a lot of people are unable to
+              afford the responsibility of large numbers of pets for the long term,
+              so they end up throwing them in the streets or asking the shelter to take them.Thus, spaying and neutering
+              the animals before giving them for adoption decreases the chances of them being placed with an
+              irresponsible owner.
+              Furthermore, spaying and neutering lessen the chances of animals escaping during the mating season, and
+              keeps them from falling in the hands of animals traders who will put them in cages for life to only to
+              produce and profit.
+              Also, it has many medical and behavioral advantages.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header row mx-1">
+            <div class="col-10 px-2">
+              <h5>Are your animals sick?</h5>
+            </div>
+            <div class="col-2">
+              <a class="btn" id="btn-4" onclick="rotate(event)" data-bs-toggle="collapse" href="#collapseFour"
+                style="border:0px;"></a>
+            </div>
+          </div>
+          <div id="collapseFour" class="collapse" data-bs-parent="#accordion">
+            <div class="card-body">
+              No, the shelter receives the animals in different conditions. Some of them are completely healthy and were
+              living in a home where they received full care, others had certain injuries or illnesses.
+              The shelter provides any necessary medical care and will not put the animals up for adoption unless they
+              are fully healthy.In the case of simple diseases that will not interfere with
+              the adoption process (like fungus), that will be declared to the adopter as long as he/she will continue
+              the treatment in their home in line with directions from the shelter’s veterinary, also you will be able
+              to follow up with the vet until the end of the treatment.
+              In this case, the adopter has helped an unwanted pet, which a lot of people might not adopt, and is in
+              need of more care than the others.
+
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header row mx-1">
+            <div class="col-10 px-2">
+              <h5>What is the adoption fee? Why is it there?</h5>
+            </div>
+            <div class="col-2">
+              <a class="btn" id="btn-5" onclick="rotate(event)" data-bs-toggle="collapse" href="#collapseFive"
+                style="border:0px;"></a>
+            </div>
+          </div>
+          <div id="collapseFive" class="collapse" data-bs-parent="#accordion">
+            <div class="card-body">
+              A fee has been set out of our sense of duty and responsibility toward our animals, we are keen to find
+              adopters who will take the adoption process seriously and have a long-term commitment towards this soul.
+              Adopting a cat or dog is a huge responsibility that could extend to 10 years or more, through those
+              years,
+              there are a lot of expenses such as, medical care, providing food, and medications.
+              Certain people may perceive the adoption process as a way of obtaining a free pet without thinking of
+              the
+              consequences of this decision, this could harm our animals, so to deter those people,
+              we have set a small fee when adopting according to standard procedure in shelters worldwide.All of our
+              adopted animals are spayed/neutered, vaccination booklets are also attached (passport),
+              and they are microchipped.The fee helps cover those costs – that the shelter is not for profit – but
+              does
+              incur costs! And Not wanting to pay the fee is an important indication of the lack
+              of responsibility upon the adoption decision.
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        const rotate = (event) => {
+          event.target.classList.toggle('rotated');
+        }
+      </script>
+
+</body>
+
 </html>
