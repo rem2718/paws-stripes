@@ -15,29 +15,29 @@
         <div class="row p-2">
           <div class="col-6">
             <label for="firstName">First Name:</label><br>
-            <input type="text" class="form-control" name="firstName" required>
+            <input type="text" class="form-control" name="firstName" minlength="3" maxlength="60" pattern="/^[a-zA-Z]+$/" required>
           </div>
           <div class="col-6">
             <label for="lastName">Last Name:</label><br>
-            <input type="text" class="form-control" name="lastName" required>
+            <input type="text" class="form-control" name="lastName" pattern="/^[a-zA-Z]+$/" required>
           </div>
         </div>
 
         <div class="row p-2">
           <div class="col-6">
             <label for="email">Email:</label><br>
-            <input type="email" class="form-control" name="email" required>
+            <input type="email" class="form-control" name="email" maxlength="255" required>
           </div>
           <div class="col-6">
             <label for="phoneNumberr">Phone Number:</label><br>
-            <input type="tel" class="form-control" name="phoneNumber" required>
+            <input type="tel" class="form-control" name="phoneNumber" pattern="/^05\d{8}$/" required>
           </div>
         </div>
 
         <div class="row p-2">
           <div class="col-6">
             <label for="password">Password:</label><br>
-            <input type="password" class="form-control" name="password" minlength="8" required>
+            <input type="password" class="form-control" name="password" minlength="10" maxlength="255" required>
           </div>
           <div class="col-6">
             <label for="confirm-password">Confirm Password:</label><br>
@@ -48,14 +48,15 @@
         <div class="row p-2">
           <div class="col-4">
             <label for="gender">Gender:</label>
-            <select class="form-select" name="gender" required>
+            <select class="form-select" name="gender">
               <option value="male">Male</option>
               <option value="female">Female</option>
+              <option value="prefer not to say">Prefer not to say</option>
             </select>
           </div>
           <div class="col-4">
             <label for="age">Age:</label><br>
-            <input type="number" class="form-control" name="age" min="18" max="100" required>
+            <input type="number" class="form-control" name="age" min="10" max="100" required>
           </div>
           <div class="col-4">
             <label for="region">Region:</label><br>
@@ -63,21 +64,24 @@
               <option value="Riyadh">Riyadh</option>
               <option value="Layla">Layla</option>
               <option value="Afif">Afif</option>
-              <option value="Al-Gway'iyyah">Al Gway'iyyah</option>
-              <option value="Al-Hareeg">Al Hareeq</option>
+              <option value="al-Ghat">Al-Ghat</option>
+              <option value="al-Duwadmi">Al-Duwadmi</option>
+              <option value="al-Gwayiyyah">Al Gwayiyyah</option>
+              <option value="al-Hareeg">Al Hareeq</option>
               <option value="Al Kharj">Al Kharj</option>
-              <option value="Al Maja'ah">Al Maja'ah</option>
-              <option value="Al Muzahmiyyah">Al Muzahmiyyah</option>
-              <option value="Al-Sulayyil">Al-Sulayyil</option>
+              <option value="Al Majmaah">Al Majmaah</option>
+              <option value="Al-Muzahmiyyah">Al Muzahmiyyah</option>
+              <option value="al-Sulayyil">Al-Sulayyil</option>
               <option value="Dhruma">Dhruma</option>
-              <option value="Dir'iyyah">Dir'iyyah</option>
+              <option value="Diriyyah">Diriyyah</option>
               <option value="Hotat Bani Tamim">Hotat Bani Tamim</option>
               <option value="Huraymila">Huraymila</option>
               <option value="Rimah">Rimah</option>
               <option value="Shagra">Shagra</option>
               <option value="Thadig">Thadig </option>
-              <option value="Al Wadi ad-Dawasir ">Al Wadi ad-Dawasir</option>
+              <option value="Wadi ad-Dawasir ">Al Wadi ad-Dawasir</option>
               <option value="Yabrin">Yabrin</option>
+              <option value="Markaz">Markaz</option>
               <option value="Zulfy City">Zulfy City</option>
             </select>
           </div>
