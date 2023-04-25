@@ -1,19 +1,19 @@
 <script>
     const disableOrEnable = () => {
-        if (curUsername != document.getElementById('username').value || curEmail != document.getElementById('email').value) 
+        if (curUsername != document.getElementById('username').value || curEmail != document.getElementById('email').value)
             document.getElementById("update-acc").disabled = false;
-        else 
-            document.getElementById("update-acc").disabled = true;  
+        else
+            document.getElementById("update-acc").disabled = true;
     }
 
     const deleteAcc = () => {
-        deleteRequest(`/api/user/<%=cookies.userID%>`, () => {
+        deleteRequest(`/api/user/<%=user._id%>`, () => {
             window.location.href = "/";
         })
     }
 
     const getHours = () => {
-        getRequest(`/api/volunteer/hours/<%=cookies.userID%>`, (response) => {
+        getRequest(`/api/volunteer/hours/<%=user._id%>`, (response) => {
             var hourDiv = document.getElementById("hours");
             hourDiv.innerHTML = `completed hours of volunteering: ${response.hours} hours`
         });
@@ -22,7 +22,7 @@
     var curUsername;
     var curEmail;
     const getUserInfo = () => {
-        getRequest(`/api/user/<%=cookies.userID%>`, (response) => {
+        getRequest(`/api/user/<%=user._id%>`, (response) => {
             curUsername = response.username;;
             curEmail = response.email;
             document.getElementById('username').value = response.username;
@@ -32,7 +32,7 @@
     }
 
     const getReqSt = (type) => {
-        getRequest(`/api/${type}/status/<%=cookies.userID%>`, (response) => {
+        getRequest(`/api/${type}/status/<%=user._id%>`, (response) => {
             var div = document.getElementById(type);
             response.forEach(req => {
                 div.innerHTML += `<p>requestID: ${req.requestID}, status: ${req.status}</p>`
@@ -47,7 +47,7 @@
             username: document.getElementById('username').value,
             email: document.getElementById('email').value
         }
-        putRequest(`/api/user/<%=cookies.userID%>`, body, (response) => {
+        putRequest(`/api/user/<%=user._id%>`, body, (response) => {
             curUsername = response.username;
             curEmail = response.email;
             document.getElementById("update-acc").disabled = true;
@@ -56,7 +56,7 @@
     }
 
     getUserInfo();
-    if ("<%=cookies.userType%>" != "admin") {
+    if ("<%=user.type%>" != "admin") {
         getHours();
         getReqSt('adopt');
         getReqSt('rescue');

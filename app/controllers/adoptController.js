@@ -11,7 +11,7 @@ const {Adopt, validateAdopt} = require('../models/adoptModel')
 // for now get it from cookies
 const adopt = async (req, res) => {
     const petID = req.params.id;
-    const userID = req.user;
+    const userID = req.cookies.userID
     debug('adopt');
     const user = await User.findById(userID);
     
@@ -35,7 +35,7 @@ const recommend = async (req, res) => {
     req.body;
    
     debug('recommend');
-    res.render('recommendation', { cookies: req.cookies || false, body: req.body});
+    res.render('recommendation', { cookies: req.cookies || false, body: req.body, user: req.user});
 }
 
 // get req

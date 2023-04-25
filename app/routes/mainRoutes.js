@@ -1,39 +1,41 @@
 const express = require('express');
 const requests = require('./requestsRoutes');
+const auth = require('../utils/authMiddleware');
+const tokenDecode = require('../utils/tokenDecodeMiddleware');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.render('index', { cookies: req.cookies || false });
+router.get('/', [tokenDecode], (req, res) => {
+    res.render('index', { cookies: req.cookies.token, user: req.user});
 });
 
 router.use('/requests', requests);
 
-router.get('/experiences', (req, res) => {
-    res.render('adoption-experiences', { cookies: req.cookies || false });
+router.get('/experiences', [tokenDecode], (req, res) => {
+    res.render('adoption-experiences', { cookies: req.cookies.token, user: req.user});
 });
 
-router.get('/faqs', (req, res) => {
-    res.render('faqs', { cookies: req.cookies || false });
+router.get('/faqs', [tokenDecode], (req, res) => {
+    res.render('faqs', { cookies: req.cookies.token, user: req.user});
 });
 
-router.get('/login', (req, res) => {
-    res.render('login', { cookies: req.cookies || false });
+router.get('/login', [tokenDecode], (req, res) => {
+    res.render('login', { cookies: req.cookies.token, user: req.user });
 });
 
-router.get('/signup', (req, res) => {
-    res.render('signup', { cookies: req.cookies || false });
+router.get('/signup', [tokenDecode], (req, res) => {
+    res.render('signup', { cookies: req.cookies.token , user: req.user });
 });
 
-router.get('/account', (req, res) => {
-    res.render('account', { cookies: req.cookies || false });
+router.get('/account', [auth], (req, res) => {
+    res.render('account', { cookies: req.cookies.token, user: req.user });
 })
 
-router.get('/meet-our-pets', (req, res) => {
-    res.render('meet-our-pets', { cookies: req.cookies || false });
+router.get('/meet-our-pets', [tokenDecode], (req, res) => {
+    res.render('meet-our-pets', { cookies: req.cookies.token , user: req.user });
 });
 
-router.get('/loading', (req, res) => {
-    res.render('loading', { cookies: req.cookies || false });
+router.get('/loading', [tokenDecode], (req, res) => {
+    res.render('loading', { cookies: req.cookies.token , user: req.user  });
 });
 
 router.get('/err-response/:err', (req, res) => {

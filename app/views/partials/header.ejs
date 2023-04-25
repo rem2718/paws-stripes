@@ -1,42 +1,42 @@
-<style>
-  .h {
-    background-image: url("/images/header bar.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-</style>
 <header>
-  <div class="h fluid-container">
+  <link href="/stylesheets/header.css" rel="stylesheet" />
+  <div class="h fluid-container fixed-top">
     <div class="row">
-      <image class="col-2" src="/paws-stripes-logo.svg" style="max-width: 250px; max-height: 125px"></image>
-      <ul class="nav nav-pills col-8">
-        <li class="nav-item">
-          <a class="nav-link <%= active === 'who' ? 'active' : '' %>" href="/">Who Are We?</a>
+      <image class="col-3 logo mx-2" src="/paws-stripes-logo.svg" alt="logo"></image>
+      <ul class="nav nav-pills col-8 mt-5 pt-4">
+        <li class="nav-item mb-2 <%= active === 'who' ? 'active-item' : '' %>">
+          <a class="nav-link" href="/">Who Are We?</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link <%= active === 'pets' ? 'active' : '' %>" href="/meet-our-pets">Meet Our Pets!</a>
+        <li class="nav-item mb-2  <%= active === 'pets' ? 'active-item' : '' %>">
+          <a class="nav-link" href="/meet-our-pets">Meet Our Pets!</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link <%= active === 'requests' ? 'active' : '' %>" href="/requests">Requests</a>
+        <li class="nav-item mb-2  <%= active === 'requests' ? 'active-item' : '' %>">
+          <a class="nav-link" href="/requests">Requests</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link <%= active === 'experiences' ? 'active' : '' %>" href="/experiences">Adoption
+        <li class="nav-item mb-2  <%= active === 'experiences' ? 'active-item' : '' %>">
+          <a class="nav-link" href="/experiences">Adoption
             Experiences</a>
         </li>
-        <% if (cookies.userType !="admin" ) { %>
-          <li class="nav-item">
-            <a class="nav-link <%= active === 'rescue' ? 'active' : '' %>" href="/requests/rescue-form">Report a
-              Rescue</a>
+        <% if (cookies.type !="admin" ) { %>
+          <li class="nav-item mb-2  <%= active === 'rescue' ? 'active-item' : '' %>">
+            <a class="nav-link red-word" href="/requests/rescue-form">
+              Report a Rescue</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link <%= active === 'faqs' ? 'active' : '' %>" href="/faqs">FAQs</a>
+          <li class="nav-item mb-2 <%= active === 'faqs' ? 'active-item' : '' %>">
+            <a class="nav-link" href="/faqs">FAQs</a>
           </li>
           <% } %>
       </ul>
-      <% if (cookies.isAuthenticated) {%>
-        <a class="col-2" href="/account"><button>Account</button></a>
+      <% if (cookies) {%>
+        <a class="nu col-1" href="/account">
+          <img class="login-img" src="/images/icons/account.svg" alt=""></img>
+          <button class="login">Account</button>
+        </a>
         <% } else { %>
-          <a class="col-2" href="/login"><button>Login</button></a>
+          <a class="nu col-1" href="/login">
+            <img class="login-img" src="/images/icons/login.svg" alt=""></img>
+            <button class="login">Login</button>
+          </a>
           <% } %>
     </div>
   </div>

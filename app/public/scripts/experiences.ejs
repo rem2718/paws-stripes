@@ -6,29 +6,57 @@
             const card = document.createElement("div");
             card.className = "card";
             card.id = `card-${experience._id}`;
-            card.innerHTML = `
-                    <img src="${experience.image}" alt="Card 1" />
-                    <div class="card-text">
-                        <h5>Pet name: ${experience.petName}</h5>
-                        <h5>
-                        User: ${experience.isAnon ? "Anonymous" : experience.userFirstName + " " + experience.userLastName}
-                        </h5>
-                        <p>${experience.experience}</p>
+            let content = `
+                    <img class="card-img-top" src="/dog.png" alt="experience"/>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <b>Pet name: ${experience.petName}</b><br>
+                            <b>User: ${experience.isAnon ? "Anonymous" : experience.userFirstName + " " + experience.userLastName}</b><br>
+                            ${experience.experience}
+                        </div>
+                        `;
+            if (isDel || "<%=user.type%>" === "admin") {
+                content += `
+                        <div class="row px-2 pt-2">
+                            <div class="col-2">
+                                <button onclick="like(event, '${experience._id}')" class="like-btn"></button>
+                            </div>
+                            <div class="col-2">
+                                <p id="likes-${experience._id}">${experience.likes}</p>
+                            </div>
+                            <div class="col-6">
+                            </div>
+                            <div class="col-2 d-flex justify-content-end">
+                                <button class="del-btn" onclick="delExp('${experience._id}')" ></button>
+                            </div>
+                        </div>
                     </div>
-                    <button onclick="like('${experience._id}')" class="btn like-btn btn-primary">Like</button>
-                    <p id="likes-${experience._id}">${experience.likes}</p>
-                `;
-            if (isDel || "<%=cookies.userType%>" === "admin") {
-                card.innerHTML += `
-                    <button class="btn like-btn btn-primary" onclick="delExp('${experience._id}')" >delete</button>
+                    `;
+            } else {
+                content += `
+                        <div class="row px-2 pt-2">
+                            <div class="col-2">
+                                <button onclick="like(event, '${experience._id}')" class="like-btn"></button>
+                            </div>
+                            <div class="col-2">
+                                <p id="likes-${experience._id}">${experience.likes}</p>
+                            </div>
+                            <div class="col-2">
+                            </div>
+                            <div class="col-6">
+                            </div>
+                        </div>
+                    </div>
                     `;
             }
+            card.innerHTML = content;
             container.appendChild(card);
         });
     };
 
     var pressed = false;
-    const like = (expID) => {
+    const like = (event, expID) => {
+        event.target.classList.toggle('liked');
         pressed = !pressed;
         const body = { like: pressed ? "like" : "remove like" };
         putRequest(`/api/experiences/${expID}`, body, (response) => {

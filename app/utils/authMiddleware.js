@@ -8,7 +8,6 @@ const auth = function (req, res, next) {
     try {
         const user = jwt.verify(token, process.env.PRIVATE_KEY);
         req.user = user;
-        debug(user);
         next();
     } catch (exp) {
         // return res.status(400).send({ msg: 'Cat detected a bad request..' });

@@ -36,7 +36,7 @@ const updatePet = async (req, res) => {
     pet.petType = req.body.petType;
 
     debug('update pet');
-    res.send(pet);
+    res.send(req.body);
 };
 
 // delete request

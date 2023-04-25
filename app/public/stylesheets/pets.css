@@ -1,0 +1,62 @@
+@import url("/stylesheets/style.css");
+
+body {
+    background-image: url("/images/backgrounds/background-4.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.add {
+    background-image: url('/images/icons/add.svg');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 100px;
+    width: 50px;
+    height: 50px;
+    border: 0px;
+}
+
+.add:hover {
+    background-image: url('/images/icons/add-dark.svg'); 
+}
+
+
+.modal-header, .modal-footer {
+    background-color: var(--white);
+}
+
+.modal-dialog {
+    font-family: var(--par1-font);
+}
+
+.card {
+    font-size: 10pt;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    font-family: var(--par1-font);
+}
+
+.card img {
+    object-fit: cover;
+    max-width: 150px;
+    border-radius: 20px;
+}
+
+.card-body {      
+    background-color: var(--white);
+    border-radius: 0px 0px 20px 20px;
+    width: 250px;
+
+}
+
+.card-text p {
+    color: var(--dark-blue);
+}
