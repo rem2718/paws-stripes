@@ -5,27 +5,27 @@
     const shuffle = () => {
         index = (index + 1) % pets.length;
         console.log(index);
-        document.getElementById('image').src = null;
-        document.getElementById('petID').innerHTML = `${pets[index].petID}`;
-        document.getElementById('name').innerHTML = `${pets[index].name}`;
-        document.getElementById('type').innerHTML = `${pets[index].type}`;
-        document.getElementById('breed').innerHTML = `${pets[index].breed}`;
-        document.getElementById('age').innerHTML = `${pets[index].age}`;
-        document.getElementById('personality').innerHTML = `${arrPrint(pets[index].personality)}`;
-        document.getElementById('adopt-btn').setAttribute('href', `/api/adopt/${pets[index].petID}`);
+        // document.getElementById('image').src = null;
+        document.getElementById('petID').innerHTML = `${pets[index]._id}`;
+        document.getElementById('name').innerHTML = `${pets[index].petName}`;
+        document.getElementById('type').innerHTML = `${pets[index].petType}`;
+        document.getElementById('breed').innerHTML = `${pets[index].petBreed}`;
+        document.getElementById('age').innerHTML = `${pets[index].petAge}`;
+        document.getElementById('personality').innerHTML = `${pets[index].petPersonality}`;
+        document.getElementById('adopt-btn').setAttribute('href', `/api/adopt/${pets[index]._id}`);
     }
 
     const getRecommendation = (adoptID) => {
         getRequest(`/api/adopt/recommendation/${adoptID}`, (response) => {
             pets = response;
-            document.getElementById('image').src = null;
-            document.getElementById('petID').innerHTML = `${pets[0].petID}`;
-            document.getElementById('name').innerHTML = `${pets[0].name}`;
-            document.getElementById('type').innerHTML = `${pets[0].type}`;
-            document.getElementById('breed').innerHTML = `${pets[0].breed}`;
-            document.getElementById('age').innerHTML = `${pets[0].age}`;
-            document.getElementById('personality').innerHTML = `${arrPrint(pets[0].personality)}`;
-            document.getElementById('adopt-btn').setAttribute('href', `/api/adopt/${pets[0].petID}`);
+            // document.getElementById('image').src = null;
+            document.getElementById('petID').innerHTML = `${pets[0]._id}`;
+            document.getElementById('name').innerHTML = `${pets[0].petName}`;
+            document.getElementById('type').innerHTML = `${pets[0].petType}`;
+            document.getElementById('breed').innerHTML = `${pets[0].petBreed}`;
+            document.getElementById('age').innerHTML = `${pets[0].petAge}`;
+            document.getElementById('personality').innerHTML = `${pets[0].petPersonality}`;
+            document.getElementById('adopt-btn').setAttribute('href', `/api/adopt/${pets[0]._id}`);
         });
     };
 

@@ -32,21 +32,20 @@ body {
 
 .card {
     font-size: 10pt;
+    max-width: 250px;
     border-radius: 20px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
     margin: 10px;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
+.container {
     font-family: var(--par1-font);
 }
 
 .card img {
-    object-fit: cover;
-    max-width: 150px;
+    object-fit: contain;
+    max-width: 250px;
+    max-height: 45vh;
     border-radius: 20px;
 }
 

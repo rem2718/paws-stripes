@@ -11,10 +11,26 @@
     <h1><span class="white-word">Get to know our</span> <span class="green-word">family</span></h1>
     <hr>
     </hr>
-    <% if (user.type === "admin") { %>
+    <% if (user.type==="admin" ) { %>
       <button type="button" class="add" data-bs-toggle="modal" data-bs-target="#myModal"></button>
       <% } %>
-        <div id="cards-container" class="grid d-flex justify-content-center">
+        <div id="cards-container" class="container">
+          <div class="row">
+            <div id="c1" class="col-4 d-flex justify-content-end">
+            </div>
+            <div id="c2" class="col-4 d-flex justify-content-center">
+            </div>
+            <div id="c3" class="col-4 d-flex justify-content-start">
+            </div>
+          </div>
+          <div class="row">
+            <div id="c4" class="col-4 d-flex justify-content-end">
+            </div>
+            <div id="c5" class="col-4 d-flex justify-content-center">
+            </div>
+            <div id="c6" class="col-4 d-flex justify-content-start">
+            </div>
+          </div>
         </div>
         <div class="modal" id="myModal">
           <div class="modal-dialog modal-dialog-centered">
@@ -90,6 +106,13 @@
             </div>
           </div>
         </div>
+        <ul class="pagination justify-content-center py-2">
+          <li class="page-item disabled"><a id="pre" class="page-link" onclick="getPets(event)">previous</a></li>
+          <li class="page-item active"><a id="p1" class="page-link" onclick="getPets(event)">1</a></li>
+          <li class="page-item "><a id="p2" class="page-link" onclick="getPets(event)">2</a></li>
+          <li class="page-item"><a id="p3" class="page-link" onclick="getPets(event)">3</a></li>
+          <li class="page-item"><a id="next" class="page-link" onclick="getPets(event)">next</a></li>
+        </ul>
         <script src="/scripts/apiController.js"></script>
         <%- include('../public/scripts/pets.ejs')%>
 </body>

@@ -8,7 +8,7 @@
 
 <body>
   <%- include('./partials/header', {active: 'requests' }) %>
-    <%if (cookies.type !="admin" ) { %>
+    <%if (user.type !="admin" ) { %>
       <h1 class="white-word">Forms</h1>
       <hr>
       <div class="container">
@@ -73,15 +73,39 @@
         </div>
       </div>
       <% } else {%>
-        <h2>Requests status</h2>
-        <h4>adoption requests:</h4>
-        <div id="adopt"></div>
-        <h4>handover requests:</h4>
-        <div id="handover"></div>
-        <h4>rescue requests:</h4>
-        <div id="rescue"></div>
-        <h4>volunteer requests:</h4>
-        <div id="volunteer"></div>
+        <h1><span class="white-word">Requests</span> <span class="green-word">Status</span></h1>
+        <hr>
+        <ul class="nav nav-pills mx-5 px-5 d-flex justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link active h2" data-bs-toggle="tab" href="#adopt">Adoption requests:</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h2" data-bs-toggle="tab" href="#handover">Handover requests:</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h2" data-bs-toggle="tab" href="#rescue">Rescue requests:</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h2" data-bs-toggle="tab" href="#volunteer">Volunteer requests:</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane container active py-3 px-5 mb-5" id="adopt">
+
+          </div>
+          <div class="tab-pane container fade py-3 px-5 mb-5" id="handover">
+
+          </div>
+          <div class="tab-pane container fade py-3 px-5 mb-5" id="rescue">
+
+          </div>
+          <div class="tab-pane container fade py-3 px-5 mb-5" id="volunteer">
+
+          </div>
+        </div>
+
         <% } %>
           <script src="/scripts/apiController.js"></script>
           <%- include("../public/scripts/requests.ejs")%>

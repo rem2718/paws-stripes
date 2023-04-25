@@ -1,41 +1,34 @@
 <script>
-    const disableOrEnable = () => {//TO-DO
-        // if (curUsername != document.getElementById('username').value || curEmail != document.getElementById('email').value) 
-        //     document.getElementById("update-acc").disabled = false;
-        // else 
-        //     document.getElementById("update-acc").disabled = true;  
-    }
 
     const displayPets = (pets) => {
-        const container = document.getElementById("cards-container");
-        container.innerHTML = '';
-        const colors = ['red', 'blue', 'yellow', 'purple', 'green'];
+        const colors = ['red', 'blue', 'yellow', 'purple', 'pink', 'green'];
         let i = 0;
+        const cols = document.querySelectorAll(".col-4");
+        cols.forEach(col => col.innerHTML = "");
         pets.forEach(pet => {
             const card = document.createElement("div");
             let color = colors[i];
-            i = (i + 1) % colors.length;
             card.className = `card ${color}`;
-            card.id = `card-${pet.petID}`;
+            card.id = `card-${pet._id}`;
             card.innerHTML = `
-                <img class="card-img-top" src="/cat.png" alt="pet" />
+                <img class="card-img-top" id="image-${pet._id}" src="/cat.png" alt="pet" />
                 <div class="card-body">
                     <div class="card-text">
-                            <p id="p-${pet.petID}"><b>Name:</b> ${pet.name}<br>
-                            <b>Pet ID:</b> ${pet.petID}<br>
-                            <b>Type:</b> ${pet.type}<br>
-                            <b>Breed:</b> ${pet.breed}<br>
-                            <b>Age:</b> ${pet.age}<br>
-                            <b>Personality:</b> ${arrPrint(pet.personality)}</p>
+                        <p id="p-${pet._id}"><b>Name:</b> ${pet.petName}<br>
+                        <b>Pet ID:</b> ${pet._id}<br>
+                        <b>Type:</b> ${pet.petType}<br>
+                        <b>Breed:</b> ${pet.petBreed}<br>
+                        <b>Age:</b> ${pet.petAge}<br>
+                        <b>Personality:</b> ${arrPrint(pet.petPersonality)}</p>
                     </div>
-                <% if (user.userType != "admin" ) { %>
-                    <a href="/api/adopt/${pet.petID}"><button class="button"><img class="paw" src="/images/icons/paw.svg"> Adopt</button></a>
+                <% if (user.type != "admin" ) { %>
+                    <a href="/api/adopt/${pet._id}"><button class="button"><img class="paw" src="/images/icons/paw.svg"> Adopt</button></a>
                     </div>
                 <% } else { %>
-                    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#modal-${pet.petID}">edit</button>
-                    <button onclick="deletePet('${pet.petID}')" class="btn btn-danger">Delete</button>
+                    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#modal-${pet._id}">edit</button>
+                    <button onclick="deletePet('${pet._id}')" class="btn btn-danger">Delete</button>
                     </div>
-                    <div class="modal" id="modal-${pet.petID}">
+                    <div class="modal" id="modal-${pet._id}">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -44,11 +37,11 @@
                                 </div>
                                 <div class="modal-body">
                                     <form class="p-2" action="/meet-out-pets">
-                                        <label for="name"><b>Pet name:</b></label>
-                                        <input class="form-control" type="text" name="name" id="name-${pet.petID}" value="${pet.name}" required />
-                                        <label for="type"><b>Pet type:</b></label>
-                                        <select name="type" class="form-select"  id="type-${pet.petID}" value="${pet.type}" required>
-                                            <option value="${pet.type}">${pet.type}</option>
+                                        <label for="petName"><b>Pet name:</b></label>
+                                        <input class="form-control" type="text" name="petName" id="name-${pet._id}" value="${pet.petName}" />
+                                        <label for="petType"><b>Pet type:</b></label>
+                                        <select name="petType" class="form-select" id="type-${pet._id}" >
+                                            <option value="${pet.petType}">${pet.petType}</option>
                                             <option value="dog">Dog</option>
                                             <option value="cat">Cat</option>
                                             <option value="rabbit">Rabbit</option>
@@ -59,9 +52,9 @@
                                             <option value="turtle">Turtle</option>
                                             <option value="frog">Frog</option>
                                         </select>
-                                        <label for="breed"><b>Pet breed:</b></label>
-                                        <select name="breed" class="form-select" id="breed-${pet.petID}" required>
-                                            <option value="${pet.breed}">${pet.breed}</option>
+                                        <label for="petBreed"><b>Pet breed:</b></label>
+                                        <select name="petBreed" class="form-select" id="breed-${pet._id}">
+                                            <option value="${pet.petBreed}">${pet.petBreed}</option>
                                             <option value="labrador">Labrador Retriever</option>
                                             <option value="golden">Golden Retriever</option>
                                             <option value="german">German Shepherd</option>
@@ -72,14 +65,39 @@
                                             <option value="dwarf">Netherland Dwarf</option>
                                             <option value="pekin">Pekin Duck</option>
                                         </select>
-                                        <label for="age"><b>Pet age:</b></label>
-                                        <input type="text" name="age" id="age-${pet.petID}" value="${pet.age}" class="form-control" min="0" max="100" required />
-                                        <label for="personality"><b>Pet personality:</b></label>
-                                        <input class="form-control" type="text" name="personality" id="personality-${pet.petID}" value="${pet.personality}" required />               
+                                        <label for="petAge"><b>Pet age:</b></label>
+                                        <input type="text" name="petAge" id="age-${pet._id}" value="${pet.petAge}" class="form-control" min="0" max="100" />
+                                        <label for="petPersonality"><b>Pet personality:</b></label>
+                                        <select class="form-select" id="personality-${pet._id}" name="petPersonality[]" multiple>
+                                            <option value="${pet.petPersonality}">${pet.petPersonality}</option>
+                                            <option value="fun">Fun</option>
+                                            <option value="social">Social</option>
+                                            <option value="calm">Calm</option>
+                                            <option value="active">Active</option>
+                                            <option value="loves people">Loves People</option>
+                                            <option value="hates people">Hates People</option>
+                                            <option value="loves to eat">Loves to Eat</option>
+                                            <option value="picky eater">Picky Eater</option>
+                                            <option value="likes attention">Likes Attention</option>
+                                            <option value="prefers to be alone">Prefers to Be Alone</option>
+                                            <option value="bold">Bold</option>
+                                            <option value="aggressive">Aggressive</option>
+                                            <option value="shy">Shy</option>
+                                            <option value="patient">Patient</option>
+                                            <option value="intelligent">Intelligent</option>
+                                            <option value="clumsy">Clumsy</option>
+                                            <option value="curious">Curious</option>
+                                            <option value="likes to play">Likes to Play</option>
+                                            <option value="confident">Confident</option>
+                                            <option value="timid">Timid</option>
+                                            <option value="enjoys routine">Enjoys Routine</option>
+                                            <label for="petImage">Provide us a picture of the adopted animal:</label><br><br>
+                                            <input type="file" id="img-${pet._id}" name="petImage" accept="image/*"  max(10485760)>
+                                        </select>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="editPet('${pet.petID}')" data-bs-dismiss="modal" class="button">send</button>
+                                    <button onclick="editPet('${pet._id}')" data-bs-dismiss="modal" class="button">send</button>
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">cancel</button>
                                 </div>
                             </div>
@@ -87,43 +105,52 @@
                     </div>
                 <% } %>
             `;
-            container.appendChild(card);
+            document.getElementById(`c${i + 1}`).appendChild(card);
+            i++;
         });
     }
 
-    const deletePet = (petID) => {
-        deleteRequest(`/api/pets/${petID}`, (response) => {
+    const deletePet = (_id) => {
+        deleteRequest(`/api/pets/${_id}`, (response) => {
             console.log(response);
-            const card = document.getElementById(`card-${response.id}`);
+            const card = document.getElementById(`card-${response._id}`);
             card.remove();
         });
     }
 
-    const editPet = (petID) => {
+    const editPet = (_id) => {
         const body = {
-            name: document.getElementById(`name-${petID}`).value,
-            type: document.getElementById(`type-${petID}`).value,
-            breed: document.getElementById(`breed-${petID}`).value,
-            age: document.getElementById(`age-${petID}`).value,
-            personality: document.getElementById(`personality-${petID}`).value,
+            petName: document.getElementById(`name-${_id}`).value,
+            petType: document.getElementById(`type-${_id}`).value,
+            petBreed: document.getElementById(`breed-${_id}`).value,
+            petAge: document.getElementById(`age-${_id}`).value,
+            petPersonality: document.getElementById(`personality-${_id}`).value,
+            petImage: document.getElementById(`img-${_id}`).value
         }
-        putRequest(`/api/pets/${petID}`, body, (response) => {
+        putRequest(`/api/pets/${_id}`, body, (response) => {
             console.log(response);
-            document.getElementById(`p-${petID}`).innerHTML = `
+            document.getElementById(`p-${_id}`).innerHTML = `
                 <b>Name:</b> ${response.name}<br>
-                <b>Pet ID:</b> ${response.petID}<br>
+                <b>Pet ID:</b> ${response._id}<br>
                 <b>Type:</b> ${response.type}<br>
                 <b>Breed:</b> ${response.breed}<br>
                 <b>Age:</b> ${response.age}<br>
                 <b>Personality:</b> ${response.personality}
             `;
+            document.getElementById(`image-${response._id}`).src = response.petImage;
 
         });
     }
 
-    const getPets = () => {
-        getRequest(`/api/pets`, (response) => {
-            displayPets(response);
+    const getPets = (event = false, num = 1) => {
+        num = pagination(event, num);
+        getRequest(`/api/pets?pageNumber=${num}&pageSize=6`, (response) => {
+            if (response.end) {
+                document.getElementById('next').parentNode.classList.add("disabled");
+            } else {
+                document.getElementById('next').parentNode.classList.remove("disabled");
+            }
+            displayPets(response.pets);
         });
     }
 
