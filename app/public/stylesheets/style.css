@@ -55,6 +55,22 @@ hr {
     color: var(--red);
 }
 
+.blue-word{
+    color: var(--dark-blue);
+    font-family: var(--header2-font);
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .red {
     background-color: var(--red);
 }
@@ -75,6 +91,9 @@ hr {
     background-color: var(--pastel-green);
 }
 
+.pink {
+    background-color: var(--pink);
+}
 .paw {
     width: 20px;
     height: 20px;
@@ -93,4 +112,15 @@ hr {
 
 .button:hover {
     background-color: var(--light-green);
+}
+
+.pagination .page-link {
+    color: var(--dark-blue);
+    font-family: var(--par1-font);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--light-green);
+    border: var(--light-green);
+    color: var(--white)
 }

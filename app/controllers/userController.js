@@ -17,7 +17,7 @@ const createUser = async (req, res) => {
     if (error) return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
 
     let existingUser = await User.findOne({ email: user.email });
-    if (existingUser) return  res.status(400).render("err-response", { err: 400, msg: 'You already registered..' });
+    if (existingUser) return res.status(400).render("err-response", { err: 400, msg: 'You already registered..' });
 
     user = new User(user);
     const salt = await bcrypt.genSalt(10);
@@ -69,17 +69,14 @@ const logoutUser = async (req, res) => {
 const getUser = async (req, res) => {
     const userID = req.params.id;
     debug('get user');
-    res.send({ userID: "1234", username: "lamia", email: "rewbd@gmail.com" });
+    res.send({ userID: "1234", firstName: "lamia", lastName: "ahmad", email: "rewbd@gmail.com", phoneNumber: "0123454675", age: "30", gender: "female", region: "Riyadh" });
 };
 
 // put request
 // all data will be sent so you need to check whether the value changed or not
 const updateUser = async (req, res) => {
-    const username = req.body.username;
-    const email = req.body.email;
-    debug(username);
     debug('update user');
-    res.send({ username: username, email: email });
+    res.send(req.body);
 };
 
 // delete request

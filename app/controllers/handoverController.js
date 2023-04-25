@@ -13,7 +13,7 @@ const handover = async (req, res) => {
 const getStatus = async (req, res) => {
     const userID = req.params.id;
     debug('get handover status');
-    res.send([{ requestID: "3a456", status: "pending" }, { requestID: "343k56", status: "accepted" }]);
+    res.send([{ type: "gg", breed: "ghgfd", timestamp: "2:00am", status: "pending" }, { type: "asdf", breed: "ghgfd", timestamp: "2:00am", status: "pending" }]);
 };
 
 // put , reject, accept
