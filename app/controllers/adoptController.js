@@ -49,25 +49,22 @@ const getRecommendations = async (req, res) => {
 
 // get request (name, timestamps, status)
 const getStatus = async (req, res) => {
-    const userID = req.user;
-    try{
-        const user = await User.findById(userID);
-        const adoptRequests = user.adoptHistory;
-
-        const arrayOfRequests = await adoptRequests.map(
-            async(ObjectId) =>{
-                const request = await Adopt.findById(ObjectId);
-                return {ObjectId: ObjectId, status: request.status, timeCreated: request.timestamps};
-            });
-            
-            res.status(200).send([arrayOfRequests]);
-        } catch(error){
-            //i'll do this later
-        }
-    
+  
+        const userID = req.user;
+        const adopts = await Adopt.find({user: userID});
+       
+        //type, breed, timestamp, status,
+        
+        const adoptRequests = adopts.map(adopt => ({
+            type: adopt.pet.petType,
+            breed: adopt.pet.petBreed,
+            createdAt: adopt.createdAt,
+            status: adopt.status
+        }));
+        
     
     debug('get adopt status');
-    
+    res.send([adoptRequests]);
 
     
 };

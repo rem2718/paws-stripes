@@ -21,13 +21,20 @@ const rescueSchema = new mongoose.Schema({
             },
             message: "Must provide a google maps valid URL!"
         }},
-    status: {type: String, required: true, enum:["pending", "approved", "rejected", "in progress"],
+    status: {type: String, default: "pending", required: true, enum:["pending", "approved", "rejected"],
     validate: {
        validator: function(v){
           return v;
        },
        message: "request status should not be null"
-    }}
+    }},
+    petImage: {type: Buffer, required: true, validate: {
+        validator: function(v){
+            return v.length <= 10485760; //image is 10 mbs max. we can modify
+        },
+        message: "image should be less than 10 MB!"
+    }},
+    petType:{type: String, min: 2, required: true, enum:["cat", "dog", "rabbit", "fish", "turtle", "hamster", "guinea pig", "bird", "frog"]}
     
 },{timestamps: { createdAt: true, updatedAt: false }});
 
@@ -41,7 +48,9 @@ function validateRescue (rescue){
         dateOfRescue: Joi.date().max('now').required(),
         rescuerPhone: Joi.string().pattern(/^05\d{8}$/).required(),
         rescueAddress: Joi.string().pattern(/^(https?:\/\/)(www\.google\.com\/maps\/|goo\.gl\/maps\/)[^\s]+$/i).required(),
-        status: Joi.string().valid('pending', 'approved', 'rejected', 'in progress').required()
+        status: Joi.string().valid('pending', 'approved', 'rejected').required().default("pending"),
+        petImage: Joi.binary().max(10485760).required(),
+        petType: Joi.string().min(2).valid("cat", "dog", "rabbit", "fish", "turtle", "hamster", "guinea pig", "bird", "frog")
     });
     return Joi.validate(rescue, schema);
 }
