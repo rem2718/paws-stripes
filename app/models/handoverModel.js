@@ -17,7 +17,7 @@ const handoverSchema = new mongoose.Schema({
             },
             message: "Must provide a google maps valid URL!"
         }},
-    petAge: {type: Number, min: 0, 
+    petAge: {type: Number, min: 0, max: 600,
         validate: {
             validator: (v) => {
                 return Number.isInteger(v) && v >= 0;
@@ -45,7 +45,7 @@ const handoverSchema = new mongoose.Schema({
           ]
         }],
         default: []},
-    status:  {type: String, required: true, enum:["pending", "approved", "rejected", "in progress"]},
+    status:  {type: String, required: true, enum:["pending", "approved", "rejected"], default: "pending"},
       validate: {
          validator: (v) => {
             return v;
@@ -64,10 +64,10 @@ const validateHandover = (handover) => {
         breed: Joi.string().min(5).max(100).trim(),
         petType: Joi.string().min(5).valid('cat', 'dog', 'rabbit', 'fish', 'turtle', 'hamster', 'guinea pig', 'bird', 'frog').required(),
         handoverAddress: Joi.string().required().pattern(/^(https?:\/\/)(www\.google\.com\/maps\/|goo\.gl\/maps\/)[^\s]+$/i),
-        petAge: Joi.number().min(0).integer().positive(),
+        petAge: Joi.number().min(0).max(600).integer().positive(),
         petImage: Joi.binary().required().max(10485760),
         petPersonality: Joi.array().items(Joi.string().valid('fun', 'social', 'calm', 'active', 'loves people', 'hates people', 'loves to eat', 'picky eater', 'likes attention', 'prefers to be alone', 'bold', 'aggressive', 'shy', 'patient', 'intelligent', 'clumsy', 'curious', 'likes to play', 'confident', 'timid', 'enjoys routine')),
-        status: Joi.string().valid('pending', 'approved', 'rejected', 'in progress').required(),
+        status: Joi.string().valid('pending', 'approved', 'rejected').required().default("pending")
     });
 
     return Joi.validate(handover, schema);

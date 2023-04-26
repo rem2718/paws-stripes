@@ -27,7 +27,7 @@ const volunteerSchema = new mongoose.Schema({
         {type: String, enum: ["rescue", "transportation", "clinic", "office", "pet screening", "adoption work"]}
     ], required: true, default:["rescue"]},
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
-    status:{type: String, required: true, enum:["pending", "approved", "rejected", "in progress"],  validate: {
+    status:{type: String, required: true, enum:["pending", "approved", "rejected"],  default: "pending", validate: {
         validator: function(v){
            return v;
         },
@@ -49,7 +49,7 @@ function validateVolunteer(volunteer){
             Joi.string().valid('rescue', 'transportation', 'clinic', 'office', 'pet screening', 'adoption work')
         ).required().default(['rescue']),
         user: Joi.string().objectId().required(),
-        status: Joi.string().valid('pending', 'approved', 'rejected', 'in progress').required()
+        status: Joi.string().valid('pending', 'approved', 'rejected').required().default("pending")
     });
     return Joi.validateVolunteer(volunteer, schema)
 }
