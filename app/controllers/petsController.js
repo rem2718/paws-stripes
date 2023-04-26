@@ -27,7 +27,7 @@ const getPets = async (req, res) => {
 const updatePet = async (req, res) => {
     //put errors here!
     const petid = req.params.id;
-    let pet = await Pet.findById(petid)
+    let pet = await Pet.findById(petid);
     pet.petAge = req.body.petAge;
     pet.petBreed = req.body.petBreed;
     pet.petImage = req.body.petImage;//work on this and change.
@@ -36,7 +36,7 @@ const updatePet = async (req, res) => {
     pet.petType = req.body.petType;
 
     debug('update pet');
-    res.send(req.body);
+    res.send(pet);
 };
 
 // delete request

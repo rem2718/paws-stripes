@@ -17,21 +17,18 @@ const handover = async (req, res) => {
 //breed, timestamps, status
 const getStatus = async (req, res) => {
     const userID = req.user;
-    try{
-        const user = await User.findById(userID);
-        const handoverRequests = user.handoverHistory;
-
-        const arrayOfRequests = await handoverRequests.map(
-            async(ObjectId) =>{
-                const request = await Handover.findById(ObjectId);
-                return {ObjectId: ObjectId, status: request.status, timeCreated: request.timestamps};
-            });
-            
-            res.status(200).send([arrayOfRequests]);
-        } catch(error){
-            //i'll do this later
-        }
+    const handovers = await Handover.find({user: userID});
+   
+    //type, breed, timestamp, status,
+    
+    const handoverRequests = handovers.map(handover => ({
+        type: handover.pet.petType,
+        breed: handover.pet.petBreed,
+        createdAt: handover.createdAt,
+        status: handover.status
+    }));
     debug('get handover status');
+    res.send([handoverRequests])
 };
 
 // put , reject, accept
