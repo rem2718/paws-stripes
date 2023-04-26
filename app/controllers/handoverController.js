@@ -1,5 +1,5 @@
 const debug = require('debug')('app:api');
-const {Handover, validateHandover} = require('..models/handoverModel');
+const {Handover, validateHandover} = require('../models/handoverModel');
 const {User} = require('../models/userModel');
 
 // post request
