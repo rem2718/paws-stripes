@@ -38,7 +38,11 @@ const getStatus = async (req, res) => {
         status: rescue.status
     }));
     debug('get rescue status');
+
     res.send([rescueRequests]);
+
+    //res.send([{ type: "gg", breed: "ghgfd", timestamp: "2:00am", status: "pending" }, { type: "asdf", breed: "ghgfd", timestamp: "2:00am", status: "pending" }]);
+
 };
 
 const updateStatus = async (req, res) => {

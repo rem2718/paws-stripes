@@ -5,6 +5,32 @@ const {Adopt, validateAdopt} = require('../models/adoptModel')
 
 // const Handover = require('../models/requestModel');
 
+var pets = [
+    {
+        "petID": "1234",
+        "petName": "Leonard",
+        "petType": "cat",
+        "petBreed": "Persian",
+        "petAge": "3 months",
+        "petPersonality": ["678", "123"],
+        "petImage": null
+    },  {
+        "petID": "12wert34",
+        "petName": "Leonard",
+        "petType": "cat",
+        "petBreed": "Persian",
+        "petAge": "3 months",
+        "petPersonality": ["678", "123"],
+        "petImage": null
+    },  {
+        "petID": "123sdf4",
+        "petName": "Leonard",
+        "petType": "cat",
+        "petBreed": "Persian",
+        "petAge": "3 months",
+        "petPersonality": ["678", "123"],
+        "petImage": null
+    }, ];
 
 // get request(tho its wrong here but i wont create a form for this nor fetch)
 // you can get the userID from the session TO-DO
@@ -33,16 +59,16 @@ const adopt = async (req, res) => {
 // submit adoption form
 const recommend = async (req, res) => {
     req.body;
-   
+
     debug('recommend');
-    res.render('recommendation', { cookies: req.cookies || false, body: req.body, user: req.user});
+    res.render('recommendation', { cookies: req.cookies.token, user: req.user, adoptID: "123" });
 }
 
 // get req
 // we need to check the adoptID with the session
 const getRecommendations = async (req, res) => {
     const adoptID = req.params.adoptID;
-     // logic(body)
+    // logic(body)
     debug("get recommendation");
     res.send(pets);
 }
@@ -64,9 +90,13 @@ const getStatus = async (req, res) => {
         
     
     debug('get adopt status');
+
     res.send([adoptRequests]);
 
     
+
+//    res.send([{ type: "gg", breed: "ghgfd", timestamp: "2:00am", status: "pending" }, { type: "asdf", breed: "ghgfd", timestamp: "2:00am", status: "pending" }]);
+
 };
 
 // put req (accept, reject)

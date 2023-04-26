@@ -1,28 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <%- include('./partials/head')%>
-    <style>
-      body {
-			background-image: url("/images/backgrounds/background-1.png");
-			background-repeat: no-repeat;
-			background-size: cover;
-		}
-    </style>
+    <link href="/stylesheets/index.css" rel="stylesheet" />
 </head>
+
 <body>
-      <%- include('./partials/header', {active: 'who'})%>
-    <div class="container" id = "who">
-        <ul>
-     <li><a class="active" href="#mission">Our mission</a></li>
-     <li><a href="#clinic">The Clinic</a></li>
-     <li><a href="#program">TNR program</a></li>
-     <li><a href="#services">Our Services</a></li>
-     <li><a href="#contact">Contact Us</a></li>
-   </ul>
-       </div>
-       <div class="container">
-         <h2>Our Mission</h2>
-         <p>Our shelter aims to provide a home for abandoned animals.</p>
-       </div>
+  <%- include('./partials/header', {active: 'who' })%>
+    <div class="container-sm">
+      <div class="row mt mx-5 mb-2">
+        <div class="col-3 column1 mt">
+          <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-option1-list" data-bs-toggle="list"
+              href="#list-option1" role="tab" aria-controls="option1">Our mission&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <img src="/images/icons/footprint-1.svg" class="icon" alt="footprint"></a>
+              
+            <a class="list-group-item list-group-item-action" id="list-option2-list" data-bs-toggle="list"
+              href="#list-option2" role="tab" aria-controls="option2">The clinic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <img src="/images/icons/footprint-2.svg" class="icon" alt="footprint"></a>
+            <a class="list-group-item list-group-item-action" id="list-option3-list" data-bs-toggle="list"
+              href="#list-option3" role="tab" aria-controls="option3">TNR program&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <img src="/images/icons/footprint-2.svg" class="icon" alt="footprint"></a>
+            <a class="list-group-item list-group-item-action" id="list-option4-list" data-bs-toggle="list"
+              href="#list-option4" role="tab" aria-controls="option4">Our services&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <img src="/images/icons/footprint-2.svg" class="icon" alt="footprint"></a>
+            <a class="list-group-item list-group-item-action" id="list-option5-list" data-bs-toggle="list"
+              href="#list-option5" role="tab" aria-controls="option4">Contact us&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <img src="/images/icons/footprint-2.svg" class="icon" alt="footprint"></a>
+          </div>
+        </div>
+        <div class="col-9 column2">
+          <img class="pets" src="/images/pngs/pets.png" alt="pets" />
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active message mission mx-5" id="list-option1" role="tabpanel"
+              aria-labelledby="list-option1-list">
+              <h1 style="margin: 0px"><span class="white-word">Our</span> <span class="blue-word">Mission</span></h1>
+              our shelter aims to provide a home for abandoned animals and close the gap between humans and animals
+              and etc.
+            </div>
+            <div class="tab-pane fade message clinic mx-5" id="list-option2" role="tabpanel"
+              aria-labelledby="list-option2-list">
+              <h1 style="margin: 0px"><span class="white-word">The</span> <span class="blue-word">Clinic</span></h1>
+              <div class="row">
+                <div class="col-6">
+                  <ul>
+                    <li>Medical Examinations</li>
+                    <li>Laboratory Tests</li>
+                    <li>X-Rays</li>
+                    <li>Surgeries</li>
+                    <li>Spay-Neutering Surgeries</li>
+                  </ul>
+                </div>
+                <div class="col-6">
+                  <ul>
+                    <li>Annual Vaccinations</li>
+                    <li>Microchip Installation</li>
+                    <li>Grooming</li>
+                    <li>Boarding</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade message tnr mx-5" id="list-option3" role="tabpanel"
+              aria-labelledby="list-option3-list">
+              <h1 style="margin: 0px"><span class="white-word">tnr</span> <span class="blue-word">Program</span></h1>
+              Trap-Neuter-Return (TNR), is a humane approach to address community cat populations. It saves cats’
+              lives and is effective.
+              TNR improves the lives of cats, addresses community concerns, reduces complaints about cats, and stops
+              the breeding cycle.
+              <strong>To request a TNR program, kindly contact us via <a
+                  href="info@riyadhshelter.org">info@riyadhshelter.org</a></strong>
+            </div>
+            <div class="tab-pane fade message tnr mx-5" id="list-option4" role="tabpanel"
+              aria-labelledby="list-option4-list">
+              <h1 style="margin: 0px"><span class="white-word">Our</span> <span class="blue-word">Services</span></h1>
+              Our shelter provides a variety of services that contribute to animal welfare. This includes our clinic
+              which caters to their well-being.
+              We also have a team of rescuers and provide adoption services. Moreover, we deal with handover requests
+              if you can no longer foster your pet.
+              Any activist passionate about our mission is more than welcome to volunteer!
+            </div>
+            <div class="tab-pane fade  message contact mx-5" id="list-option5" role="tabpanel"
+              aria-labelledby="list-option5-list">
+              <h1 style="margin: 0px"><span class="white-word">Contact</span> <span class="blue-word">Us</span></h1>
+              <div class="row">
+                <div class="col-1" style="padding: 0;">
+                  <img src="/images/icons/clock.svg" class="icon"></img>
+                </div>
+                <div class="col-11" style="padding: 0;">
+                  The Clinic Operation Days & Hours:
+                  <ul style="padding: 0; margin: 0;">
+                    <li>Saturday – Thursday (9 AM-1:00 PM, 4-8 PM)</li>
+                    <li>The Shelter & Clinic are closed on Fridays</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-1">
+                  <img src="/images/icons/map.svg" class="icon"></img>
+                </div>
+                <div class="col-5">
+                  <a href="https://goo.gl/maps/oUq4d8kRgmwWBwoe6">Google Maps Link</a>.
+                </div>
+                <div class="col-1">
+                  <img src="/images/icons/email.svg" class="icon"></img>
+                </div>
+                <div class="col-5">
+                  info@paws&stripes.org
+                </div>
+              </div>
+              <div class="row mx bar d-flex justify-content-center align-center">
+                <div class="col-3">
+                  <a href="https://api.whatsapp.com/send?phone=+966500559776" target="_blank"><button
+                      style="background-image: url(/images/icons/whatsapp.svg)" class="icon"></button></a>
+                </div>
+                <div class="col-3">
+                  <a href="https://twitter.com/RiyadhShelter" target="_blank"><button
+                    style="background-image: url(/images/icons/twitter.svg)" class="icon"></button></a>
+                </div>
+                <div class="col-3">
+                  <a href="https://www.facebook.com/RiyadhAnimalShelter" target="_blank"><button
+                    style="background-image: url(/images/icons/facebook.svg)" class="icon"></button></a>
+                </div>
+                <div class="col-3">
+                  <a href="https://www.instagram.com/riyadhshelter/" target="_blank"><button
+                    style="background-image: url(/images/icons/insta.svg)" class="icon"></button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </html>

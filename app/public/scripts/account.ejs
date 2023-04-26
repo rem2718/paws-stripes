@@ -1,9 +1,22 @@
 <script>
+
+    const rotate = (event) => {
+        event.target.classList.toggle('rotated');
+    }
+
     const disableOrEnable = () => {
-        if (curUsername != document.getElementById('username').value || curEmail != document.getElementById('email').value)
+
+        if (curFname != document.getElementById('fname').value || curLname != document.getElementById('lname').value
+            || curEmail != document.getElementById('email').value || curNum != document.getElementById('num').value
+            || curGender != document.getElementById('gender').value || curRegion != document.getElementById('region').value
+            || curAge != document.getElementById('age').value
+        ) {
             document.getElementById("update-acc").disabled = false;
-        else
+        }
+        else {
             document.getElementById("update-acc").disabled = true;
+        }
+
     }
 
     const deleteAcc = () => {
@@ -15,41 +28,77 @@
     const getHours = () => {
         getRequest(`/api/volunteer/hours/<%=user._id%>`, (response) => {
             var hourDiv = document.getElementById("hours");
-            hourDiv.innerHTML = `completed hours of volunteering: ${response.hours} hours`
+            hourDiv.innerHTML = `${response.hours} hours`
         });
     }
 
-    var curUsername;
+    var curFname;
+    var curLname;
     var curEmail;
+    var curNum;
+    var curGender;
+    var curAge;
+    var curRegion;
+
+    const updateInfo = (response) => {
+        curFname = response.firstName;
+        curLname = response.lastName;
+        curEmail = response.email;
+        curNum = response.phoneNumber;
+        curGender = response.gender;
+        curAge = response.age;
+        curRegion = response.region;
+        document.getElementById('fname').value = curFname;
+        document.getElementById('lname').value = curLname;
+        document.getElementById('email').value = curEmail;
+        document.getElementById('num').value = curNum;
+        document.getElementById('gender').value = curGender;
+        document.getElementById('region').value = curRegion;
+        document.getElementById('age').value = curAge;
+    }
+
     const getUserInfo = () => {
         getRequest(`/api/user/<%=user._id%>`, (response) => {
-            curUsername = response.username;;
-            curEmail = response.email;
-            document.getElementById('username').value = response.username;
-            document.getElementById('userID').value = response.userID;
-            document.getElementById('email').value = response.email;
+            updateInfo(response);
         })
     }
 
     const getReqSt = (type) => {
         getRequest(`/api/${type}/status/<%=user._id%>`, (response) => {
             var div = document.getElementById(type);
-            response.forEach(req => {
-                div.innerHTML += `<p>requestID: ${req.requestID}, status: ${req.status}</p>`
+            response.forEach(res => {
+                div.innerHTML += `
+                <div class="row  my-2 mx-5">
+                  <div class="col-3">
+                    <b>Type:</b> ${res.type}
+                  </div>
+                  <div class="col-3">
+                    <b>Breed:</b> ${res.breed}
+                  </div>
+                  <div class="col-3">
+                    <b>Timestamp:</b> ${res.timestamp}
+                  </div>
+                  <div class="col-3">
+                    <b>Status:</b> ${res.status}
+                  </div>
+                </div>
+                `
             })
         })
     }
 
-
-
     const update = () => {
         const body = {
-            username: document.getElementById('username').value,
-            email: document.getElementById('email').value
+            firstName: document.getElementById('fname').value,
+            lastName: document.getElementById('lname').value,
+            email: document.getElementById('email').value,
+            phoneNumber: document.getElementById('num').value,
+            gender: document.getElementById('gender').value,
+            region: document.getElementById('region').value, 
+            age: document.getElementById('age').value
         }
         putRequest(`/api/user/<%=user._id%>`, body, (response) => {
-            curUsername = response.username;
-            curEmail = response.email;
+            updateInfo(response);
             document.getElementById("update-acc").disabled = true;
             console.log("response updated!", response);
         })
@@ -61,7 +110,6 @@
         getReqSt('adopt');
         getReqSt('rescue');
         getReqSt('handover');
-        getReqSt('volunteer');
     }
 
 </script>

@@ -2,6 +2,76 @@ const debug = require('debug')('app:api');
 const {Experience, validateExperience} = require('../models/experienceModel');
 // TO-DO: pagination, null values
 
+const experiences = [
+    {
+        _id: "123",
+        petID: "1234",
+        petName: "Leonard",
+        image: null,
+        experience: "I really liked the service everyone was nice, love my animal so much!:…",
+        isAnon: false,
+        numOfLikes: 5,
+        userID: "12345",
+        userFirstName: "Lamia",
+        userLastName: "Mohammed",
+    }, {
+        _id: "12",
+        petID: "123w4",
+        petName: "Leonard",
+        image: null,
+        experience: "I really liked the service everyone was nice, love my animal so much!:…",
+        isAnon: true,
+        numOfLikes: 7,
+        userID: "12345",
+        userFirstName: "Lamia",
+        userLastName: "Mohammed",
+    }, {
+        _id: "1",
+        petID: "1234f",
+        petName: "Leonard",
+        image: null,
+        experience: "I really liked the service everyone was nice, love my animal so much!:…",
+        isAnon: false,
+        numOfLikes: 0,
+        userID: "12345",
+        userFirstName: "Lamia",
+        userLastName: "Mohammed",
+    }, {
+        _id: "1423",
+        petID: "12364",
+        petName: "Leonard",
+        image: null,
+        experience: "I really liked the service everyone was nice, love my animal so much!:…",
+        isAnon: false,
+        numOfLikes: 5,
+        userID: "127345",
+        userFirstName: "Lamia",
+        userLastName: "Mohammed",
+    }, {
+        _id: "1221",
+        petID: "123w14",
+        petName: "Leonard",
+        image: null,
+        experience: "I really liked the service everyone was nice, love my animal so much!:…",
+        isAnon: true,
+        numOfLikes: 7,
+        userID: "12345",
+        userFirstName: "Lamia",
+        userLastName: "Mohammed",
+    }, {
+        _id: "1467",
+        petID: "1234534f",
+        petName: "Leonard",
+        image: null,
+        experience: "I really liked the service everyone was nice, love my animal so much!:…",
+        isAnon: false,
+        numOfLikes: 0,
+        userID: "12345",
+        userFirstName: "Lamia",
+        userLastName: "Mohammed",
+    },
+
+
 
 // post request
 // take the attribute names from ward
@@ -40,7 +110,8 @@ const like = async (req, res) => {
 const getExperiences = async (req, res) => {
     
     debug('get experiences');
-    res.send(Experience);
+
+    res.send({experiences, end:false});
 };
 
 // get the user experiences
@@ -48,8 +119,8 @@ const getExperience = async (req, res) => {
     const userID = req.user;
     const experience = await Experience.findById(userID);
     debug('get an experience');
-    res.send(experience);
-    //do error handling here!
+    res.send({experiences, end:false});
+
 };
 
 // delete request

@@ -28,7 +28,11 @@ const getStatus = async (req, res) => {
         status: handover.status
     }));
     debug('get handover status');
+
     res.send([handoverRequests])
+
+   // res.send([{ type: "gg", breed: "ghgfd", timestamp: "2:00am", status: "pending" }, { type: "asdf", breed: "ghgfd", timestamp: "2:00am", status: "pending" }]);
+
 };
 
 // put , reject, accept

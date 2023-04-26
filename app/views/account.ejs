@@ -3,54 +3,176 @@
 
 <head>
   <%- include('./partials/head')%>
-    <style>
-      body {
-        background-image: url("/images/backgrounds/background-1.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-    </style>
+    <link href="/stylesheets/account.css" rel="stylesheet" />
 </head>
 
 <body>
   <%- include('./partials/header', {active: '' })%>
-    <h2>ACCOUNT PAGE</h2>
-    <h3>your account details</h3>
-    <form id="form">
-      <label for="username"><b>Username/Email</b></label>
-      <input id="username" type="text" name="username" class="input" onchange="disableOrEnable()" />
-
-      <label for="userID"><b>userID</b></label>
-      <input id="userID" type="text" name="userID" class="input" readonly />
-
-      <label for="email"><b>email</b></label>
-      <input id="email" type="email" name="email" class="input" onchange="disableOrEnable()" />
-    </form>
-    <button id="update-acc" onclick="update()" disabled>update</button>
-    </p>
-      <% if (user.userType !="admin" ) {%>
-        <h3>request status history</h3>
-        <div id="req-container" class="container">
-          <h4>adoption requests:</h4>
-          <p id="adopt"></p>
-          <h4>handover requests:</h4>
-          <p id="handover"></p>
-          <h4>rescue requests:</h4>
-          <p id="rescue"></p>
-          <h4>volunteer requests:</h4>
-          <p id="volunteer"></p>
-        </div>
-        <h3>volunteer activity</h3>
-        <p id="hours">
-        </p>
-        <p>not a volunteer? You can apply <a href="/requests/volunteer">here</a></p>
-        <button id="delete-acc" onclick="deleteAcc()">Delete Account<button>
-            <% } %>
-              <form method="POST" action="/api/user/logout">
-                <button type="submit">Logout</button>
+    <h1><span class="white-word">Account</span> <span class="green-word">Settings</span></h1>
+    <hr>
+    </hr>
+    <div class="container px-4 mt-3">
+      <div id="accordion" class="accordion">
+        <div class="card">
+          <div class="card-header row mx-1">
+            <div class="col-10 px-2">
+              <h5>Account Information</h5>
+            </div>
+            <div class="col-2">
+              <a class="btn btn-b" id="btn-1" onclick="rotate(event)" data-bs-toggle="collapse" href="#collapseOne"
+                style="border:0px;"></a>
+            </div>
+          </div>
+          <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+            <div class="card-body">
+              <form class="px-5">
+                <div class="row p-2">
+                  <div class="col-6">
+                    <label for="firstName">First Name:</label><br>
+                    <input id="fname" type="text" class="form-control" name="firstName" onchange="disableOrEnable()">
+                  </div>
+                  <div class="col-6">
+                    <label for="lastName">Last Name:</label><br>
+                    <input id="lname" type="text" class="form-control" name="lastName" onchange="disableOrEnable()">
+                  </div>
+                </div>
+                <div class="row p-2">
+                  <div class="col-6">
+                    <label for="email">Email:</label><br>
+                    <input id="email" type="email" class="form-control" name="email" onchange="disableOrEnable()">
+                  </div>
+                  <div class="col-6">
+                    <label for="phoneNumberr">Phone Number:</label><br>
+                    <input id="num" type="tel" class="form-control" name="phoneNumber" onchange="disableOrEnable()">
+                  </div>
+                </div>
+                <div class="row p-2">
+                  <div class="col-4">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" class="form-select" name="gender" onchange="disableOrEnable()">
+                      <option value="male">male</option>
+                      <option value="female">female</option>
+                    </select>
+                  </div>
+                  <div class="col-4">
+                    <label for="age">Age:</label><br>
+                    <input id="age" type="number" class="form-control" name="age" min="18" max="100"
+                      onchange="disableOrEnable()">
+                  </div>
+                  <div class="col-4">
+                    <label for="region">Region:</label><br>
+                    <select id="region" class="form-select" name="region" onchange="disableOrEnable()">
+                      <option value="Riyadh">Riyadh</option>
+                      <option value="Layla">Layla</option>
+                      <option value="Afif">Afif</option>
+                      <option value="Al Gway'iyyah">Al Gway'iyyah</option>
+                      <option value="Al-Hareeg">Al Hareeq</option>
+                      <option value="Al Kharj">Al Kharj</option>
+                      <option value="Al Maja'ah">Al Maja'ah</option>
+                      <option value="Al Muzahmiyyah">Al Muzahmiyyah</option>
+                      <option value="Al Sulayyil">Al-Sulayyil</option>
+                      <option value="Dhruma">Dhruma</option>
+                      <option value="Diriyyah">Dir'iyyah</option>
+                      <option value="Hotat Bani Tamim">Hotat Bani Tamim</option>
+                      <option value="Huraymila">Huraymila</option>
+                      <option value="Rimah">Rimah</option>
+                      <option value="Shagra">Shagra</option>
+                      <option value="Thadig">Thadig </option>
+                      <option value="Al Wadi ad-Dawasir ">Al Wadi ad-Dawasir</option>
+                      <option value="Yabrin">Yabrin</option>
+                      <option value="Zulfy City">Zulfy City</option>
+                    </select>
+                  </div>
+                </div>
               </form>
-              <script src="/scripts/apiController.js"></script>
-              <%- include("../public/scripts/account.ejs")%>
+              <div class="row p-2">
+                <div class="col-10 px-5">
+                </div>
+                <div class="col-2 d-flex justify-content-center">
+                  <button class="button" id="update-acc" onclick="update()" disabled>update</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% if (user.type !="admin" ) {%>
+          <div class="card">
+            <div class="card-header row mx-1">
+              <div class="col-10 px-2">
+                <h5>Requests Status</h5>
+              </div>
+              <div class="col-2">
+                <a class="btn btn-b" id="btn-1" onclick="rotate(event)" data-bs-toggle="collapse" href="#collapseTwo"
+                  style="border:0px;"></a>
+              </div>
+            </div>
+            <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+              <div class="card-body">
+                <div class="row mx-5 mb-2">
+                  <div class="col-4">
+                    <button type="button" class="button" data-bs-toggle="collapse" data-bs-target="#adopt">Adoption
+                      Requests</button>
+                  </div>
+                  <div class="col-4">
+                    <button type="button" class="button" data-bs-toggle="collapse" data-bs-target="#handover">Handover
+                      Requests</button>
+                  </div>
+                  <div class="col-4">
+                    <button type="button" class="button" data-bs-toggle="collapse" data-bs-target="#rescue">Rescue
+                      Request </button>
+                  </div>
+                </div>
+
+                <div id="adopt" class="collapse">
+                  <hr class="b-hr">
+                </div>
+
+                <div id="handover" class="collapse">
+                  <hr class="b-hr">
+                </div>
+
+                <div id="rescue" class="collapse">
+                  <hr class="b-hr">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header row mx-1">
+              <div class="col-10 px-2">
+                <h5>Volunteer Activities</h5>
+              </div>
+              <div class="col-2">
+                <a class="btn btn-b" id="btn-1" onclick="rotate(event)" data-bs-toggle="collapse" href="#collapseThree"
+                  style="border:0px;"></a>
+              </div>
+            </div>
+            <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+              <div class="card-body px-5">
+                Completed hours of volunteering: <span id="hours">0 hours</span><br>
+                Not a volunteer? You can apply <a href="/requests/volunteer"><strong>here<strong></a><br>
+              </div>
+            </div>
+          </div>
+          <% } %>
+      </div>
+    </div>
+
+    <div class="row my-3 mx-5 px-4">
+      <div class="col-2">
+        <button id="delete-acc" class="btn btn-danger" onclick="deleteAcc()">Delete Account</button>
+      </div>
+      <div class="col-2">
+        <form method="POST" action="/api/user/logout">
+          <button class="button" type="submit">Logout</button>
+        </form>
+      </div>
+      <div class="col-8">
+      </div>
+    </div>
+    <script src="/scripts/apiController.js"></script>
+    <%- include("../public/scripts/account.ejs")%>
+
 </body>
 
 </html>

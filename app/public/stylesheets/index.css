@@ -1,0 +1,82 @@
+
+@import url("/stylesheets/style.css");
+
+body{
+    background-image: url("/images/backgrounds/background-1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.list-group-item.active {
+    background-color: var(--white);
+    color: var(--dark-blue);
+    border: 0;
+}
+
+.list-group-item {
+    background-color:var(--light-brown);
+}
+
+.column2 {
+    position: relative;
+}
+
+.column2 .pets {
+    position: absolute;
+    top: 0;
+    left: 150px;
+    z-index: 1;
+    scale: 110%;
+}
+
+.mission {
+    background-image: url("/images/div-1.svg");
+}
+
+.clinic {
+    background-image: url("/images/div-5.svg");
+}
+
+.tnr {
+    background-image: url("/images/div-4.svg");
+}
+
+.service {
+    background-image: url("/images/div-2.svg");
+}
+
+.contact {
+    background-image: url("/images/div-3.svg");
+}
+
+.message {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    height: 300px;
+    width: 700px;
+    padding: 35px 70px 30px 70px;
+    border-radius: 5px;
+    position: absolute;
+    top: 115px;
+    left: 0;
+    font-family: var(--par2-font);
+    color: var(--white);
+    font-size: 15pt;
+}
+
+.mt {
+    margin-top: 130px;
+}
+
+.bar {
+    background-color: var(--white);
+    border-radius: 10px;
+    height: 35px;
+    padding-top: 3px;
+}
+
+.mx{
+    margin: 0px 150px;
+}
+
