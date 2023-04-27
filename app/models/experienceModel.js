@@ -55,6 +55,8 @@ function validateExperience (experience){
 }
 
 //do exports here
-exports.Experience = Experience;
-exports.experienceSchema = experienceSchema;
-exports.validate = validateExperience;
+module.exports = {
+    Experience, 
+    experienceSchema,
+    validate: validateExperience,
+}

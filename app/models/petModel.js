@@ -64,7 +64,9 @@ function validatePet(pet){
 }
 
 
-//exports here
-exports.Pet = Pet;
-exports.petSchema = petSchema;
-exports.validate = validatePet;
+
+module.exports ={
+    Pet,
+    petSchema,
+    validate: validatePet,
+}

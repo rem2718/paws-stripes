@@ -69,7 +69,7 @@ const experiences = [
         userID: "12345",
         userFirstName: "Lamia",
         userLastName: "Mohammed",
-    },
+    },]
 
 
 

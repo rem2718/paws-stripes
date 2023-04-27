@@ -24,7 +24,7 @@ const getRequest = (path, resFunction) => {
         .then(resFunction)
         .catch((error) => {
             console.log(error.message);
-            window.location.href = `/err-response/${error.message}`;
+            // window.location.href = `/err-response/${error.message}`;
         });
 }
 
@@ -75,7 +75,7 @@ const pagination = (event, num) => {
             p3.textContent = Number(p3.textContent) - 1;
             p1.parentNode.classList.remove("active");
             p2.parentNode.classList.add("active");
-            p3.parentNode.classList.remove("active");   
+            p3.parentNode.classList.remove("active");
             num = Number(p2.textContent);
         } else if (event.target.id === "next") {
             p1.textContent = Number(p1.textContent) + 1;

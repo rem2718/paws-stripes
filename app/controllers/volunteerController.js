@@ -23,18 +23,26 @@ const volunteer = async (req, res) => {
 };
 
 //get request
-const getHours = async (req, res) => {
+const getStatus = async (req, res) => {
     const userID = req.user;
-    let volunteer = await Volunteer.find({user: userID});
-    //if here
-    let hours = volunteer.volunteerTime;
-
+    const volunteers = await Volunteer.find({user: userID});
+    // still not sure what params.
+    
+const volunteerRequests = volunteers.map(volunteer => ({
+    id: volunteer._id,
+    createdAt: volunteer.createdAt,
+    status: volunteer.status
+}));
     debug('get volunteer hours');
-    res.send({hours});
+
+    res.send([volunteerRequests]);
+
+   // res.send([{ type: "gg", breed: "ghgfd", timestamp: "2:00am", status: "pending" }, { type: "asdf", breed: "ghgfd", timestamp: "2:00am", status: "pending" }]);
+
 };
 
 //get request
-const getStatus = async (req, res) => {
+const getStatuses = async (req, res) => {
     const userID = req.user;
     const volunteers = await Volunteer.find({user: userID});
     // still not sure what params.
@@ -64,7 +72,7 @@ const updateStatus = async (req, res) => {
 
 module.exports = {
     volunteer,
-    getHours,
     getStatus,
+    getStatuses,
     updateStatus,
 };
