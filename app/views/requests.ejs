@@ -8,7 +8,7 @@
 
 <body>
   <%- include('./partials/header', {active: 'requests' }) %>
-    <%if (user.type !="admin" ) { %>
+    <%if (!cookies || user.type !="admin" ) { %>
       <h1 class="white-word">Forms</h1>
       <hr>
       <div class="container">

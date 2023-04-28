@@ -15,8 +15,8 @@
         document.getElementById('adopt-btn').setAttribute('href', `/api/adopt/${pets[index]._id}`);
     }
 
-    const getRecommendation = (adoptID) => {
-        getRequest(`/api/adopt/recommendation/${adoptID}`, (response) => {
+    const getRecommendation = () => {
+        getRequest(`/api/adopt/recommendation`, (response) => {
             pets = response;
             // document.getElementById('image').src = null;
             document.getElementById('petID').innerHTML = `${pets[0]._id}`;
@@ -25,11 +25,11 @@
             document.getElementById('breed').innerHTML = `${pets[0].petBreed}`;
             document.getElementById('age').innerHTML = `${pets[0].petAge}`;
             document.getElementById('personality').innerHTML = `${pets[0].petPersonality}`;
-            document.getElementById('adopt-btn').setAttribute('href', `/api/adopt/${pets[0]._id}`);
+
+            document.getElementById('adopt-btn').setAttribute('href', `/api/adopt/pet/${pets[0]._id}`);
         });
     };
 
-    const adoptID = document.getElementById("recommend").getAttribute('data-adopt-id');
-    getRecommendation(adoptID);
+    getRecommendation();
 
 </script>

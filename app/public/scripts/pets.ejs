@@ -22,7 +22,7 @@
                         <b>Personality:</b> ${arrPrint(pet.petPersonality)}</p>
                     </div>
                 <% if (user.type != "admin" ) { %>
-                    <a href="/api/adopt/${pet._id}"><button class="button"><img class="paw" src="/images/icons/paw.svg"> Adopt</button></a>
+                    <a href="/api/adopt/pet/${pet._id}"><button class="button"><img class="paw" src="/images/icons/paw.svg"> Adopt</button></a>
                     </div>
                 <% } else { %>
                     <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#modal-${pet._id}">edit</button>

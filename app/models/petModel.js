@@ -4,7 +4,7 @@ const Joi = require('joi');
 //.catch(err => console.error('Could not connect to mongo db...', err));
 
 const petSchema = new mongoose.Schema({
-    petAge:  {type: Number, min: 0, 
+    petAge:  {type: Number, min: 0, max: 600,
         validate: {
             validator: function(v){
                 return Number.isInteger(v) && v >= 0;
@@ -47,7 +47,7 @@ const Pet = mongoose.model('Pet', petSchema);
 //validate here: 
 function validatePet(pet){
     const schema = Joi.object({
-        petAge: Joi.number().min(0).integer().positive(),
+        petAge: Joi.number().min(0).max(600).integer().positive(),
         petBreed: Joi.string().trim().min(0).max(100),
         petImage: Joi.binary().max(10485760).required(),
         petName: Joi.string().min(5).max(50).trim().required().pattern(/^[a-zA-Z\s]*$/),
@@ -63,8 +63,8 @@ function validatePet(pet){
     return Joi.validate(pet, schema);
 }
 
+module.exports = {
+    Pet,
+    validate: validatePet
+}
 
-//exports here
-exports.Pet = Pet;
-exports.petSchema = petSchema;
-exports.validate = validatePet;
