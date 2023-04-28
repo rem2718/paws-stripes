@@ -24,7 +24,7 @@ const getRequest = (path, resFunction) => {
         .then(resFunction)
         .catch((error) => {
             console.log(error.message);
-            // window.location.href = `/err-response/${error.message}`;
+            window.location.href = `/err-response/${error.message}`;
         });
 }
 

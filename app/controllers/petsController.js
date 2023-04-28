@@ -2,60 +2,6 @@ const debug = require('debug')('app:api');
 const path = require('path');
 const {Pet,validatePet} = require('../models/petModel');
 const {User} = require('../models/userModel');
-
-
-var pets = [
-    {
-        "petID": "1234",
-        "petName": "Leonard",
-        "petType": "cat",
-        "petBreed": "Persian",
-        "petAge": "3 months",
-        "petPersonality": ["678", "123"],
-        "petImage": null
-    }, {
-        "petID": "12wert34",
-        "petName": "Leonard",
-        "petType": "cat",
-        "petBreed": "Persian",
-        "petAge": "3 months",
-        "petPersonality": ["678", "123"],
-        "petImage": null
-    }, {
-        "petID": "123sdf4",
-        "petName": "Leonard",
-        "petType": "cat",
-        "petBreed": "Persian",
-        "petAge": "3 months",
-        "petPersonality": ["678", "123"],
-        "petImage": null
-    }, {
-        "petID": "12x34",
-        "petName": "Leonard",
-        "petType": "cat",
-        "petBreed": "Persian",
-        "petAge": "3 months",
-        "petPersonality": ["678", "123"],
-        "petImage": null
-    }, {
-        "petID": "12waert34",
-        "petName": "Leonard",
-        "petType": "cat",
-        "petBreed": "Persian",
-        "petAge": "3 months",
-        "petPersonality": ["678", "123"],
-        "petImage": null
-    }, {
-        "petID": "1a23sdf4",
-        "petName": "Leonard",
-        "petType": "cat",
-        "petBreed": "Persian",
-        "petAge": "3 months",
-        "petPersonality": ["678", "123"],
-        "petImage": null
-    },];
-
-
 // post request
 const createPet = async (req, res) => {
     const pet = new Pet(req.body);

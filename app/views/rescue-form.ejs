@@ -14,44 +14,55 @@
     <form class="p-5" action="/api/rescue" method="post">
       <div class="row p-2">
         <div class="col-6">
-          <label for="location"><b>Enter Google Maps URL of rescue location</b></label><br>
-          <input class="form-control" type="url" id="location" name="location">
+          <label for="rescueAddress"><b>Enter Google Maps URL of rescue location</b></label><br>
+          <input class="form-control" type="url" id="location" name="rescueAddress" required>
 
         </div>
         <div class="col-6">
-          <label for="photo"><b>Provide an image of the animal to be rescued:</b></label><br><br>
-          <input type="file" id="photo" name="photo">
+          <label for="petImage"><b>Provide an image of the animal to be rescued:</b></label><br><br>
+          <input type="file" id="photo" name="petImage" max(10485760) required>
         </div>
       </div>
 
       <div class="row p-2">
         <div class="col-6">
-          <label for="ques"><b>Is the animal suffering from clinical condition?</b></label><br>
-          <input class="form-check-input" type="radio" name="question" id="yes-clinical" value="yes">
+          <label for="isSick"><b>Is the animal suffering from clinical condition?</b></label><br>
+          <input class="form-check-input" type="radio" name="isSick" id="yes-clinical" value="yes" required>
           <label class="form-check-label" class="form-check-label" for="yes-clinical">Yes</label><br>
-          <input class="form-check-input" type="radio" name="question" id="no-clinical" value="no">
+          <input class="form-check-input" type="radio" name="isSick" id="no-clinical" value="no" required>
           <label class="form-check-label" class="form-check-label" for="no-clinical">No</label>
         </div>
         <div class="col-6">
-          <label for="ques1"><b>Can you foster the animal till the animal is rescued?</b></label><br>
-          <input class="form-check-input" type="radio" name="question1" id="yes-foster" value="yes">
+          <label for="canFoster"><b>Can you foster the animal till the animal is rescued?</b></label><br>
+          <input class="form-check-input" type="radio" name="canFoster" id="yes-foster" value="yes" required>
           <label class="form-check-label" for="yes-foster">Yes</label><br>
-          <input class="form-check-input" type="radio" name="question1" id="no-foster" value="no">
+          <input class="form-check-input" type="radio" name="canFoster" id="no-foster" value="no" required>
           <label class="form-check-label" for="no-foster">No</label>
         </div>
       </div>
 
       <div class="row p-2">
         <div class="col-6">
-          <label for="ques2"><b>When did you first see the animal?</b></label><br>
-          <input type="datetime-local" id="first-sighting" name="first-sighting">
+          <label for="dateOfRescue"><b>When did you first see the animal?</b></label><br>
+          <input type="datetime-local" id="first-sighting" name="dateOfRescue" required>
         </div>
         <div class="col-6 d-flex justify-content-end pt-5">
+          <label for="rescuerPhone">Rescuer Phone Number:</label><br>
+            <input type="rescuerPhone" class="form-control" name="rescuerPhone pattern="/^05\d{8}$/" required>
+          
+        </div>
+      </div>
+      <div class="row p-2">
+        <div class="col-10"></div>
+        <div class="col-2 d-flex justify-content-end pt-5">
           <button class="button" type="submit">Submit</button>
         </div>
       </div>
+      
     </form>
   </div>
+
+
 </body>
 
 </html>

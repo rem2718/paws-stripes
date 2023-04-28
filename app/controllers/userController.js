@@ -11,7 +11,7 @@ const createUser = async (req, res) => {
 
     const { error } = validate(user);
     if (error) return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
-
+    
     let existingUser = await User.findOne({
         $or: [
             { email: user.email },

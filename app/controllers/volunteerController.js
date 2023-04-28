@@ -53,11 +53,9 @@ const volunteerRequests = volunteers.map(volunteer => ({
     status: volunteer.status
 }));
     debug('get volunteer hours');
-
     res.send([volunteerRequests]);
 
    // res.send([{ type: "gg", breed: "ghgfd", timestamp: "2:00am", status: "pending" }, { type: "asdf", breed: "ghgfd", timestamp: "2:00am", status: "pending" }]);
-
 };
 
 const updateStatus = async (req, res) => {

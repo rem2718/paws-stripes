@@ -25,6 +25,7 @@
             document.getElementById('breed').innerHTML = `${pets[0].petBreed}`;
             document.getElementById('age').innerHTML = `${pets[0].petAge}`;
             document.getElementById('personality').innerHTML = `${pets[0].petPersonality}`;
+
             document.getElementById('adopt-btn').setAttribute('href', `/api/adopt/pet/${pets[0]._id}`);
         });
     };
