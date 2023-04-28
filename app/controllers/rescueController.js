@@ -1,12 +1,11 @@
 const debug = require('debug')('app:api');
-const {Rescue, validateRescue}= require('../models/rescueModel');
+const {Rescue, validateRescue, validateRescueStatus}= require('../models/rescueModel');
 const {User} = require('../models/userModel');
 
 // post request
 // take the attribute names from ward
 const rescue = async (req, res) => {
 
-   
     const rescue = new Rescue({
         isSick: req.params.isSick,
         canFoster: req.parms.canFoster,
@@ -22,14 +21,17 @@ const rescue = async (req, res) => {
         return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
     }
     debug('rescue');
+    await rescue.save();
     res.redirect('../requests/response');
 };
 
 // get request, same as handover
 const getStatus = async (req, res) => {
-    const userID = req.user;
+    const userID = req.user._id;
     const rescues = await Rescue.find({user: userID});
-   
+    if(!rescues){
+        res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
+    }
     //type, breed, timestamp, status,
     
     const rescueRequests = rescues.map(rescue => ({
@@ -47,9 +49,15 @@ const getStatus = async (req, res) => {
 
 const updateStatus = async (req, res) => {
     let status = req.body.status;
+    const {error} = validateRescueStatus(status);
+    if (error) {
+    return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
+    }
     const reqID = req.params.id;
     let rescue = await Rescue.findById(reqID);
-    //if error here
+    if(!rescue){
+        res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
+    }
     rescue.status = status;
 
     debug('change rescue status');

@@ -54,8 +54,13 @@ function validateRescue (rescue){
     });
     return Joi.validate(rescue, schema);
 }
-
+function validateRescueStatus(status) {
+    const schema = Joi.string().valid('pending', 'approved', 'rejected').required().default("pending");
+    return Joi.validate(status, schema);
+  }
 //exports here
-exports.Rescue = Rescue;
-exports.rescueSchema = rescueSchema;
-exports.validate = validateRescue;
+module.exports={
+    Rescue,
+    validate: validateRescue,
+    validateRescueStatus
+}

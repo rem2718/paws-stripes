@@ -45,14 +45,15 @@ const handoverSchema = new mongoose.Schema({
           ]
         }],
         default: []},
-    status:  {type: String, required: true, enum:["pending", "approved", "rejected"], default: "pending"},
-      validate: {
-         validator: (v) => {
-            return v;
-         },
-         message: "request status should not be null"
-      }
-}, {timestamps: { createdAt: true, updatedAt: false }});
+        status: {
+            type: String, required: true, enum: ["pending", "approved", "rejected"], default: "pending",
+            validate: {
+                validator: (v) => {
+                    return v;
+                },
+                message: "request status should not be null"
+            }
+        }}, {timestamps: { createdAt: true, updatedAt: false }});
 
 const Handover = mongoose.model('Handover', handoverSchema);
 
@@ -72,8 +73,14 @@ const validateHandover = (handover) => {
 
     return Joi.validate(handover, schema);
 }
+function validateHandoverStatus(status) {
+    const schema = Joi.string().valid('pending', 'approved', 'rejected').required().default("pending");
+    return Joi.validate(status, schema);
+  }
 
 //do exports here
-exports.Handover = Handover;
-exports.handoverSchema = handoverSchema;
-exports.validate = validateHandover;
+module.exports = {
+    Handover,
+    validate: validateHandover,
+    validateHandoverStatus,
+}

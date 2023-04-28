@@ -33,7 +33,15 @@ function validateAdopt(adopt) {
  
    return Joi.validate(adopt, schema);
  }
+ function validateAdoptStatus(status) {
+   const schema = Joi.string().valid('pending', 'approved', 'rejected').required().default("pending");
+   return Joi.validate(status, schema);
+ }
+ 
 //do exports here
-exports.Adopt = Adopt;
-exports.adoptSchema = adoptSchema;
-exports.validate = validateAdopt;
+module.exports = {
+   Adopt,
+   validate: validateAdopt,
+   validateAdoptStatus,
+} 
+
