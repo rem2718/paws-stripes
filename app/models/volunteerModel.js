@@ -64,8 +64,14 @@ function validateVolunteer(volunteer) {
     });
     return Joi.validateVolunteer(volunteer, schema)
 }
-//exports here
+function validateVolunteerStatus(status) {
+    const schema = Joi.string().valid('pending', 'approved', 'rejected').required().default("pending");
+    return Joi.validate(status, schema);
+  }
+
 module.exports = {
     Volunteer,
     validate: validateVolunteer,
+    validateVolunteerStatus
 }
+

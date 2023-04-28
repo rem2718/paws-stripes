@@ -1,5 +1,5 @@
 const debug = require('debug')('app:api');
-const {Handover, validateHandover} = require('../models/handoverModel');
+const {Handover, validateHandover, validateHandoverStatus} = require('../models/handoverModel');
 const {User} = require('../models/userModel');
 
 // post request
@@ -10,15 +10,18 @@ const handover = async (req, res) => {
     if (error){
     return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
     }
+    await handover.save();
     debug('handover');
     res.redirect('../requests/response');
 };
 
 //breed, timestamps, status
 const getStatus = async (req, res) => {
-    const userID = req.user;
+    const userID = req.user._id;
     const handovers = await Handover.find({user: userID});
-   
+    if(!handovers){
+        res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
+    }
     //type, breed, timestamp, status,
     
     const handoverRequests = handovers.map(handover => ({
@@ -59,7 +62,14 @@ const getStatuses = async (req, res) => {
 const updateStatus = async (req, res) => {
     const handoverid = req.params.id;
     const status = req.body.status;
+    const {error} = validateHandoverStatus(status);
+    if (error) {
+    return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
+    }
     const handover = await Handover.findById(handoverid);
+    if(!handover){
+        res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
+    }
     handover.status = status;
     debug('change handover status');
     res.send({handoverid, status});
