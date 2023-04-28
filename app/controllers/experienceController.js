@@ -1,7 +1,6 @@
 const debug = require('debug')('app:api');
 const {Experience, validateExperience} = require('../models/experienceModel');
 // TO-DO: pagination, null values
-
 // post request
 // take the attribute names from ward
 const createExperience = async (req, res) => {
@@ -40,7 +39,6 @@ const getExperiences = async (req, res) => {
     
     debug('get experiences');
     res.send({experiences, end:false});
-
 };
 
 // get the user experiences
@@ -50,6 +48,7 @@ const getExperience = async (req, res) => {
     debug('get an experience');
     res.send({experiences, end:false});
     //do error handling here!
+
 };
 
 // delete request

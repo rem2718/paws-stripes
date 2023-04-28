@@ -1,5 +1,5 @@
 const debug = require('debug')('app:api');
-const {Handover, validateHandover} = require('..models/handoverModel');
+const {Handover, validateHandover} = require('../models/handoverModel');
 const {User} = require('../models/userModel');
 
 // post request
@@ -17,24 +17,43 @@ const handover = async (req, res) => {
 //breed, timestamps, status
 const getStatus = async (req, res) => {
     const userID = req.user;
-    try{
-        const user = await User.findById(userID);
-        const handoverRequests = user.handoverHistory;
-
-        const arrayOfRequests = await handoverRequests.map(
-            async(ObjectId) =>{
-                const request = await Handover.findById(ObjectId);
-                return {ObjectId: ObjectId, status: request.status, timeCreated: request.timestamps};
-            });
-            
-            res.status(200).send([arrayOfRequests]);
-        } catch(error){
-            //i'll do this later
-        }
+    const handovers = await Handover.find({user: userID});
+   
+    //type, breed, timestamp, status,
+    
+    const handoverRequests = handovers.map(handover => ({
+        type: handover.pet.petType,
+        breed: handover.pet.petBreed,
+        createdAt: handover.createdAt,
+        status: handover.status
+    }));
     debug('get handover status');
-    //res.send([{ type: "gg", breed: "ghgfd", timestamp: "2:00am", status: "pending" }, { type: "asdf", breed: "ghgfd", timestamp: "2:00am", status: "pending" }]);
+    res.send([handoverRequests])
+
+   // res.send([{ type: "gg", breed: "ghgfd", timestamp: "2:00am", status: "pending" }, { type: "asdf", breed: "ghgfd", timestamp: "2:00am", status: "pending" }]);
 
 };
+
+//breed, timestamps, status
+const getStatuses = async (req, res) => {
+    const userID = req.user;
+    const handovers = await Handover.find({user: userID});
+   
+    //type, breed, timestamp, status,
+    
+    const handoverRequests = handovers.map(handover => ({
+        type: handover.pet.petType,
+        breed: handover.pet.petBreed,
+        createdAt: handover.createdAt,
+        status: handover.status
+    }));
+    debug('get handover status');
+
+    res.send([handoverRequests])
+
+   // res.send([{ type: "gg", breed: "ghgfd", timestamp: "2:00am", status: "pending" }, { type: "asdf", breed: "ghgfd", timestamp: "2:00am", status: "pending" }]);
+};
+
 
 // put , reject, accept
 const updateStatus = async (req, res) => {
@@ -49,5 +68,6 @@ const updateStatus = async (req, res) => {
 module.exports = {
     handover,
     getStatus,
+    getStatuses,
     updateStatus,
 };

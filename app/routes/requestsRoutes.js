@@ -1,6 +1,7 @@
 const express = require('express');
 const auth = require('../utils/authMiddleware');
 const tokenDecode = require('../utils/tokenDecodeMiddleware');
+const isVolunteer = require('../utils/volunteerMiddleware');
 const debug = require('debug')('app:main');
 const router = express.Router({ mergeParams: true });
 
@@ -20,11 +21,11 @@ router.get('/handover-form', [auth], (req, res) => {
     res.render('handover-form', { cookies: req.cookies.token, user: req.user });
 });
 
-router.get('/rescue-form', (req, res) => {
+router.get('/rescue-form', [tokenDecode], (req, res) => {
     res.render('rescue-form', { cookies: req.cookies.token, user: req.user });
 });
 
-router.get('/volunteer-form', [auth], (req, res) => {
+router.get('/volunteer-form', [auth, isVolunteer], (req, res) => {
     res.render('volunteer-form', { cookies: req.cookies.token, user: req.user });
 });
 

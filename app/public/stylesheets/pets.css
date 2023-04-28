@@ -21,15 +21,6 @@ body {
     background-image: url('/images/icons/add-dark.svg'); 
 }
 
-
-.modal-header, .modal-footer {
-    background-color: var(--white);
-}
-
-.modal-dialog {
-    font-family: var(--par1-font);
-}
-
 .card {
     font-size: 10pt;
     max-width: 250px;

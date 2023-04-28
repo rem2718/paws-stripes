@@ -12,7 +12,7 @@
     }
 
     const getRequests = (type) => {
-        getRequest(`/api/${type}/status/<%=user._id%>`, (response) => {
+        getRequest(`/api/${type}/statuses`, (response) => {
             console.log(response);
             var div = document.getElementById(type);
             let content = ``;

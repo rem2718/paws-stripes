@@ -30,18 +30,18 @@
           </div>
           <div class="col-6">
             <label for="phoneNumberr">Phone Number:</label><br>
-            <input type="tel" class="form-control" name="phoneNumber" pattern="/^05\d{8}$/" required>
+            <input type="tel" placeholder="05-XXXXXXXX" class="form-control" name="phoneNumber" pattern="05[0-9]{8}" required>
           </div>
         </div>
 
         <div class="row p-2">
           <div class="col-6">
             <label for="password">Password:</label><br>
-            <input type="password" class="form-control" name="password" minlength="10" maxlength="255" required>
+            <input type="password" class="form-control" name="password" minlength="10" required>
           </div>
           <div class="col-6">
             <label for="confirm-password">Confirm Password:</label><br>
-            <input type="password" class="form-control" onchange="onChange()" minlength="8" required>
+            <input type="password" class="form-control" onchange="onChange()" minlength="10" required>
           </div>
         </div>
 

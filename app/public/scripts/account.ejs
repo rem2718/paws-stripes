@@ -1,11 +1,9 @@
 <script>
-
     const rotate = (event) => {
         event.target.classList.toggle('rotated');
     }
 
     const disableOrEnable = () => {
-
         if (curFname != document.getElementById('fname').value || curLname != document.getElementById('lname').value
             || curEmail != document.getElementById('email').value || curNum != document.getElementById('num').value
             || curGender != document.getElementById('gender').value || curRegion != document.getElementById('region').value
@@ -20,13 +18,17 @@
     }
 
     const deleteAcc = () => {
-        deleteRequest(`/api/user/<%=user._id%>`, () => {
+        deleteRequest(`/api/user`, 
+        {
+            password: document.getElementById("password").value,
+        }
+        , () => {
             window.location.href = "/";
         })
     }
 
     const getHours = () => {
-        getRequest(`/api/volunteer/hours/<%=user._id%>`, (response) => {
+        getRequest(`/api/user/hours`, (response) => {
             var hourDiv = document.getElementById("hours");
             hourDiv.innerHTML = `${response.hours} hours`
         });
@@ -58,22 +60,22 @@
     }
 
     const getUserInfo = () => {
-        getRequest(`/api/user/<%=user._id%>`, (response) => {
+        getRequest(`/api/user`, (response) => {
             updateInfo(response);
         })
     }
 
     const getReqSt = (type) => {
-        getRequest(`/api/${type}/status/<%=user._id%>`, (response) => {
+        getRequest(`/api/${type}/status`, (response) => {
             var div = document.getElementById(type);
             response.forEach(res => {
                 div.innerHTML += `
                 <div class="row  my-2 mx-5">
                   <div class="col-3">
-                    <b>Type:</b> ${res.type}
+                    <b>Name:</b> ${res.name}
                   </div>
                   <div class="col-3">
-                    <b>Breed:</b> ${res.breed}
+                    <b>Type:</b> ${res.type}
                   </div>
                   <div class="col-3">
                     <b>Timestamp:</b> ${res.timestamp}
@@ -94,10 +96,11 @@
             email: document.getElementById('email').value,
             phoneNumber: document.getElementById('num').value,
             gender: document.getElementById('gender').value,
-            region: document.getElementById('region').value, 
-            age: document.getElementById('age').value
+            region: document.getElementById('region').value,
+            age: document.getElementById('age').value,
+            password: document.getElementById('updatePassword').value
         }
-        putRequest(`/api/user/<%=user._id%>`, body, (response) => {
+        putRequest(`/api/user/`, body, (response) => {
             updateInfo(response);
             document.getElementById("update-acc").disabled = true;
             console.log("response updated!", response);

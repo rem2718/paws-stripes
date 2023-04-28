@@ -17,7 +17,7 @@
           <a class="nav-link" href="/experiences">Adoption
             Experiences</a>
         </li>
-        <% if (cookies.type !="admin" ) { %>
+        <% if (!cookies || user.type !="admin" ) { %>
           <li class="nav-item mb-2  <%= active === 'rescue' ? 'active-item' : '' %>">
             <a class="nav-link red-word" href="/requests/rescue-form">
               Report a Rescue</a>

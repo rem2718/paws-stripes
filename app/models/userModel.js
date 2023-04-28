@@ -16,12 +16,12 @@ const userSchema = new mongoose.Schema({
         }
     },
     email: {
-        type: String, required: true, unique: true, lowercase: true, max: 255,
+        type: String, required: true, unique: true, lowercase: true, max: 255, match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
 },
     phoneNumber: { type: String, unique: true, required: true, match: /^05\d{8}$/ },
     password: { type: String, min: 10, max: 255, required: true },
-    gender: { type: String, enum: ["male", "female", "prefer not to say"] },
+    gender: { type: String, enum: ["male", "female", "prefer not to say"], default: "prefer not to say" },
     age: { type: Number, min: 10, max: 100, required: true },
     region: { type: String, required: true, enum: ["Riyadh", "Layla", "'Afif", "al-Duwadmi", "al-Ghat", "al-Gwayiyyah", "al-Hareeg", "Al Kharj", "Al Majmaah", "Al-Muzahmiyyah", "al-Sulayyil", "Dhruma", "Diriyyah", "Hotat Bani Tamim", "Huraymila", "Rimah", "Shagra", "Thadig", "Wadi ad-Dawasir", "Markaz", "Yabrin", "Zulfy City"] },
     adoptHistory: {
@@ -61,7 +61,7 @@ const validateUser = (user) => {
         email: Joi.string().email().required().max(255),
         phoneNumber: Joi.string().pattern(/^05\d{8}$/).required(),
         password: Joi.string().min(10).max(255).required(),
-        gender: Joi.string().valid('male', 'female', 'prefer not to say'),
+        gender: Joi.string().valid('male', 'female', 'prefer not to say').default("prefer not to say"),
         age: Joi.number().min(10).max(100).required(),
         region: Joi.string().valid('Riyadh', 'Layla', "'Afif", 'al-Duwadmi', 'al-Ghat', 'al-Gwayiyyah', 'al-Hareeg', 'Al Kharj', 'Al Majmaah', 'Al-Muzahmiyyah', 'al-Sulayyil', 'Dhruma', 'Diriyyah', 'Hotat Bani Tamim', 'Huraymila', 'Rimah', 'Shagra', 'Thadig', 'Wadi ad-Dawasir', 'Markaz', 'Yabrin', 'Zulfy City').required(),
         adoptHistory: Joi.array().items(Joi.string().pattern(/^[0-9a-fA-F]{24}$/)),
@@ -90,7 +90,6 @@ const validateLogin = (user) => {
 
 module.exports = {
     User,
-    userSchema,
     validate: validateUser,
     validateLogin,
 } 
