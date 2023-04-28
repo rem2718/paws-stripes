@@ -14,7 +14,7 @@ const petSchema = new mongoose.Schema({
         get: v => Math.round(v),
         set: v => Math.round(v)},
     petBreed: {type: String, trim: true, min: 0, max: 100},
-    petImage: {type: Buffer, required: true,
+    image: {type: Buffer, required: true,
             validate: {
                 validator: function(v){
                     return v.length <= 10485760; //image is 10 mbs max. we can modify
@@ -49,7 +49,7 @@ function validatePet(pet){
     const schema = Joi.object({
         petAge: Joi.number().min(0).max(600).integer().positive(),
         petBreed: Joi.string().trim().min(0).max(100),
-        petImage: Joi.binary().max(10485760).required(),
+        image: Joi.binary().max(10485760).required(),
         petName: Joi.string().min(5).max(50).trim().required().pattern(/^[a-zA-Z\s]*$/),
         petPersonality: Joi.array().items(Joi.string().valid(
             'fun', 'social', 'calm', 'active', 'loves people', 

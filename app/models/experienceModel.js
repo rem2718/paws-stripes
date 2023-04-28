@@ -27,7 +27,7 @@ const experienceSchema = new mongoose.Schema({
             },
             message: "post should not be null or less than 5 characters!"
         }},
-    petImage: {type: Buffer, 
+    image: {type: Buffer, 
         validate: {
             validator: function(v) {
             return !v || v.length <= 10485760; //10 Mb limit we can increase if we want a greater image size
@@ -47,7 +47,7 @@ function validateExperience (experience){
         isAnon: Joi.boolean().required(),
         numOfLikes: Joi.number().integer().min(0).required(),
         experience: Joi.string().min(5).max(500).trim().required(),
-        petImage: Joi.binary().max(10485760),
+        image: Joi.binary().max(10485760),
 
     });
 

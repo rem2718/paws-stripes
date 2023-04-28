@@ -34,7 +34,7 @@ const rescueSchema = new mongoose.Schema({
             message: "request status should not be null"
         }
     },
-    petImage: {
+    image: {
         type: Buffer, required: true, validate: {
             validator: function (v) {
                 return v.length <= 10485760; //image is 10 mbs max. we can modify
@@ -57,7 +57,7 @@ function validateRescue(rescue) {
         rescuerPhone: Joi.string().pattern(/^05\d{8}$/).required(),
         rescueAddress: Joi.string().pattern(/^(https?:\/\/)(www\.google\.com\/maps\/|goo\.gl\/maps\/)[^\s]+$/i).required(),
         status: Joi.string().valid('pending', 'approved', 'rejected').required().default("pending"),
-        petImage: Joi.binary().max(10485760).required(),
+        image: Joi.binary().max(10485760).required(),
         petType: Joi.string().min(2).valid("cat", "dog", "rabbit", "fish", "turtle", "hamster", "guinea pig", "bird", "frog")
     });
     return Joi.validate(rescue, schema);

@@ -30,7 +30,7 @@ const handoverSchema = new mongoose.Schema({
         get: v => Math.round(v),
         set: v => Math.round(v)
     },
-    petImage: {
+    image: {
         type: Buffer, required: true,
         validate: {
             validator: (v) => {
@@ -73,7 +73,7 @@ const validateHandover = (handover) => {
         petType: Joi.string().min(5).valid('cat', 'dog', 'rabbit', 'fish', 'turtle', 'hamster', 'guinea pig', 'bird', 'frog').required(),
         handoverAddress: Joi.string().required().pattern(/^(https?:\/\/)(www\.google\.com\/maps\/|goo\.gl\/maps\/)[^\s]+$/i),
         petAge: Joi.number().min(0).max(600).integer().positive(),
-        petImage: Joi.binary().required().max(10485760),
+        image: Joi.binary().required().max(10485760),
         petPersonality: Joi.array().items(Joi.string().valid('fun', 'social', 'calm', 'active', 'loves people', 'hates people', 'loves to eat', 'picky eater', 'likes attention', 'prefers to be alone', 'bold', 'aggressive', 'shy', 'patient', 'intelligent', 'clumsy', 'curious', 'likes to play', 'confident', 'timid', 'enjoys routine')),
         status: Joi.string().valid('pending', 'approved', 'rejected').required().default("pending")
     });
