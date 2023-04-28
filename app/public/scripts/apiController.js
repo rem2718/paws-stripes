@@ -46,13 +46,14 @@ const putRequest = (path, body, resFunc) => {
         });
 }
 
-const deleteRequest = (path, resFunc) => {
+const deleteRequest = (path, body = {}, resFunc) => {
     fetch(path, {
         method: 'delete',
         credentials: 'include',
         headers: {
             "Content-type": "application/json"
         },
+        body: JSON.stringify(body)
     })
         .then(status)
         .then((response) => response.json())

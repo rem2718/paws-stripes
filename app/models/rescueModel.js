@@ -66,6 +66,5 @@ function validateRescue(rescue) {
 //exports here
 module.exports = {
     Rescue,
-    rescueSchema,
     validate: validateRescue,
 }

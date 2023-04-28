@@ -39,6 +39,5 @@ function validateAdopt(adopt) {
 //do exports here
 module.exports = {
    Adopt,
-   adoptSchema,
    validate: validateAdopt
 }

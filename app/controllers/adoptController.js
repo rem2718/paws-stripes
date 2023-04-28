@@ -83,7 +83,7 @@ const getStatus = async (req, res) => {
     //type, breed, timestamp, status,
 
     const adoptRequests = adopts.map(adopt => ({
-        type: adopt.pet.petType,
+        name: adopt.pet.petType,
         breed: adopt.pet.petBreed,
         createdAt: adopt.createdAt,
         status: adopt.status

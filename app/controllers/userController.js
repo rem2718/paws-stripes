@@ -12,7 +12,11 @@ const createUser = async (req, res) => {
     const { error } = validate(user);
     if (error) return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
 
-    let existingUser = await User.findOne({ email: user.email });
+    let existingUser = await User.findOne({
+        $or: [
+            { email: user.email },
+            { phoneNumber: user.phoneNumber }]
+    });
     if (existingUser) return res.status(400).render("err-response", { err: 400, msg: 'You already registered..' });
 
     user = new User(user);
@@ -69,13 +73,21 @@ const getUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+    debug('update');
     const id = req.user._id;
     const updates = req.body;
 
-    const { error } = validate(updates);
-    if (error) debug(error)
-    //  return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
+    const user = await User.findById(id);
+    updates.isAdmin = user.isAdmin;
+    updates.isVolunteer = user.isVolunteer;
 
+    const validPwd = await bcrypt.compare(updates.password, user.password);
+    if (!validPwd) return res.status(400).render("err-response", { err: 400, msg: 'Invalid password, try again!' });
+
+    updates.password = user.password;
+
+    const { error } = validate(updates);
+    if (error) return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
     const updatedUser = await User.findByIdAndUpdate(id, updates, { new: true });
 
     res.send(updatedUser);
@@ -83,6 +95,11 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     const id = req.user._id;
+
+    const user = await User.findById(id);
+    const validPwd = await bcrypt.compare(req.body.password, user.password);
+    if (!validPwd) return res.status(400).render("err-response", { err: 400, msg: 'Invalid password, try again!' });
+
     const deletedUser = await User.findByIdAndDelete(id);
     res.clearCookie('token').send({ deletedUser });
 };

@@ -90,6 +90,5 @@ const validateHandover = (handover) => {
 //do exports here
 module.exports = {
     Handover,
-    handoverSchema,
     validate: validateHandover,
 }

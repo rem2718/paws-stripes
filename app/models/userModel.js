@@ -90,7 +90,6 @@ const validateLogin = (user) => {
 
 module.exports = {
     User,
-    userSchema,
     validate: validateUser,
     validateLogin,
 } 

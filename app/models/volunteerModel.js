@@ -67,6 +67,5 @@ function validateVolunteer(volunteer) {
 //exports here
 module.exports = {
     Volunteer,
-    volunteerSchema,
     validate: validateVolunteer,
 }
