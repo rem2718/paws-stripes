@@ -4,9 +4,6 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 const {User} = require('../models/userModel');
 // TO-DO: pagination, null values
 
-
-
-
 // post request
 const createExperience = async (req, res) => {
     const experience = new Experience(req.body);
@@ -68,7 +65,6 @@ const getExperience = async (req, res) => {
     }
     debug('get an experience');
     res.send([experience]); //do pagination here
-
 };
 
 // delete request

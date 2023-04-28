@@ -1,7 +1,7 @@
 const debug = require('debug')('app:middleware');
 const jwt = require('jsonwebtoken');
 
-const tokenDecode = function (req, res, next) {
+const tokenDecode = (req, res, next) => {
     const token = req.cookies.token;
     if (!token) {
         req.cookies.token = false;

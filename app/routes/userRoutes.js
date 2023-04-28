@@ -7,8 +7,9 @@ router.post('/signup', controller.createUser);
 router.post('/login', controller.loginUser);
 router.post('/logout', controller.logoutUser);
 
-router.get('/:id', [auth], controller.getUser);
-router.put('/:id', [auth], controller.updateUser);
-router.delete('/:id', [auth], controller.deleteUser);
+router.get('/', [auth], controller.getUser);
+router.put('/', [auth], controller.updateUser);
+router.delete('/', [auth], controller.deleteUser);
+router.get('/hours/', [auth], controller.getHours);
 
 module.exports = router;

@@ -47,6 +47,24 @@ const getStatus = async (req, res) => {
 
 };
 
+// get request, same as handover
+const getStatuses = async (req, res) => {
+    const userID = req.user;
+    const rescues = await Rescue.find({user: userID});
+   
+    //type, breed, timestamp, status,
+    
+    const rescueRequests = rescues.map(rescue => ({
+        type: rescue.petType,
+        createdAt: rescue.createdAt,
+        status: rescue.status
+    }));
+    debug('get rescue status');
+    res.send([rescueRequests]);
+
+    //res.send([{ type: "gg", breed: "ghgfd", timestamp: "2:00am", status: "pending" }, { type: "asdf", breed: "ghgfd", timestamp: "2:00am", status: "pending" }]);
+};
+
 const updateStatus = async (req, res) => {
     let status = req.body.status;
     const {error} = validateRescueStatus(status);
@@ -67,5 +85,6 @@ const updateStatus = async (req, res) => {
 module.exports = {
     rescue,
     getStatus,
+    getStatuses,
     updateStatus,
 };
