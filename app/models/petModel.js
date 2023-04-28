@@ -63,9 +63,8 @@ function validatePet(pet){
     return Joi.validate(pet, schema);
 }
 
-
-
-module.exports ={
+module.exports = {
     Pet,
-    validate: validatePet,
+    validate: validatePet
 }
+

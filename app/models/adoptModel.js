@@ -34,10 +34,18 @@ function validateAdopt(adopt) {
    });
 
    return Joi.validate(adopt, schema);
-}
-
+ }
+ 
+const validateAdoptStatus = (status) => {
+   const schema = Joi.string().valid('pending', 'approved', 'rejected').required().default("pending");
+   return Joi.validate(status, schema);
+ }
+ 
 //do exports here
 module.exports = {
    Adopt,
-   validate: validateAdopt
-}
+   validate: validateAdopt,
+   validateAdoptStatus,
+} 
+
+
