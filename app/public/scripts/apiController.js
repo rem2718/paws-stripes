@@ -46,13 +46,14 @@ const putRequest = (path, body, resFunc) => {
         });
 }
 
-const deleteRequest = (path, resFunc) => {
+const deleteRequest = (path, body = {}, resFunc) => {
     fetch(path, {
         method: 'delete',
         credentials: 'include',
         headers: {
             "Content-type": "application/json"
         },
+        body: JSON.stringify(body)
     })
         .then(status)
         .then((response) => response.json())
@@ -75,7 +76,7 @@ const pagination = (event, num) => {
             p3.textContent = Number(p3.textContent) - 1;
             p1.parentNode.classList.remove("active");
             p2.parentNode.classList.add("active");
-            p3.parentNode.classList.remove("active");   
+            p3.parentNode.classList.remove("active");
             num = Number(p2.textContent);
         } else if (event.target.id === "next") {
             p1.textContent = Number(p1.textContent) + 1;

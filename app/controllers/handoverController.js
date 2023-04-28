@@ -31,12 +31,32 @@ const getStatus = async (req, res) => {
         status: handover.status
     }));
     debug('get handover status');
-
     res.send([handoverRequests])
 
    // res.send([{ type: "gg", breed: "ghgfd", timestamp: "2:00am", status: "pending" }, { type: "asdf", breed: "ghgfd", timestamp: "2:00am", status: "pending" }]);
 
 };
+
+//breed, timestamps, status
+const getStatuses = async (req, res) => {
+    const userID = req.user;
+    const handovers = await Handover.find({user: userID});
+   
+    //type, breed, timestamp, status,
+    
+    const handoverRequests = handovers.map(handover => ({
+        type: handover.pet.petType,
+        breed: handover.pet.petBreed,
+        createdAt: handover.createdAt,
+        status: handover.status
+    }));
+    debug('get handover status');
+
+    res.send([handoverRequests])
+
+   // res.send([{ type: "gg", breed: "ghgfd", timestamp: "2:00am", status: "pending" }, { type: "asdf", breed: "ghgfd", timestamp: "2:00am", status: "pending" }]);
+};
+
 
 // put , reject, accept
 const updateStatus = async (req, res) => {
@@ -58,5 +78,6 @@ const updateStatus = async (req, res) => {
 module.exports = {
     handover,
     getStatus,
+    getStatuses,
     updateStatus,
 };

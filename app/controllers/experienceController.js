@@ -2,9 +2,6 @@ const debug = require('debug')('app:api');
 const {Experience, validateExperience} = require('../models/experienceModel');
 // TO-DO: pagination, null values
 
-
-
-
 // post request
 const createExperience = async (req, res) => {
     const experience = new Experience(req.body);
@@ -47,7 +44,6 @@ const like = async (req, res) => {
 const getExperiences = async (req, res) => {
     
     debug('get experiences');
-
     res.send({experiences, end:false});
 };
 
@@ -60,7 +56,6 @@ const getExperience = async (req, res) => {
     }
     debug('get an experience');
     res.send([experience]); //do pagination here
-
 };
 
 // delete request

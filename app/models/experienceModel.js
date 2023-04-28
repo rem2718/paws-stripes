@@ -54,8 +54,8 @@ function validateExperience (experience){
     return Joi.validate(experience, schema);
 }
 
-//do exports here
 module.exports={
     Experience,
     validate: validateExperience
 }
+

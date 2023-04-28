@@ -3,9 +3,6 @@ const path = require('path');
 const {Pet,validatePet} = require('../models/petModel');
 const {User} = require('../models/userModel');
 
-
-
-
 // post request
 const createPet = async (req, res) => {
     const pet = new Pet(req.body);

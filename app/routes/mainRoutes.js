@@ -34,10 +34,6 @@ router.get('/meet-our-pets', [tokenDecode], (req, res) => {
     res.render('meet-our-pets', { cookies: req.cookies.token , user: req.user });
 });
 
-router.get('/loading', [tokenDecode], (req, res) => {
-    res.render('loading', { cookies: req.cookies.token , user: req.user  });
-});
-
 router.get('/err-response/:err', (req, res) => {
     let err;
     let msg;
