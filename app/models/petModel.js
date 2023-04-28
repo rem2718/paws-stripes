@@ -67,5 +67,6 @@ function validatePet(pet){
 //exports here
 module.exports = {
     Pet,
+    petSchema,
     validate: validatePet
 }

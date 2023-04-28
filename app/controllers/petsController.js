@@ -1,8 +1,9 @@
 const debug = require('debug')('app:api');
 const path = require('path');
-const {Pet,validatePet} = require('../models/petModel');
+const {Pet,validatePet, petSchema} = require('../models/petModel');
 const {User} = require('../models/userModel');
-
+const mongoosePaginate = require('mongoose-paginate-v2');
+// TO-DO: pagination, null values
 
 
 
@@ -22,8 +23,16 @@ const createPet = async (req, res) => {
 // return pets
 // pagination
 const getPets = async (req, res) => {
+    petSchema.plugin(mongoosePaginate);
+
+    try{
+        const result = await Pet.paginate({page: req.query.pageNumber, limit: req.query.pageSize});
+        res.send(result);
+    } catch(error){
+        res.status(404).render("err-response", { err: 400, msg: 'Cat detected a bad request..' })
+    }
     debug('get pets');
-    res.send({});
+    
 };
 
 // put request
