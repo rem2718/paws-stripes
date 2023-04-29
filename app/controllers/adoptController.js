@@ -1,7 +1,7 @@
 const debug = require('debug')('app:api');
 const {Pet} = require('../models/petModel');
 const {User} = require('../models/userModel');
-const {Adopt, validateAdopt, validateAdoptStatus} = require('../models/adoptModel')
+const {Adopt, validate, validateAdoptStatus} = require('../models/adoptModel')
 
 // const Handover = require('../models/requestModel');
 
@@ -19,7 +19,7 @@ const adopt = async (req, res) => {
         pet: petID,
         status: "pending",
         phone: userPhone});
-    const {error} = validateAdopt(adopt);
+    const {error} = validate(adopt);
     if (error) 
     return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
     await adopt.save();
@@ -110,8 +110,8 @@ const updateStatus = async (req, res) => {
     if(!adopt)
          res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
 
-    adopt.status = status;
-    res.send(adopt);
+    const updatedStatus = await Adopt.findByIdAndUpdate(adoptid, {status: status}, { new: true });
+    res.send(updatedStatus);
     }
     debug('change adopt status');
 };

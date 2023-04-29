@@ -18,7 +18,8 @@ const volunteer = async (req, res) => {
     if(error){
         return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
     }
-    await volunteer.save();
+    const volunteerModel = volunteer;
+    await volunteerModel.save();
     debug('volunteer');
     res.redirect('../requests/response');
 };
@@ -76,10 +77,15 @@ const updateStatus = async (req, res) => {
         res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
 
     }
-    volunteer.status = status;
-    //if status is accept make isVolunteer true and change hours to 4 hours because meshwar
+    const user = await User.findById(volunteer.user)
+    const updatedStatus = await Volunteer.findByIdAndUpdate(id, {status: status}, { new: true });
+    if(status == "approved"){
+        const updatedUser = await User.findByIdAndUpdate(volunteer.user, {isVolunteer: true, volunteerHours: 4}, {new: true});
+        res.send(updatedStatus, updatedUser);
+    }
+    
     debug('change volunteer status');
-    res.send({id, status });
+    res.send(updatedStatus);
 };
 
 module.exports = {

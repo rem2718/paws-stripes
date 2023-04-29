@@ -17,14 +17,7 @@ const createPet = async (req, res) => {
 
 // plz find a way to send 'end' correctly
 const getPets = async (req, res) => {
-    petSchema.plugin(mongoosePaginate);
-
-    try{
-        const result = await Pet.paginate({page: req.query.pageNumber, limit: req.query.pageSize});
-        res.send(result);
-    } catch(error){
-        res.status(404).render("err-response", { err: 400, msg: 'Cat detected a bad request..' })
-    }
+  
     debug('get pets');
     let page = req.query.pageNumber;
     let limit = req.query.pageSize;
@@ -43,7 +36,7 @@ const getPets = async (req, res) => {
 };
 
 const getPetImage = async (req, res) => {
-    petID = req.params.id;
+    const petID = req.params.id;
     const pet = await Pet.findById(petID);
     if (!pet) {
         return res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });

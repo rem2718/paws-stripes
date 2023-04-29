@@ -1,15 +1,19 @@
 const debug = require('debug')('app:api');
-const { Experience,  validateExperience } = require('../models/experienceModel');
+const { Experience,  validate } = require('../models/experienceModel');
+const {User} = require('../models/userModel');
 // TO-DO: pagination, null values
 
 // post request
 const createExperience = async (req, res) => {
-    const experience = new Experience(req.body);
-    const { error } = validateExperience(experience);
+    const experience = req.body;
+    experience.image = req.file.buffer; 
+
+    const { error } = validate(experience);
     if (error) {
         return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
     }
-    await experience.save();
+    const experienceModel = new Experience(experience);
+    await experienceModel.save();
     debug('submit an experience');
     res.redirect('../requests/response');
 };
@@ -40,14 +44,21 @@ const like = async (req, res) => {
 const getExperiences = async (req, res) => {
 
     debug('get experiences');
-    experienceSchema.plugin(mongoosePaginate);
+    
+    let page = req.query.pageNumber;
+    let limit = req.query.pageSize;
+
     try {
-        const result = await Experience.paginate({ page: req.query.pageNumber, limit: req.query.pageSize });
-        res.status(200).send(result);
+        const experiences = await Experience.find()
+            .skip((page - 1) * limit)
+            .limit(limit)
+            .select({ image: 0 });
+
+        return res.status(200).send({ experiences, end: true });
     } catch (error) {
-        res.status(404).send({ message: "no experiences" })
+        debug(error);
+        return res.status(404).send({ message: "no experiences" })
     }
-    // res.send({experiences, end:false});
 };
 
 // get the user experiences
@@ -62,13 +73,13 @@ const getExperience = async (req, res) => {
 };
 
 const getExperienceImage = async (req, res) => {
-    petID = req.params.id;
-    const pet = await Pet.findById(petID);
-    if (!pet) {
+    const experienceID = req.params.id;
+    const experience = await Experience.findById(experienceID);
+    if (!experience) {
         return res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
     }
     res.set('Content-Type', "png");
-    res.send(pet.image);
+    res.send(experience.image);
 }
 
 // delete request
@@ -82,17 +93,15 @@ const deleteExperience = async (req, res) => {
     const userID = req.user._id;
     const user = await User.findById(userID);
     if(user.isAdmin == true || user.isAdmin == false && experience.user == userID){
-        const result = await Experience.deleteOne(experienceID);
+        const result = await Experience.findByIdAndDelete(experienceID);
+        if (result)
+        return res.send({ _id: experienceID });
     }
     else {
         res.status(403).render("err-response", {err:403, msg: 'access denied... forbidden' });
     }
 
-    if (result.deletedCount === 1) {
-        res.send({ id: experienceID });
-    }
-    else
-    res.status(404).render("err-response", { err: 404, msg: 'Experience not deleted :\( please check the ID and try again' });
+
 
     debug('delete an experience');
 };
