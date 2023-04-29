@@ -27,7 +27,7 @@ const petSchema = new mongoose.Schema({
         },
         get: v => Math.round(v),
         set: v => Math.round(v)
-    },
+    }},
     petBreed: { type: String, trim: true, min: 0, max: 100 },
     image: {
         type: Buffer, required: true,
