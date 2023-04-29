@@ -1,5 +1,6 @@
 const debug = require('debug')('app:api');
 const { Pet, validate } = require('../models/petModel');
+// TO-DO: pagination, null values
 
 const createPet = async (req, res) => {
     const pet = req.body;
@@ -16,6 +17,14 @@ const createPet = async (req, res) => {
 
 // plz find a way to send 'end' correctly
 const getPets = async (req, res) => {
+    petSchema.plugin(mongoosePaginate);
+
+    try{
+        const result = await Pet.paginate({page: req.query.pageNumber, limit: req.query.pageSize});
+        res.send(result);
+    } catch(error){
+        res.status(404).render("err-response", { err: 400, msg: 'Cat detected a bad request..' })
+    }
     debug('get pets');
     let page = req.query.pageNumber;
     let limit = req.query.pageSize;

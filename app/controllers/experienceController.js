@@ -38,6 +38,7 @@ const like = async (req, res) => {
 };
 
 const getExperiences = async (req, res) => {
+
     debug('get experiences');
     experienceSchema.plugin(mongoosePaginate);
     try {
@@ -74,13 +75,26 @@ const getExperienceImage = async (req, res) => {
 // only return the experience id
 const deleteExperience = async (req, res) => {
     const experienceID = req.params.id;
-    const result = await Experience.deleteOne(experienceID);
-    debug('delete an experience');
+    const experience = await Experience.findById(experienceID);
+    if(!experience)
+         res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
+    
+    const userID = req.user._id;
+    const user = await User.findById(userID);
+    if(user.isAdmin == true || user.isAdmin == false && experience.user == userID){
+        const result = await Experience.deleteOne(experienceID);
+    }
+    else {
+        res.status(403).render("err-response", {err:403, msg: 'access denied... forbidden' });
+    }
+
     if (result.deletedCount === 1) {
         res.send({ id: experienceID });
     }
     else
-        res.status(404).render("err-response", { err: 404, msg: 'Experience not deleted :\( please check the ID and try again' });
+    res.status(404).render("err-response", { err: 404, msg: 'Experience not deleted :\( please check the ID and try again' });
+
+    debug('delete an experience');
 };
 
 module.exports = {
