@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const JoiObjectId = require('joi-objectid');
-Joi.objectId = JoiObjectId(Joi);
+
 
 
 const handoverSchema = new mongoose.Schema({

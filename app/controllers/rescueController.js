@@ -1,5 +1,5 @@
 const debug = require('debug')('app:api');
-const {Rescue, validateRescue, validateRescueStatus}= require('../models/rescueModel');
+const {Rescue, validate, validateRescueStatus}= require('../models/rescueModel');
 const {User} = require('../models/userModel');
 
 // post request
@@ -13,15 +13,16 @@ const rescue = async (req, res) => {
         rescuerPhone: req.params.rescuerPhone,
         rescueAddress:req.params.rescueAddress,
         status: req.params.status,
-        petImage: req.params.petImage,
+        petImage: req.file.buffer,
         petType: req.params.petType
     });
-    let {error} = validateRescue(rescue);
+    let {error} = validate(rescue);
     if(error){
         return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
     }
     debug('rescue');
-    await rescue.save();
+    const rescueModel = rescue;
+    await rescueModel.save();
     res.redirect('../requests/response');
 };
 

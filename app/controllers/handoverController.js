@@ -1,19 +1,24 @@
 const debug = require('debug')('app:api');
-const {Handover, validateHandover, validateHandoverStatus} = require('../models/handoverModel');
+const {Handover, validate, validateHandoverStatus} = require('../models/handoverModel');
 const {User} = require('../models/userModel');
 
 // post request
 // take the attribute names from ward
 const handover = async (req, res) => {
-    const handover = new Handover(req.body);
-    const {error} = validateHandover(handover);
+    const handover = req.body;
+    handover.image = req.file.buffer;
+    
+    const {error} = validate(handover);
     if (error){
     return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
     }
-    await handover.save();
+
+    const handoverModel = new Handover(handover);
+    await handoverModel.save();
     debug('handover');
     res.redirect('../requests/response');
 };
+
 
 //breed, timestamps, status
 const getStatus = async (req, res) => {

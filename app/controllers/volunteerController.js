@@ -1,5 +1,5 @@
 const debug = require('debug')('app:api');
-const {Volunteer, validateVolunteer, validateVolunteerStatus} = require('../models/volunteerModel');
+const {Volunteer, validate, validateVolunteerStatus} = require('../models/volunteerModel');
 const {User, validate} = require('../models/userModel');
 // post request
 // take the attribute names from ward
@@ -14,11 +14,12 @@ const volunteer = async (req, res) => {
     user: req.user._id,
     status: req.params.status
     });
-    let {error} = validateVolunteer(volunteer);
+    let {error} = validate(volunteer);
     if(error){
         return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
     }
-    await volunteer.save();
+    const volunteerModel = volunteer;
+    await volunteerModel.save();
     debug('volunteer');
     res.redirect('../requests/response');
 };
@@ -76,8 +77,13 @@ const updateStatus = async (req, res) => {
         res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
 
     }
-    volunteer.status = status;
-    //if status is accept make isVolunteer true and change hours to 4 hours because meshwar
+    const user = await User.findById(volunteer.user)
+    
+    if(status == "approved"){
+        user.isVolunteer = true;
+        user.volunteerHours = 4;
+    }
+
     debug('change volunteer status');
     res.send({id, status });
 };
