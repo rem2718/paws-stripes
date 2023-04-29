@@ -9,7 +9,7 @@
             card.className = "card";
             card.id = `card-${experience._id}`;
             let content = `
-                    <img class="card-img-top" src="/dog.png" alt="experience"/>
+                    <img class="card-img-top" src="/api/experiences/image/${experience._id}" alt="experience"/>
                     <div class="card-body">
                         <div class="card-text">
                             <b>Pet name: ${experience.petName}</b><br>

@@ -11,7 +11,7 @@
             card.className = `card ${color}`;
             card.id = `card-${pet._id}`;
             card.innerHTML = `
-                <img class="card-img-top" id="image-${pet._id}" src="/cat.png" alt="pet" />
+                <img class="card-img-top" id="image-${pet._id}" src="/api/pets/image/${pet._id}" alt="pet" />
                 <div class="card-body">
                     <div class="card-text">
                         <p id="p-${pet._id}"><b>Name:</b> ${pet.petName}<br>
@@ -36,9 +36,9 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="p-2" action="/meet-out-pets">
+                                    <form class="p-2" action="/meet-out-pets" enctype="multipart/form-data">
                                         <label for="petName"><b>Pet name:</b></label>
-                                        <input class="form-control" type="text" name="petName" id="name-${pet._id}" value="${pet.petName}" />
+                                        <input class="form-control" type="text" name="petName" id="name-${pet._id}" value="${pet.petName}" minlength="3" maxlength="50"  />
                                         <label for="petType"><b>Pet type:</b></label>
                                         <select name="petType" class="form-select" id="type-${pet._id}" >
                                             <option value="${pet.petType}">${pet.petType}</option>
@@ -66,10 +66,9 @@
                                             <option value="pekin">Pekin Duck</option>
                                         </select>
                                         <label for="petAge"><b>Pet age:</b></label>
-                                        <input type="text" name="petAge" id="age-${pet._id}" value="${pet.petAge}" class="form-control" min="0" max="100" />
+                                        <input type="text" name="petAge" id="age-${pet._id}" value="${pet.petAge}" class="form-control" min="0" max="600" />
                                         <label for="petPersonality"><b>Pet personality:</b></label>
                                         <select class="form-select" id="personality-${pet._id}" name="petPersonality[]" multiple>
-                                            <option value="${pet.petPersonality}">${pet.petPersonality}</option>
                                             <option value="fun">Fun</option>
                                             <option value="social">Social</option>
                                             <option value="calm">Calm</option>
@@ -92,7 +91,7 @@
                                             <option value="timid">Timid</option>
                                             <option value="enjoys routine">Enjoys Routine</option>
                                             <label for="petImage">Provide us a picture of the adopted animal:</label><br><br>
-                                            <input type="file" id="img-${pet._id}" name="petImage" accept="image/*"  max(10485760)>
+                                            <input type="file" id="img-${pet._id}" name="image" max="10485760" accept="image/*" >
                                         </select>
                                     </form>
                                 </div>
@@ -111,34 +110,36 @@
     }
 
     const deletePet = (_id) => {
-        deleteRequest(`/api/pets/${_id}`, (response) => {
-            console.log(response);
+        deleteRequest(`/api/pets/${_id}`, {}, (response) => {
             const card = document.getElementById(`card-${response._id}`);
             card.remove();
         });
     }
 
     const editPet = (_id) => {
+        const options = document.getElementById(`personality-${_id}`).options;
+        const selected = [];
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].selected) {
+                selected.push(options[i].value);
+            }
+        }
         const body = {
             petName: document.getElementById(`name-${_id}`).value,
             petType: document.getElementById(`type-${_id}`).value,
             petBreed: document.getElementById(`breed-${_id}`).value,
             petAge: document.getElementById(`age-${_id}`).value,
-            petPersonality: document.getElementById(`personality-${_id}`).value,
-            petImage: document.getElementById(`img-${_id}`).value
+            petPersonality: selected
         }
         putRequest(`/api/pets/${_id}`, body, (response) => {
-            console.log(response);
             document.getElementById(`p-${_id}`).innerHTML = `
-                <b>Name:</b> ${response.name}<br>
+                <b>Name:</b> ${response.petName}<br>
                 <b>Pet ID:</b> ${response._id}<br>
-                <b>Type:</b> ${response.type}<br>
-                <b>Breed:</b> ${response.breed}<br>
-                <b>Age:</b> ${response.age}<br>
-                <b>Personality:</b> ${response.personality}
+                <b>Type:</b> ${response.petType}<br>
+                <b>Breed:</b> ${response.petBreed}<br>
+                <b>Age:</b> ${response.petAge}<br>
+                <b>Personality:</b> ${response.petPersonality}
             `;
-            document.getElementById(`image-${response._id}`).src = response.petImage;
-
         });
     }
 
