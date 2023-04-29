@@ -78,14 +78,14 @@ const updateStatus = async (req, res) => {
 
     }
     const user = await User.findById(volunteer.user)
-    
+    const updatedStatus = await Volunteer.findByIdAndUpdate(id, {status: status}, { new: true });
     if(status == "approved"){
-        user.isVolunteer = true;
-        user.volunteerHours = 4;
+        const updatedUser = await User.findByIdAndUpdate(volunteer.user, {isVolunteer: true, volunteerHours: 4}, {new: true});
+        res.send(updatedStatus, updatedUser);
     }
-
+    
     debug('change volunteer status');
-    res.send({id, status });
+    res.send(updatedStatus);
 };
 
 module.exports = {

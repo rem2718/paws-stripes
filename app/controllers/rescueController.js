@@ -77,10 +77,10 @@ const updateStatus = async (req, res) => {
     if(!rescue){
         res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
     }
-    rescue.status = status;
+    const updatedStatus = await Rescue.findByIdAndUpdate(reqID, {status: status}, { new: true });
 
     debug('change rescue status');
-    res.send({ reqID, status});
+    res.send(updatedStatus);
 };
 
 module.exports = {

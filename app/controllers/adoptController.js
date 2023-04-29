@@ -110,8 +110,8 @@ const updateStatus = async (req, res) => {
     if(!adopt)
          res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
 
-    adopt.status = status;
-    res.send(adopt);
+    const updatedStatus = await Adopt.findByIdAndUpdate(adoptid, {status: status}, { new: true });
+    res.send(updatedStatus);
     }
     debug('change adopt status');
 };

@@ -7,7 +7,7 @@ const {User} = require('../models/userModel');
 const handover = async (req, res) => {
     const handover = req.body;
     handover.image = req.file.buffer;
-    
+
     const {error} = validate(handover);
     if (error){
     return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
@@ -75,9 +75,9 @@ const updateStatus = async (req, res) => {
     if(!handover){
         res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
     }
-    handover.status = status;
+    const updatedStatus = await Handover.findByIdAndUpdate(handoverid, {status: status}, { new: true });
     debug('change handover status');
-    res.send({handoverid, status});
+    res.send(updatedStatus);
 };
 
 module.exports = {
