@@ -1,5 +1,5 @@
 const debug = require('debug')('app:api');
-const {Volunteer, validate, validateVolunteerStatus} = require('../models/volunteerModel');
+const {Volunteer, validateVolunteer, validateVolunteerStatus} = require('../models/volunteerModel');
 const {User, validate} = require('../models/userModel');
 // post request
 // take the attribute names from ward
@@ -14,7 +14,7 @@ const volunteer = async (req, res) => {
     user: req.user._id,
     status: req.params.status
     });
-    let {error} = validate(volunteer);
+    let {error} = validateVolunteer(volunteer);
     if(error){
         return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
     }
