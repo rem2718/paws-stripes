@@ -56,6 +56,7 @@ function validateExperience (experience){
 
 module.exports={
     Experience,
+    experienceSchema,
     validate: validateExperience
 }
 
