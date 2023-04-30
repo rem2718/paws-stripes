@@ -1,74 +1,108 @@
 const debug = require('debug')('app:api');
-const {Experience, validateExperience} = require('../models/experienceModel');
-// TO-DO: pagination, null values
+const { Experience, validate } = require('../models/experienceModel');
+const { User } = require('../models/userModel');
 
-// post request
 const createExperience = async (req, res) => {
-    const experience = new Experience(req.body);
-    const {error} = validateExperience(experience);
-    if (error){
-    return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
-    }
-    await experience.save();
-    debug('submit an experience');
+    const experience = req.body;
+    experience.image = req.file.buffer;
+    experience.isAnon = experience.isAnon === "yes" ? true : false;
+    experience.sharePost = experience.sharePost === "yes" ? true : false;
+    experience.user = req.user._id;
+    experience.numOfLikes = 0;
+    const petInfo = experience.pet.split(',');
+    experience.pet = petInfo[0];
+    experience.petName = petInfo[1];
+    const user = await User.findById(experience.user);
+    experience.firstName = user.firstName;
+    experience.lastName = user.lastName;
+
+    const { error } = validate(experience);
+    if (error) return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
+
+    const experienceModel = new Experience(experience);
+    await experienceModel.save();
     res.redirect('../requests/response');
 };
 
-// put request 
-// output number of likes, experience id
-// like is just a string {"like", "remove like"}
 const like = async (req, res) => {
     const experienceID = req.params.id;
-    const experience = await Experience.findById(experienceID);
-    if(!experience){
-        res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
-    }
-    let likes = experience.numOfLikes;
+    let experience;
+
     if (req.body.like === "like") {
-        likes++;
+        experience = await Experience.findByIdAndUpdate(experienceID, { $inc: { numOfLikes: 1 } }, { new: true });
     } else {
-        likes--;
+        experience = await Experience.findByIdAndUpdate(experienceID, { $inc: { numOfLikes: -1 } }, { new: true });
     }
-    if(likes<0){
-        return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
-    }
-    debug(req.body.like);
 
-    res.send({experience, likes});
+    res.send({ id: experienceID, likes: experience.numOfLikes });
 };
 
-// get request
-// no params
-// return all experiences 
-// TO-DO pagination-check from reem first
 const getExperiences = async (req, res) => {
-    
-    debug('get experiences');
-    res.send({experiences, end:false});
-};
+    const page = req.query.pageNumber;
+    const limit = req.query.pageSize;
+    const count = await Experience.countDocuments();
+    const skip = (page - 1) * limit;
+    let end = false;
+    if (skip >= count) end = true;
+    try {
+        const experiences = await Experience.find()
+            .skip(skip)
+            .limit(limit)
+            .where({ sharePost: true })
+            .select({ image: 0, sharePost: 0, pet: 0, user: 0 });
 
-// get the user experiences
-const getExperience = async (req, res) => {
-    const userID = req.user._id;
-    const experience = await Experience.findById(userID);
-    if(!experience){
-        res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
+        return res.status(200).send({ experiences, end: end });
+    } catch (error) {
+        debug(error);
+        return res.status(404).send({ message: "no experiences" })
     }
-    debug('get an experience');
-    res.send([experience]); //do pagination here
 };
 
-// delete request
-// only return the experience id
+const getExperience = async (req, res) => {
+    const page = req.query.pageNumber;
+    const limit = req.query.pageSize;
+    const count = await Experience.countDocuments();
+    const skip = (page - 1) * limit;
+    let end = false;
+    if (skip >= count) end = true;
+    try {
+        const experiences = await Experience.find()
+            .skip(skip)
+            .limit(limit)
+            .where({ sharePost: true, user: req.user._id })
+            .select({ image: 0, sharePost: 0, pet: 0, user: 0 });
+        return res.status(200).send({ experiences, end: end });
+    } catch (error) {
+        debug(error);
+        return res.status(404).send({ message: "no experiences" })
+    }
+};
+
+const getExperienceImage = async (req, res) => {
+    const experienceID = req.params.id;
+    const experience = await Experience.findById(experienceID);
+    if (!experience) {
+        return res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
+    }
+    res.set('Content-Type', "png");
+    res.send(experience.image);
+}
+
 const deleteExperience = async (req, res) => {
     const experienceID = req.params.id;
-    const result = await Experience.deleteOne(experienceID);
-    debug('delete an experience');
-    if (result.deletedCount === 1) {
-    res.send({ id: experienceID });
+    const userID = req.user._id;
+
+    const experience = await Experience.findById(experienceID);
+    if (!experience) return res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
+
+    if (req.user.type === "admin" || experience.user == userID) {
+        const result = await Experience.findByIdAndDelete(experienceID);
+        if (result) return res.send({ _id: result._id });
     }
-    else
-    res.status(404).render("err-response", { err: 404, msg: 'Experience not deleted :\( please check the ID and try again' });
+    else {
+        return res.status(403).render("err-response", { err: 403, msg: 'access denied... forbidden' });
+    }
+
 };
 
 module.exports = {
@@ -76,5 +110,6 @@ module.exports = {
     like,
     getExperiences,
     getExperience,
+    getExperienceImage,
     deleteExperience,
 };

@@ -15,11 +15,12 @@
         <div class="row p-2">
           <div class="col-6">
             <label for="firstName">First Name:</label><br>
-            <input type="text" class="form-control" name="firstName" minlength="3" maxlength="60" pattern="/^[a-zA-Z]+$/" required>
+            <input type="text" class="form-control" name="firstName" minlength="3" maxlength="60" pattern="^[a-zA-Z]+$"
+              required>
           </div>
           <div class="col-6">
             <label for="lastName">Last Name:</label><br>
-            <input type="text" class="form-control" name="lastName" pattern="/^[a-zA-Z]+$/" required>
+            <input type="text" class="form-control" name="lastName" pattern="^[a-zA-Z]+$" required>
           </div>
         </div>
 
@@ -30,18 +31,20 @@
           </div>
           <div class="col-6">
             <label for="phoneNumberr">Phone Number:</label><br>
-            <input type="tel" placeholder="05-XXXXXXXX" class="form-control" name="phoneNumber" pattern="05[0-9]{8}" required>
+            <input type="tel" placeholder="05-XXXXXXXX" class="form-control" name="phoneNumber" pattern="05[0-9]{8}"
+              required>
           </div>
         </div>
 
         <div class="row p-2">
           <div class="col-6">
             <label for="password">Password:</label><br>
-            <input type="password" class="form-control" name="password" minlength="10" required>
+            <input id="password" type="password" class="form-control" name="password" minlength="10" required>
           </div>
           <div class="col-6">
-            <label for="confirm-password">Confirm Password:</label><br>
-            <input type="password" class="form-control" onchange="onChange()" minlength="10" required>
+            <label>Confirm Password:</label><br>
+            <input id="confirm-password" type="password" class="form-control" onchange="checkPasswordMatch()"
+              minlength="10" required>
           </div>
         </div>
 
@@ -99,7 +102,13 @@
       </form>
     </div>
     <script>
-      // confirm password
+      function checkPasswordMatch() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirm-password").value;
+        if (password != confirmPassword) {
+          alert("passwords do not match!")
+        }
+      }
     </script>
 
 </html>

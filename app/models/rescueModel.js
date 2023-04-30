@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-//mongoose.connect('mongodb://localhost/playground').then(() => console.log('Connected to MongoDB...'))
-//.catch(err => console.error('Could not connect to mongo db...', err));
 
 const rescueSchema = new mongoose.Schema({
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     isSick: { type: Boolean, default: false, required: true },
     canFoster: { type: Boolean, default: true, required: true },
     dateOfRescue: {
@@ -26,7 +25,7 @@ const rescueSchema = new mongoose.Schema({
         }
     },
     status: {
-        type: String, default: "pending", required: true, enum: ["pending", "approved", "rejected"],
+        type: String, default: "pending", required: true, enum: ["pending", "accepted", "rejected"],
         validate: {
             validator: function (v) {
                 return v;
@@ -34,12 +33,22 @@ const rescueSchema = new mongoose.Schema({
             message: "request status should not be null"
         }
     },
-    petImage: {
+    image: {
         type: Buffer, required: true, validate: {
             validator: function (v) {
                 return v.length <= 10485760; //image is 10 mbs max. we can modify
             },
             message: "image should be less than 10 MB!"
+        }
+    },
+    petName: {
+        type: String, min: 5, max: 50, trim: true, default: "Nemo",
+        validate: {
+            validator: function (v) {
+                return /^[a-zA-Z\s]*$/.test(v);
+            },
+            get: v => Math.round(v),
+            set: v => Math.round(v)
         }
     },
     petType: { type: String, min: 2, required: true, enum: ["cat", "dog", "rabbit", "fish", "turtle", "hamster", "guinea pig", "bird", "frog"] }
@@ -48,26 +57,27 @@ const rescueSchema = new mongoose.Schema({
 
 const Rescue = mongoose.model('Rescue', rescueSchema);
 
-// validate here
 function validateRescue(rescue) {
     const schema = Joi.object({
+        user: Joi.string().pattern(/^[0-9a-fA-F]{24}$/),
         isSick: Joi.boolean().required(),
         canFoster: Joi.boolean().required(),
         dateOfRescue: Joi.date().max('now').required(),
         rescuerPhone: Joi.string().pattern(/^05\d{8}$/).required(),
         rescueAddress: Joi.string().pattern(/^(https?:\/\/)(www\.google\.com\/maps\/|goo\.gl\/maps\/)[^\s]+$/i).required(),
-        status: Joi.string().valid('pending', 'approved', 'rejected').required().default("pending"),
-        petImage: Joi.binary().max(10485760).required(),
+        status: Joi.string().valid('pending', 'accepted', 'rejected').required().default("pending"),
+        image: Joi.binary().max(10485760).required(),
+        petName: Joi.string().min(3).max(50).trim().pattern(/^[a-zA-Z\s]*$/).default('Nemo'),
         petType: Joi.string().min(2).valid("cat", "dog", "rabbit", "fish", "turtle", "hamster", "guinea pig", "bird", "frog")
     });
-    return Joi.validate(rescue, schema);
+    return schema.validate(rescue);
 }
 function validateRescueStatus(status) {
-    const schema = Joi.string().valid('pending', 'approved', 'rejected').required().default("pending");
-    return Joi.validate(status, schema);
-  }
+    const schema = Joi.string().valid('pending', 'accepted', 'rejected').required().default("pending");
+    return schema.validate(status);
+}
 
-module.exports={
+module.exports = {
     Rescue,
     validate: validateRescue,
     validateRescueStatus

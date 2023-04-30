@@ -6,6 +6,6 @@ mongoose.connect(process.env.DB_URI, {
   useUnifiedTopology: true
 })
   .then(() => debug('Connected to MongoDB'))
-  .catch((err) => console.error(err));
+  .catch((err) => debug(err));
 
 module.exports = mongoose.connection;

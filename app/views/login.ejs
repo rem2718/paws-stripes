@@ -15,9 +15,9 @@
         <div class="col-6">
           <form action="/api/user/login" method="post">
             <label for="email">Email:</label>
-            <input type="text" class="form-control" name="email">
+            <input type="text" class="form-control" maxlength="255" name="email">
             <label for="password">Password:</label>
-            <input type="password" class="form-control" name="password">
+            <input type="password" class="form-control" minlength="10" name="password">
             <div class="row pt-5">
               <div class="col-6">
                 <input class="form-check-input" type="radio" name="userType" value="admin">

@@ -12,16 +12,17 @@
     <hr>
     </hr>
     <div class="container mt-3">
-      <form class="p-5" action="/api/experiences" method="post">
+      <form class="p-5" action="/api/experiences" enctype="multipart/form-data" method="post">
         <div class="row p-2">
           <div class="col-6">
             <label for="petImage">Provide us a picture of the adopted animal:</label><br><br>
-            <input type="file" id="animal-picture" name="petImage" accept="image/*" required>
+            <input type="file" id="animal-picture" name="image" accept="image/*" required>
           </div>
           <div class="col-6">
             <label for="experience">Please share your adoption experience and your kind feedback on the
               volunteering services that the shelter provides:</label>
-            <textarea class="form-control" rows="3" id="adoption-experience" name="experience" minlength = "5" maxlength="500" required></textarea>
+            <textarea class="form-control" rows="3" id="adoption-experience" name="experience" minlength="5"
+              maxlength="500" required></textarea>
           </div>
         </div>
 
@@ -29,15 +30,17 @@
           <div class="col-6">
             <label for="pet">Please provide us with your pet's name</label>
             <select id="pet-name" name="pet" class="form-select" required>
-              <option value="leo">Leo</option>
-              <option value="barney">Barney</option>
-              <option value="bernardo">Bernardo</option>
-            </select>
+              <% pets.forEach((pet)=> { %>
+                <option value="<%=pet.petID%>,<%=pet.petName%>">
+                  <%=pet.petName%>
+                </option>
+                <% }) %>
+              </select>
           </div>
           <div class="col-6">
             <label for="isAnon">Do you prefer your experience post to be anonymous?</label>
             <select id="anonymous-post" name="isAnon" class="form-select" required>
-              <option value="yes">Yes</option><br>
+              <option value="yes">Yes</option>
               <option value="no">No</option>
             </select>
           </div>

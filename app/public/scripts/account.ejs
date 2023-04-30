@@ -18,13 +18,13 @@
     }
 
     const deleteAcc = () => {
-        deleteRequest(`/api/user`, 
-        {
-            password: document.getElementById("password").value,
-        }
-        , () => {
-            window.location.href = "/";
-        })
+        deleteRequest(`/api/user`,
+            {
+                password: document.getElementById("password").value,
+            }
+            , () => {
+                window.location.href = "/";
+            })
     }
 
     const getHours = () => {
@@ -72,13 +72,13 @@
                 div.innerHTML += `
                 <div class="row  my-2 mx-5">
                   <div class="col-3">
-                    <b>Name:</b> ${res.name}
+                    <b>Name:</b> ${res.petName}
                   </div>
                   <div class="col-3">
-                    <b>Type:</b> ${res.type}
+                    <b>Type:</b> ${res.petType}
                   </div>
                   <div class="col-3">
-                    <b>Timestamp:</b> ${res.timestamp}
+                    <b>Timestamp:</b> ${res.createdAt.slice(0, 10)}
                   </div>
                   <div class="col-3">
                     <b>Status:</b> ${res.status}
