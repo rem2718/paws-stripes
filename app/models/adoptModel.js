@@ -1,17 +1,12 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const JoiObjectId = require('joi-objectid');
-Joi.objectId = JoiObjectId(Joi);
-const User = require('./userModel');
-const Pet = require('./petModel');
-
 
 const adoptSchema = new mongoose.Schema({
    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
    phoneNumber: { type: String, ref: 'User.phoneNumber' },
    pet: { type: mongoose.Schema.Types.ObjectId, ref: 'Pet', required: true },
    status: {
-      type: String, required: true, enum: ["pending", "approved", "rejected"],
+      type: String, required: true, enum: ["pending", "accepted", "rejected"],
       validate: {
          validator: function (v) {
             return v;
@@ -27,25 +22,24 @@ const Adopt = mongoose.model('Adopt', adoptSchema);
 
 function validateAdopt(adopt) {
    const schema = Joi.object({
-      user: Joi.string().objectId().required(),
+      user: Joi.string().pattern(/^[0-9a-fA-F]{24}$/).required(),
       phone: Joi.string().required(),
-      pet: Joi.string().objectId().required(),
-      status: Joi.string().valid('pending', 'approved', 'rejected').required().default("pending")
+      pet: Joi.string().pattern(/^[0-9a-fA-F]{24}$/).required(),
+      status: Joi.string().valid('pending', 'accepted', 'rejected').required().default("pending")
    });
 
-   return Joi.validate(adopt, schema);
- }
- 
+   return schema.validate(adopt);
+}
+
 const validateAdoptStatus = (status) => {
-   const schema = Joi.string().valid('pending', 'approved', 'rejected').required().default("pending");
+   const schema = Joi.string().valid('pending', 'accepted', 'rejected').required().default("pending");
    return Joi.validate(status, schema);
- }
- 
-//do exports here
+}
+
 module.exports = {
    Adopt,
    validate: validateAdopt,
    validateAdoptStatus,
-} 
+}
 
 

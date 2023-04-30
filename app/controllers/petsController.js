@@ -15,20 +15,21 @@ const createPet = async (req, res) => {
     res.redirect("/meet-our-pets");
 };
 
-// plz find a way to send 'end' correctly
 const getPets = async (req, res) => {
-  
-    debug('get pets');
-    let page = req.query.pageNumber;
-    let limit = req.query.pageSize;
+    const page = req.query.pageNumber;
+    const limit = req.query.pageSize;
+    const count = await Pet.countDocuments();
+    const skip = (page - 1) * limit;
+    let end = false;
+    if (skip >= count) end = true;
 
     try {
         const pets = await Pet.find()
-            .skip((page - 1) * limit)
+            .skip(skip)
             .limit(limit)
             .select({ image: 0 });
 
-        return res.status(200).send({ pets, end: true });
+        return res.status(200).send({ pets, end: end });
     } catch (error) {
         debug(error);
         return res.status(404).send({ message: "no pets" })
