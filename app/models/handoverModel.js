@@ -3,6 +3,12 @@ const Joi = require('joi');
 
 const handoverSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    userName: {
+        type: String, required: true, min: 6, max: 120, validate: {
+            validator: (v) => { return /^[a-zA-Z\s]+$/.test(v); },
+            message: "First name must contain only letters!"
+        }
+    },
     handoverReason: { type: String, min: 5, max: 500, trim: true, required: true },
     canFoster: { type: Boolean, default: true },
     petBreed: { type: String, min: 5, max: 100, trim: true },
@@ -76,6 +82,7 @@ const Handover = mongoose.model('Handover', handoverSchema);
 const validateHandover = (handover) => {
     const schema = Joi.object({
         user: Joi.string().pattern(/^[0-9a-fA-F]{24}$/).required(),
+        userName: Joi.string().min(6).max(120).pattern(/^[a-zA-Z\s]+$/).required(),
         handoverReason: Joi.string().min(5).max(500).trim().required(),
         canFoster: Joi.boolean().default(true),
         petBreed: Joi.string().min(5).max(100).trim(),
@@ -90,9 +97,10 @@ const validateHandover = (handover) => {
 
     return schema.validate(handover);
 }
+
 function validateHandoverStatus(status) {
     const schema = Joi.string().valid('pending', 'accepted', 'rejected').required().default("pending");
-    return Joi.validate(status, schema);
+    return schema.validate(status);
 }
 
 module.exports = {

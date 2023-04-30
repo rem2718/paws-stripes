@@ -15,7 +15,7 @@
         <div class="row p-2">
           <div class="col-6">
             <label for="dateOfRescue"><b>When did you first see the pet?</b></label><br>
-            <input type="datetime-local" class="form-control" id="first-sighting" name="dateOfRescue" required>
+            <input type="datetime-local" class="form-control" id="first-sighting" name="dateOfRescue">
           </div>
           <div class="col-6">
             <label for="image"><b>Provide an image of the rescued animal:</b></label><br>
@@ -24,16 +24,30 @@
         </div>
 
         <div class=" row p-2">
-          <div class="col-6">
+          <div class="col-4">
+            <label for="petType">What type is the animal?</label>
+            <select class="form-select" id="breed" name="petType" required>
+              <option value="cat">Cat</option>
+              <option value="dog">Dog</option>
+              <option value="rabbit">Rabbit</option>
+              <option value="fish">Fish</option>
+              <option value="turtle">Turtle</option>
+              <option value="hamster">Hamster</option>
+              <option value="bird">Bird</option>
+              <option value="guinea pig">Guinea pig</option>
+              <option value="frog">Frog</option>
+            </select>
+          </div>
+          <div class="col-4">
             <label for="isSick"><b>Is the animal suffering from clinical condition?</b></label><br>
-            <input class="form-check-input" type="radio" name="isSick" id="yes-clinical" value="yes" required>
+            <input class="form-check-input" type="radio" name="isSick" id="yes-clinical" value="yes" checked required>
             <label class="form-check-label" class="form-check-label" for="yes-clinical">Yes</label><br>
             <input class="form-check-input" type="radio" name="isSick" id="no-clinical" value="no" required>
             <label class="form-check-label" class="form-check-label" for="no-clinical">No</label>
           </div>
-          <div class="col-6">
+          <div class="col-4">
             <label for="canFoster"><b>Can you foster the animal till the animal is rescued?</b></label><br>
-            <input class="form-check-input" type="radio" name="canFoster" id="yes-foster" value="yes" required>
+            <input class="form-check-input" type="radio" name="canFoster" id="yes-foster" value="yes" checked required>
             <label class="form-check-label" for="yes-foster">Yes</label><br>
             <input class="form-check-input" type="radio" name="canFoster" id="no-foster" value="no" required>
             <label class="form-check-label" for="no-foster">No</label>
@@ -60,7 +74,10 @@
 
       </form>
     </div>
-
+    <script>
+      var currentDate = new Date().toISOString().slice(0, 16);
+      document.getElementById("first-sighting").setAttribute("max", currentDate);
+    </script>
 
 </body>
 

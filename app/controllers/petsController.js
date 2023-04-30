@@ -1,6 +1,5 @@
 const debug = require('debug')('app:api');
 const { Pet, validate } = require('../models/petModel');
-// TO-DO: pagination, null values
 
 const createPet = async (req, res) => {
     const pet = req.body;

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-require('../utils/database');
+
 
 const userSchema = new mongoose.Schema({
     firstName: {

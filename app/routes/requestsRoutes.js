@@ -30,7 +30,7 @@ router.get('/volunteer-form', [auth, isVolunteer], (req, res) => {
     res.render('volunteer-form', { cookies: req.cookies.token, user: req.user });
 });
 
-router.get('/response', [auth], (req, res) => {
+router.get('/response', [tokenDecode], (req, res) => {
     res.render('response', { cookies: req.cookies.token, user: req.user });
 });
 

@@ -43,15 +43,6 @@ const petSchema = new mongoose.Schema({
             message: "image should be less than 10 MB!"
         }
     },
-    petName: {
-        type: String, min: 5, max: 50, trim: true, required: true, default: "Nemo",
-        validate: {
-            validator: function (v) {
-                return /^[a-zA-Z\s]*$/.test(v);
-            },
-            message: "Pet name can only contain letters and spaces!"
-        }
-    },
     petPersonality: {
         type: [{
             type: String,
