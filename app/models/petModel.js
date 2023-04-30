@@ -9,31 +9,16 @@ const petSchema = new mongoose.Schema({
                 return Number.isInteger(v) && v >= 0;
             },
             message: "age should be a positive integer!"
-        }, 
-        get: v => Math.round(v),
-        set: v => Math.round(v)},
-    petBreed: {type: String, trim: true, min: 0, max: 100},
-    image: {type: Buffer, required: true,
-            validate: {
-                validator: function(v){
-                    return v.length <= 10485760; //image is 10 mbs max. we can modify
-                },
-                message: "image should be less than 10 MB!"
-            }},
-    petName: {type: String, min: 5, max: 50, trim: true, required: true, default: "Nemo",
-    validate: {
-        validator: function(v) {
-          return /^[a-zA-Z\s]*$/.test(v);
         },
         get: v => Math.round(v),
         set: v => Math.round(v)
-    }},
+    },
     petBreed: { type: String, trim: true, min: 0, max: 100 },
     image: {
         type: Buffer, required: true,
         validate: {
             validator: function (v) {
-                return v.length <= 10485760; //image is 10 mbs max. we 
+                return v.length <= 10485760; //image is 10 mbs max. we can modify
             },
             message: "image should be less than 10 MB!"
         }
@@ -44,7 +29,18 @@ const petSchema = new mongoose.Schema({
             validator: function (v) {
                 return /^[a-zA-Z\s]*$/.test(v);
             },
-            message: "Pet name can only contain letters and spaces!"
+            get: v => Math.round(v),
+            set: v => Math.round(v)
+        }
+    },
+    petBreed: { type: String, trim: true, min: 0, max: 100 },
+    image: {
+        type: Buffer, required: true,
+        validate: {
+            validator: function (v) {
+                return v.length <= 10485760; //image is 10 mbs max. we 
+            },
+            message: "image should be less than 10 MB!"
         }
     },
     petPersonality: {
@@ -85,7 +81,6 @@ function validatePet(pet) {
 
 module.exports = {
     Pet,
-    petSchema,
     validate: validatePet
 }
 

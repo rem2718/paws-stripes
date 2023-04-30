@@ -16,7 +16,7 @@
         <div class="row p-2">
           <div class="col-6">
             <label for="name">What is your pet's name?</label>
-            <input type="text" class="form-control" id="name" name="name">
+            <input type="text" class="form-control" minlength="3" minlength="50" id="name" name="petName">
           </div>
           <div class="col-6">
             <label for="canFoster">Are you able to foster the animal until adopted?</label><br>
@@ -48,15 +48,14 @@
           </div>
           <div class="col-4">
             <label for="breed">What breed is your animal?</label>
-            <select class="form-select" id="breed" name="breed">
-              <option value="">Nothing specific</option>
+            <select class="form-select" id="breed" name="petBreed">
               <option value="labrador">Labrador Retriever</option>
               <option value="golden">Golden Retriever</option>
               <option value="german">German Shepherd</option>
               <option value="ragdoll">Ragdoll</option>
               <option value="persian">Persian</option>
               <option value="american">American shorthair</option>
-              <option value="lop">Holland Lop</option>
+              <option value="Holland lop">Holland Lop</option>
               <option value="dwarf">Netherland Dwarf</option>
               <option value="pekin">Pekin Duck</option>
             </select>

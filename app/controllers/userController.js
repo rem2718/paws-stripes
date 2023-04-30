@@ -115,7 +115,6 @@ const getHours = async (req, res) => {
     res.send({ hours: hours });
 };
 
-
 module.exports = {
     createUser,
     loginUser,
