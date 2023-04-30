@@ -1,10 +1,5 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const User = require('./userModel');
-const JoiObjectId = require('joi-objectid');
-Joi.objectId = JoiObjectId(Joi);
-//mongoose.connect('mongodb://localhost/playground').then(() => console.log('Connected to MongoDB...'))
-//.catch(err => console.error('Could not connect to mongo db...', err));
 
 const volunteerSchema = new mongoose.Schema({
     volunteerBefore: { type: Boolean, default: false, required: true },
@@ -36,8 +31,14 @@ const volunteerSchema = new mongoose.Schema({
         ], required: true, default: ["rescue"]
     },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    userName: {
+        type: String, required: true, min: 6, max: 120, validate: {
+            validator: (v) => { return /^[a-zA-Z\s]+$/.test(v); },
+            message: "First name must contain only letters!"
+        }
+    },
     status: {
-        type: String, required: true, enum: ["pending", "approved", "rejected"], default: "pending", validate: {
+        type: String, required: true, enum: ["pending", "accepted", "rejected"], default: "pending", validate: {
             validator: function (v) {
                 return v;
             },
@@ -59,15 +60,16 @@ function validateVolunteer(volunteer) {
         volunteerInterests: Joi.array().items(
             Joi.string().valid('rescue', 'transportation', 'clinic', 'office', 'pet screening', 'adoption work')
         ).required().default(['rescue']),
-        user: Joi.string().objectId().required(),
-        status: Joi.string().valid('pending', 'approved', 'rejected').required().default("pending")
+        user: Joi.string().pattern(/^[0-9a-fA-F]{24}$/),
+        userName: Joi.string().min(6).max(120).pattern(/^[a-zA-Z\s]+$/).required(),
+        status: Joi.string().valid('pending', 'accepted', 'rejected').required().default("pending")
     });
-    return Joi.validateVolunteer(volunteer, schema)
+    return schema.validate(volunteer);
 }
 function validateVolunteerStatus(status) {
-    const schema = Joi.string().valid('pending', 'approved', 'rejected').required().default("pending");
-    return Joi.validate(status, schema);
-  }
+    const schema = Joi.string().valid('pending', 'accepted', 'rejected').required().default("pending");
+    return schema.validate(status);
+}
 
 module.exports = {
     Volunteer,

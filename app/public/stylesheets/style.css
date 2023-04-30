@@ -51,6 +51,10 @@ hr {
     color: var(--dark-blue);
 }
 
+.light-blue {
+    color: var(--light-blue);
+}
+
 .red-word {
     color: var(--red);
 }

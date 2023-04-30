@@ -46,7 +46,7 @@ const putRequest = (path, body, resFunc) => {
         });
 }
 
-const deleteRequest = (path, body = {}, resFunc) => {
+const deleteRequest = (path, body, resFunc) => {
     fetch(path, {
         method: 'delete',
         credentials: 'include',
@@ -65,8 +65,7 @@ const deleteRequest = (path, body = {}, resFunc) => {
 }
 
 const pagination = (event, num) => {
-    console.log(event);
-    if (event) {
+    if (event && event.target.id != 'btn1' && event.target.id != 'btn2') {
         let p1 = document.getElementById("p1");
         let p2 = document.getElementById("p2");
         let p3 = document.getElementById("p3");

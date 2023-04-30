@@ -1,65 +1,80 @@
 const debug = require('debug')('app:api');
-const path = require('path');
-const {Pet,validatePet} = require('../models/petModel');
-const {User} = require('../models/userModel');
+const { Pet, validate } = require('../models/petModel');
 
-// post request
 const createPet = async (req, res) => {
-    const pet = new Pet(req.body);
-    const {error} = validatePet(pet);
-    if (error){
-    return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
-    }
-    await pet.save();
-    debug('create pet');
+    const pet = req.body;
+    pet.image = req.file.buffer;
+
+    const { error } = validate(pet);
+    if (error) return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
+
+    const petModel = new Pet(pet);
+    await petModel.save();
+
     res.redirect("/meet-our-pets");
 };
 
-// get request
-// return pets
-// pagination
 const getPets = async (req, res) => {
-    debug('get pets');
-    res.send({});
+    const page = req.query.pageNumber;
+    const limit = req.query.pageSize;
+    const count = await Pet.countDocuments();
+    const skip = (page - 1) * limit;
+    let end = false;
+    if (skip >= count) end = true;
+
+    try {
+        const pets = await Pet.find()
+            .skip(skip)
+            .limit(limit)
+            .select({ image: 0 });
+
+        return res.status(200).send({ pets, end: end });
+    } catch (error) {
+        debug(error);
+        return res.status(404).send({ message: "no pets" })
+    }
 };
 
-// put request
+const getPetImage = async (req, res) => {
+    const petID = req.params.id;
+    const pet = await Pet.findById(petID);
+    if (!pet) {
+        return res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
+    }
+    res.set('Content-Type', "png");
+    res.send(pet.image);
+}
+
 const updatePet = async (req, res) => {
-    const petid = req.params.id;
-    let pet = await Pet.findById(petid);
-    if(!pet){
+    const petID = req.params.id;
+    let pet = await Pet.findById(petID);
+    if (!pet) {
         res.status(404).render("err-response", { err: 404, msg: 'page not found :\( please check the URL and try again' });
     }
-    pet.petAge = req.body.petAge;
-    pet.petBreed = req.body.petBreed;
-    pet.petImage = req.body.petImage;//work on this and change.
-    pet.petName = req.body.petName;
-    pet.petPersonality = req.body.petPersonality;
-    pet.petType = req.body.petType;
-    const {error} = validatePet(pet);
-    if (error){
-    return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
-    }
-    debug('update pet');
-    res.send(pet);
+
+    const updates = req.body;
+    if (!req.file) updates.image = pet.image;
+    else updates.image = req.file.buffer;
+
+    const { error } = validate(updates);
+    if (error) return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
+
+    const updatedPet = await Pet.findByIdAndUpdate(petID, updates, { new: true });
+    res.send(updatedPet);
 };
 
-// delete request
 const deletePet = async (req, res) => {
-    const petid = req.params.id;
-    const result = await Pet.deleteOne(petid);
-    if (result.deletedCount === 1) {
-        res.send({ petid});
-        }
-    else
-            res.status(404).render("err-response", { err: 404, msg: 'Experience not deleted :\( please check the ID and try again' });
-    
-    debug('delete pet');
+    const petID = req.params.id;
+    const result = await Pet.findByIdAndDelete(petID);
+    if (result) return res.send({ _id: petID });
+
+    return res.status(404).render("err-response", { err: 404, msg: 'Experience not deleted :\( please check the ID and try again' });
 };
 
 module.exports = {
     createPet,
     getPets,
+    getPetImage,
     updatePet,
     deletePet,
 };
