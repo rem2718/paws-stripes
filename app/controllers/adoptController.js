@@ -1,7 +1,8 @@
 const debug = require('debug')('app:api');
 const { User } = require('../models/userModel');
 const { Pet } = require('../models/petModel');
-const { Adopt, validate, validateAdoptStatus } = require('../models/adoptModel')
+const { Adopt, validate, validateAdoptStatus } = require('../models/adoptModel');
+
 
 const adopt = async (req, res) => {
     const petID = req.params.id;
@@ -32,14 +33,23 @@ const recommend = async (req, res) => {
     const adoption = req.body;
     adoption.petExperience = adoption.petExperience === "yes" ? true : false;
     adoption.secureEnvironment = adoption.secureEnvironment === "yes" ? true : false;
+    adoption.numPeople = parseInt(adoption.numPeople);
 
-    let pets = choosePet(adoption);
-    debug('recommend');
-    res.render('recommendation', { cookies: req.cookies.token, user: req.user });
+    let pets = await choosePet(adoption);
+    let rec = true;
+    if (pets.length == 0) rec = false
+    req.session.pets = pets;
+    res.render('recommendation', { cookies: req.cookies.token, user: req.user, rec });
 }
 
 const getRecommendations = async (req, res) => {
-    // res.send(pets);
+    const petIDs = req.session.pets;
+    const pets = [];
+    for (const id of petIDs) {
+        let pet = await Pet.findById(id).select({ image: 0 });
+        pets.push(pet);
+    }
+    res.send(pets);
 }
 
 const getStatus = async (req, res) => {
@@ -67,8 +77,72 @@ const updateStatus = async (req, res) => {
     res.send(updatedStatus);
 };
 
-const choosePet = user => {
+const choosePet = async (adoption) => {
+    var pets = await Pet.find().select({ image: 0 });
+    if (!adoption.secureEnvironment) return []
 
+    if (!adoption.petExperience) {
+        let negative = ['hates people', 'prefers to be alone', 'aggressive'];
+        pets = pets.filter((pet) => {
+            if (!pet.petPersonality.some(item => negative.includes(item))) return pet;
+        });
+    }
+
+    let introvert = ['hates people', 'shy', 'prefers to be alone', 'timid'];
+    if (adoption.numPeople < 3) {
+        pets = pets.filter((pet) => {
+            if (pet.petPersonality.some(item => introvert.includes(item))) return pet;
+        });
+    } else {
+        pets = pets.filter((pet) => {
+            if (!pet.petPersonality.some(item => introvert.includes(item))) return pet;
+        });
+    }
+
+    let breeds = [];
+    let cur = [];
+    if (adoption.mbti[0] === "I") {
+        cur = ["german", "ragdoll", "persian", "american", "lop", "dwarf", "pekin"];
+    } else {
+        cur = ["labrador", "golden", "pekin"];
+    }
+    breeds = [...new Set(breeds.concat(cur))];
+    if (adoption.mbti[1] === "N") {
+        cur = ["golden", "ragdoll", "persian", "pekin"];
+    } else {
+        cur = ["labrador", "german", "american", "lop", "dwarf", "pekin"];
+    }
+    breeds = [...new Set(breeds.concat(cur))];
+    if (adoption.mbti[2] === "T") {
+        cur = ["german", "american", "pekin"];
+    } else {
+        cur = ["labrador", "golden", "ragdoll", "persian", "lop", "dwarf", "pekin"];
+    }
+    breeds = [...new Set(breeds.concat(cur))];
+    if (adoption.mbti[3] === "J") {
+        cur = ["labrador", "german", "ragdoll", "persian", "american", "lop", "dwarf", "pekin"];
+    } else {
+        cur = ["golden", "german", "american", "lop", "dwarf", "pekin"];
+    }
+    breeds = [...new Set(breeds.concat(cur))];
+    pets = pets.filter((pet) => {
+        if (breeds.includes(pet.petBreed)) return pet;
+    });
+
+    if (adoption.petType.length != 0) {
+        pets = pets.filter((pet) => {
+            if (pet.petType === adoption.petType) return pet;
+        });
+    }
+
+    if (adoption.petBreed.length != 0) {
+        pets = pets.filter((pet) => {
+            if (pet.petBreed === adoption.petBreed) return pet;
+        });
+    }
+
+    pets.map((pet) => pet._id);
+    return pets;
 };
 
 

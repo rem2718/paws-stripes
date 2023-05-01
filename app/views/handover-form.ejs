@@ -14,11 +14,11 @@
     <div class="container mt-3">
       <form class="p-5" action="/api/handover" method="post" enctype="multipart/form-data" style="max-height: 550px;">
         <div class="row p-2">
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="name">What is your pet's name?</label>
             <input type="text" class="form-control" minlength="3" minlength="50" id="name" name="petName">
           </div>
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="canFoster">Are you able to foster the animal until adopted?</label><br>
             <input class="form-check-input" type="radio" id="foster-yes" name="canFoster" value="yes" checked>
             <label class="form-check-label" for="foster-yes">Yes</label><br>
@@ -28,7 +28,7 @@
         </div>
 
         <div class="row p-2">
-          <div class="col-4">
+          <div class="col-md-4">
             <label for="petType">What type is your pet?</label>
             <select class="form-select" id="breed" name="petType" required>
               <option value="cat">Cat</option>
@@ -42,11 +42,11 @@
               <option value="frog">Frog</option>
             </select>
           </div>
-          <div class="col-4">
+          <div class="col-md-4">
             <label for="petAge">How old is your pet?</label><br>
             <input type="number" id="months" class="form-control" name="petAge" min="1" max="600">
           </div>
-          <div class="col-4">
+          <div class="col-md-4">
             <label for="breed">What breed is your animal?</label>
             <select class="form-select" id="breed" name="petBreed">
               <option value="labrador">Labrador Retriever</option>
@@ -63,7 +63,7 @@
         </div>
 
         <div class="row p-2">
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="petPersonality">What is your animal's personality?</label>
             <select class="form-select" id="personality" name="petPersonality[]" multiple required>
               <option value="fun">Fun</option>
@@ -89,7 +89,7 @@
               <option value="enjoys routine">Enjoys Routine</option>
             </select>
           </div>
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="handoverReason">Why do you want to handover your pet?</label>
             <textarea class="form-control" id="reason" name="handoverReason" minlength="5" maxlength="500"
               required></textarea>
@@ -97,20 +97,20 @@
         </div>
 
         <div class="row p-2">
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="handoverAddress">Provide a Google Map URL of your address:</label><br>
             <input class="form-control" type="url" id="address" name="handoverAddress" required>
           </div>
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="image"><b>Provide an image of your pet:</b></label><br>
             <input type="file" id="photo" name="image" max="10485760" required>
           </div>
         </div>
 
         <div class="row p-2">
-          <div class="col-10">
+          <div class="col-md-10">
           </div>
-          <div class="col-2 d-flex justify-content-end p-2">
+          <div class="col-md-2 d-flex justify-content-end p-2">
             <button type="submit" class="button">submit</button>
           </div>
         </div>

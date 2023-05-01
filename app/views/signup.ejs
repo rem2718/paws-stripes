@@ -96,7 +96,7 @@
             <label for="accept-terms" class="form-check-label">I accept the terms and conditions</label>
           </div>
           <div class="col-2 d-flex justify-content-end">
-            <button type="submit" class="button">Sign up</button>
+            <button id="signup" type="submit" class="button">Sign up</button>
           </div>
         </div>
       </form>
@@ -106,8 +106,12 @@
         var password = document.getElementById("password").value;
         var confirmPassword = document.getElementById("confirm-password").value;
         if (password != confirmPassword) {
-          alert("passwords do not match!")
+          alert("passwords do not match!");
+          document.getElementById('signup').disabled = true;
+        } else {
+          document.getElementById('signup').disabled = false;
         }
+
       }
     </script>
 

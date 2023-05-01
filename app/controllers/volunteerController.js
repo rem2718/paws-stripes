@@ -9,6 +9,7 @@ const volunteer = async (req, res) => {
     volunteer.userName = `${user.firstName} ${user.lastName}`;
     volunteer.status = "pending";
     volunteer.volunteerBefore = volunteer.volunteerBefore === "yes" ? true : false;
+    if (!volunteer.volunteerBefore) delete volunteer.timeVolunteerBefore;
 
     let { error } = validate(volunteer);
     if (error) return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
