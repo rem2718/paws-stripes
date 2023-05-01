@@ -18,7 +18,7 @@
             <div class="col-10 px-2">
               <h5>Account Information</h5>
             </div>
-            <div class="col-2">
+            <div class="col-md-2">
               <a class="btn btn-b" id="btn-1" onclick="rotate(event)" data-bs-toggle="collapse" href="#collapseOne"
                 style="border:0px;"></a>
             </div>
@@ -27,28 +27,28 @@
             <div class="card-body">
               <form class="px-5">
                 <div class="row p-2">
-                  <div class="col-6">
+                  <div class="col-md-6">
                     <label for="firstName">First Name:</label><br>
                     <input id="fname" type="text" class="form-control" name="firstName" onchange="disableOrEnable()">
                   </div>
-                  <div class="col-6">
+                  <div class="col-md-6">
                     <label for="lastName">Last Name:</label><br>
                     <input id="lname" type="text" class="form-control" name="lastName" onchange="disableOrEnable()">
                   </div>
                 </div>
                 <div class="row p-2">
-                  <div class="col-6">
+                  <div class="col-md-6">
                     <label for="email">Email:</label><br>
                     <input id="email" type="email" class="form-control" name="email" onchange="disableOrEnable()">
                   </div>
-                  <div class="col-6">
+                  <div class="col-md-6">
                     <label for="phoneNumberr">Phone Number:</label><br>
                     <input id="num" type="tel" class="form-control" name="phoneNumber" pattern="05[0-9]{8}"
                       onchange="disableOrEnable()">
                   </div>
                 </div>
                 <div class="row p-2">
-                  <div class="col-4">
+                  <div class="col-md-4">
                     <label for="gender">Gender:</label>
                     <select id="gender" class="form-select" name="gender" onchange="disableOrEnable()">
                       <option value="male">male</option>
@@ -57,12 +57,12 @@
 
                     </select>
                   </div>
-                  <div class="col-4">
+                  <div class="col-md-4">
                     <label for="age">Age:</label><br>
                     <input id="age" type="number" class="form-control" name="age" min="18" max="100"
                       onchange="disableOrEnable()">
                   </div>
-                  <div class="col-4">
+                  <div class="col-md-4">
                     <label for="region">Region:</label><br>
                     <select id="region" class="form-select" name="region" onchange="disableOrEnable()">
                       <option value="Riyadh">Riyadh</option>
@@ -112,15 +112,15 @@
             <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
               <div class="card-body">
                 <div class="row mx-5 mb-2">
-                  <div class="col-4">
+                  <div class="col-md-4">
                     <button type="button" class="button" data-bs-toggle="collapse" data-bs-target="#adopt">Adoption
                       Requests</button>
                   </div>
-                  <div class="col-4">
+                  <div class="col-md-4">
                     <button type="button" class="button" data-bs-toggle="collapse" data-bs-target="#handover">Handover
                       Requests</button>
                   </div>
-                  <div class="col-4">
+                  <div class="col-md-4">
                     <button type="button" class="button" data-bs-toggle="collapse" data-bs-target="#rescue">Rescue
                       Request </button>
                   </div>
