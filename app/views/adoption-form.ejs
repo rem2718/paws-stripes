@@ -14,17 +14,17 @@
     <div class="container mt-3">
       <form class="p-5" action="/api/adopt" method="post" style="max-height: 430px;">
         <div class="row p-2">
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="petExperience">Do you have any previous pet experience?</label><br>
-            <input class="form-check-input" type="radio" name="foster" value="yes">
+            <input class="form-check-input" type="radio" name="petExperience" value="yes">
             <label class="form-check-label" for="petExperience">Yes</label><br>
-            <input class="form-check-input" type="radio" name="foster" value="no" checked>
-            <label class="form-check-label" for="pet-experience">No</label>
+            <input class="form-check-input" type="radio" name="petExperience" value="no" checked>
+            <label class="form-check-label" for="petExperience">No</label>
           </div>
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="petType">What pet do you want?</label>
             <select name="petType" class="form-select">
-              <option value="" disabled selected>Select pet</option>
+              <option value="">Nothing specific</option>
               <option value="dog">Dog</option>
               <option value="cat">Cat</option>
               <option value="rabbit">Rabbit</option>
@@ -39,7 +39,7 @@
         </div>
 
         <div class="row p-2">
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="petBreed">What breed is your animal?</label>
             <select name="petBreed" class="form-select">
               <option value="">Nothing specific</option>
@@ -54,9 +54,9 @@
               <option value="pekin">Pekin Duck</option>
             </select>
           </div>
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="mbti">What is your mbti?</label>
-            <select name="mbti" class="form-select">
+            <select name="mbti" class="form-select" required>
               <option value="" disabled selected>Select mbti</option>
               <option value="ISTJ">ISTJ</option>
               <option value="ISFJ">ISFJ</option>
@@ -79,37 +79,35 @@
         </div>
 
         <div class="row p-2">
-          <div class="col-6">
+          <div class="col-md-6">
             <label for="numPeople">How many people do you live with?</label>
             <div class="row">
               <div class="col-1">
                 <span>0</span>
               </div>
-              <div class="col-10">
+              <div class="col-md-10">
                 <input type="range" class="form-range" min="0" max="10" name="numPeople">
               </div>
-              <div class="col-1">
+              <div class="col-md-1">
                 <span>10</span>
               </div>
             </div>
 
           </div>
-          <div class="col-6">
-            <label for="petAge">How old is your pet?</label><br>
-            <input type="number" id="months" class="form-control" name="petAge" min="1" max="600">
+          <div class="col-md-6">
+            <label for="secureEnvironment">Are you willing to provide the animal with a secure environment while
+              catering to their needs?</label>
+            <input class="form-check-input" type="radio" name="secureEnvironment" value="yes">
+            <label class="form-check-label" for="secureEnvironment">Yes</label><br>
+            <input class="form-check-input" type="radio" name="secureEnvironment" value="no" checked>
+            <label class="form-check-label" for="secureEnvironment">No</label>
           </div>
         </div>
 
         <div class="row p-2">
-          <div class="col-6">
-            <label for="secureEnvironment">Are you willing to provide the animal with a secure environment while
-              catering to their needs?</label>
-            <input class="form-check-input" type="radio" name="secureEnvironment" value="yes">
-            <label class="form-check-label" for="environment-yes">Yes</label><br>
-            <input class="form-check-input" type="radio" name="environment" value="no" checked>
-            <label class="form-check-label" for="environment-no">No</label>
+          <div class="col-md-6">
           </div>
-          <div class="col-6 d-flex justify-content-end py-5">
+          <div class="col-md-6 d-flex justify-content-end pb-2">
             <button type="submit" class="button">Submit</button>
           </div>
         </div>
