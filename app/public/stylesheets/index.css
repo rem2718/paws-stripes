@@ -1,6 +1,6 @@
 
 @import url("/stylesheets/style.css");
-
+@import url('https://fonts.cdnfonts.com/css/monomaniac-one');
 body{
     background-image: url("/images/backgrounds/background-1.png");
     background-repeat: no-repeat;
@@ -15,6 +15,8 @@ body{
 
 .list-group-item {
     background-color:var(--light-brown);
+    font-family: 'Monomaniac One', sans-serif;
+    color: rgba(41, 65, 79, 1);
 }
 
 .column2 {
@@ -80,3 +82,7 @@ body{
     margin: 0px 150px;
 }
 
+.tab-pane {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  
