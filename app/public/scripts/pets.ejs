@@ -3,7 +3,7 @@
     const displayPets = (pets) => {
         const colors = ['red', 'blue', 'yellow', 'purple', 'pink', 'green'];
         let i = 0;
-        const cols = document.querySelectorAll(".col-4");
+        const cols = document.querySelectorAll(".col-md-4");
         cols.forEach(col => col.innerHTML = "");
         pets.forEach(pet => {
             const card = document.createElement("div");
