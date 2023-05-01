@@ -1,51 +1,91 @@
 @import url("/stylesheets/style.css");
 
-.h {
+nav {
     background-image: url("/images/header bar.svg");
     background-repeat: no-repeat;
     background-size: cover;
+    height: 110px;
     font-family: var(--par2-font);
     font-size: 15pt;
-}
-
-.logo {
+    
+    
+  }
+  
+  .logo {
     max-width: 230px; 
-    max-height: 125px
-}
-
-.login {
+    max-height: 125px;
+    
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    
+  }
+  .login {
     background-color: transparent;
     border: 0px;
     color: var(--white);
     font-size: 20pt;
-}
-
-.login-img {
+    margin-left: auto;
+  }
+  
+  .login-img {
     padding-top: 20pt;
     max-width: 50px;
-}
-
-.nu {
+  }
+  
+  .nu {
     padding-left: 50px;
     text-decoration: none;
-}
-
-.nav-link {
+  }
+  
+  .nav-link {
+    display: inline-block;
     color: var(--white);
-}
-
-.red-word {
+    padding: 10px 20px;
+  
+  }
+  
+  .red-word {
     color: rgb(193, 12, 12);
-}
-
-.nav-link:hover {
+  }
+  
+  .nav-link:hover {
     color: rgb(213, 164, 74);
-}
+  }
 
-.active-item {
+  .active-item {
     background-color: var(--grey);
     border-radius: 20px;
-}
-.nav-link.red-word:hover {
+    display: flex;
+    height: 110px; 
+  }
+  
+  .nav-link.red-word:hover {
     color:  rgb(213, 164, 74);
   }
+  
+  @media (max-width: 767.98px) {
+    .navbar-nav.ml-auto {
+      margin: 0 auto;
+      display: table;
+      table-layout: fixed;
+   
+    }
+    
+    .nav-item {
+      float: none;
+      display: table-cell;
+      text-align: center;
+    }
+    
+    .logo {
+      margin: 0;
+    }
+    
+    .login {
+      margin: 0;
+    }
+  }
+  
