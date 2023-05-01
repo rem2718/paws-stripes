@@ -35,14 +35,17 @@
 }
 
 .red-word {
-    color: var(--red);
+    color: rgb(193, 12, 12);
 }
 
 .nav-link:hover {
-    color: var(--grey);
+    color: rgb(213, 164, 74);
 }
 
 .active-item {
     background-color: var(--grey);
     border-radius: 20px;
 }
+.nav-link.red-word:hover {
+    color:  rgb(213, 164, 74);
+  }
