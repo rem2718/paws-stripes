@@ -1,9 +1,10 @@
 require("dotenv").config();
 const debug = require('debug')('app:main');
 const express = require('express');
-require('./app/utils/database.js')
+require('./app/utils/database');
 const cookieParser = require('cookie-parser');
 const err404 = require('./app/utils/handle404Middleware');
+const session = require('express-session');
 const router = require('./app/routes/mainRoutes');
 const api = require('./app/routes/apiRoutes');
 const app = express();
@@ -14,7 +15,11 @@ app.set('views', __dirname + '/app/views');
 app.set('view engine', 'ejs');
 
 app.use(cookieParser());
-
+app.use(session({
+    secret: process.env.PRIVATE_KEY,
+    resave: false,
+    saveUninitialized: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

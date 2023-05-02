@@ -7,31 +7,31 @@
 </head>
 
 <body>
-  <%- include('./partials/header', {active: 'who' })%>
+  <%- include('./partials/header', { active: 'who' })%>
     <h1><span class="text-white">Login</span> <span class="green-word">Page</span></h1>
     <hr>
-    <div class="container-md div p-5">
+    <div class="container-md div p-5 mt-5">
       <div class="container row">
-        <div class="col-6">
+        <div class="col-md-6">
           <form action="/api/user/login" method="post">
             <label for="email">Email:</label>
             <input type="text" class="form-control" maxlength="255" name="email">
             <label for="password">Password:</label>
             <input type="password" class="form-control" minlength="10" name="password">
             <div class="row pt-5">
-              <div class="col-6">
+              <div class="col-md-6">
                 <input class="form-check-input" type="radio" name="userType" value="admin">
                 <label class="form-check-label" for="userType">admin</label><br>
                 <input class="form-check-input" type="radio" name="userType" value="user" checked>
                 <label class="form-check-label" for="userType">user</label>
               </div>
-              <div class="col-6 d-flex justify-content-end">
+              <div class="col-md-6 d-flex justify-content-end">
                 <button class="button" type="submit">Sign in</button>
               </div>
             </div>
           </form>
         </div>
-        <div class="col-6 p-5">
+        <div class="col-md-6 p-5">
           <h5 class="dont">Don't have an account?</h5>
           <a href="/signup"><button class="join-button p-5">click here to join!</button></a>
         </div>

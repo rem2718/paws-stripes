@@ -5,7 +5,7 @@
     const shuffle = () => {
         index = (index + 1) % pets.length;
         console.log(index);
-        // document.getElementById('image').src = null;
+        document.getElementById('image').src = `/api/pets/image/${pets[index]._id}`;
         document.getElementById('petID').innerHTML = `${pets[index]._id}`;
         document.getElementById('name').innerHTML = `${pets[index].petName}`;
         document.getElementById('type').innerHTML = `${pets[index].petType}`;
@@ -18,7 +18,7 @@
     const getRecommendation = () => {
         getRequest(`/api/adopt/recommendation`, (response) => {
             pets = response;
-            // document.getElementById('image').src = null;
+            document.getElementById('image').src = `/api/pets/image/${pets[index]._id}`;
             document.getElementById('petID').innerHTML = `${pets[0]._id}`;
             document.getElementById('name').innerHTML = `${pets[0].petName}`;
             document.getElementById('type').innerHTML = `${pets[0].petType}`;
@@ -29,7 +29,8 @@
             document.getElementById('adopt-btn').setAttribute('href', `/api/adopt/pet/${pets[0]._id}`);
         });
     };
-
-    getRecommendation();
+    if ("<%=rec%>" === "true") {
+        getRecommendation();
+    }
 
 </script>

@@ -4,13 +4,16 @@
 <head>
   <%- include('./partials/head')%>
     <link href="/stylesheets/index.css" rel="stylesheet" />
+
 </head>
 
 <body>
+  
   <%- include('./partials/header', {active: 'who' })%>
-    <div class="container-sm">
+  
+    <div class="container-sm mt-5">
       <div class="row mt mx-5 mb-2">
-        <div class="col-3 column1 mt">
+        <div class="col-md-3 column1 mt">
           <div class="list-group" id="list-tab" role="tablist">
             <a class="list-group-item list-group-item-action active" id="list-option1-list" data-bs-toggle="list"
               href="#list-option1" role="tab" aria-controls="option1">Our mission&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -30,7 +33,7 @@
               <img src="/images/icons/footprint-2.svg" class="icon" alt="footprint"></a>
           </div>
         </div>
-        <div class="col-9 column2">
+        <div class="col-md-9 column2">
           <img class="pets" src="/images/pngs/pets.png" alt="pets" />
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active message mission mx-5" id="list-option1" role="tabpanel"
@@ -43,7 +46,7 @@
               aria-labelledby="list-option2-list">
               <h1 style="margin: 0px"><span class="white-word">The</span> <span class="blue-word">Clinic</span></h1>
               <div class="row">
-                <div class="col-6">
+                <div class="col-md-6">
                   <ul>
                     <li>Medical Examinations</li>
                     <li>Laboratory Tests</li>
@@ -52,7 +55,7 @@
                     <li>Spay-Neutering Surgeries</li>
                   </ul>
                 </div>
-                <div class="col-6">
+                <div class="col-md-6">
                   <ul>
                     <li>Annual Vaccinations</li>
                     <li>Microchip Installation</li>
@@ -85,10 +88,10 @@
               aria-labelledby="list-option5-list">
               <h1 style="margin: 0px"><span class="white-word">Contact</span> <span class="blue-word">Us</span></h1>
               <div class="row">
-                <div class="col-1" style="padding: 0;">
+                <div class="col-md-1" style="padding: 0;">
                   <img src="/images/icons/clock.svg" class="icon"></img>
                 </div>
-                <div class="col-11" style="padding: 0;">
+                <div class="col-md-11" style="padding: 0;">
                   The Clinic Operation Days & Hours:
                   <ul style="padding: 0; margin: 0;">
                     <li>Saturday – Thursday (9 AM-1:00 PM, 4-8 PM)</li>
@@ -98,33 +101,33 @@
               </div>
 
               <div class="row">
-                <div class="col-1">
+                <div class="col-md-1">
                   <img src="/images/icons/map.svg" class="icon"></img>
                 </div>
-                <div class="col-5">
+                <div class="col-md-5">
                   <a href="https://goo.gl/maps/oUq4d8kRgmwWBwoe6">Google Maps Link</a>.
                 </div>
-                <div class="col-1">
+                <div class="col-md-1">
                   <img src="/images/icons/email.svg" class="icon"></img>
                 </div>
-                <div class="col-5">
+                <div class="col-md-5">
                   info@paws&stripes.org
                 </div>
               </div>
               <div class="row mx bar d-flex justify-content-center align-center">
-                <div class="col-3">
+                <div class="col-md-3">
                   <a href="https://api.whatsapp.com/send?phone=+966500559776" target="_blank"><button
                       style="background-image: url(/images/icons/whatsapp.svg)" class="icon"></button></a>
                 </div>
-                <div class="col-3">
+                <div class="col-md-3">
                   <a href="https://twitter.com/RiyadhShelter" target="_blank"><button
                     style="background-image: url(/images/icons/twitter.svg)" class="icon"></button></a>
                 </div>
-                <div class="col-3">
+                <div class="col-md-3">
                   <a href="https://www.facebook.com/RiyadhAnimalShelter" target="_blank"><button
                     style="background-image: url(/images/icons/facebook.svg)" class="icon"></button></a>
                 </div>
-                <div class="col-3">
+                <div class="col-md-3">
                   <a href="https://www.instagram.com/riyadhshelter/" target="_blank"><button
                     style="background-image: url(/images/icons/insta.svg)" class="icon"></button></a>
                 </div>
@@ -134,5 +137,12 @@
         </div>
       </div>
     </div>
+    <div class="container-bee">
+      <div class="wings"></div>
+      <div class="bee">
+        
+      </div>
+    </div>
 
+</body>
 </html>
