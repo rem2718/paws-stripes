@@ -76,13 +76,16 @@ hr {
 
 
 .fox {
-  margin-left: 79%;
+    margin-left: 85%;
+    position:absolute;
+   vertical-align: top;
 }
 .paws {
   color: var(--brown);
   font-size: 50px;
   opacity: 1;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+
  
 }
  
@@ -91,5 +94,11 @@ hr {
   }
 
 .right {
-  margin-left: 20%;
+  margin-left: 10%;
 }
+.right.paws {
+    margin-left: 10%;
+  }
+  
+
+  

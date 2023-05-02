@@ -1,7 +1,9 @@
 @import url("/stylesheets/style.css");
 
 nav {
-    background-color: var(--dark-green);
+    background-image: url('/images/header bar.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
     font-family: var(--par2-font);
     color: var(--white);
   }

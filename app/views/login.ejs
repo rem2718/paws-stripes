@@ -11,7 +11,8 @@
   <%- include('./partials/header', { active: 'who' })%>
     <h1><span class="text-white">Login</span> <span class="green-word">Page</span></h1>
     <hr>
-    <div class="container-md div p-5 mt-5">
+    <div class=" row">
+    <div class="container-md div col-md-8 p-5 mt-5">
       <div class="container row">
         <div class="col-md-6">
           <form action="/api/user/login" method="post">
@@ -38,11 +39,9 @@
         </div>
       </div>
     </div>
-    <div class="fox">
-    <div class="right paws hidden" timeout="6"><i class="fa fa-paw" aria-hidden="true"></i>
-    </div>
-    <div class="paws hidden" timeout="5"><i class="fa fa-paw" aria-hidden="true"></i>
-    </div>
+    
+    <div class="fox col-md-4">
+
     <div class="right paws hidden" timeout="4"><i class="fa fa-paw" aria-hidden="true"></i>
     </div>
     <div class="paws hidden" timeout="3"><i class="fa fa-paw" aria-hidden="true"></i>
@@ -52,54 +51,48 @@
     <div class="paws hidden" timeout="1"><i class="fa fa-paw" aria-hidden="true"></i>
     </div>
   </div>
+  </div>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var funcs = {
-          getAttr: function(ele, attr) {
-              console.log(ele);
-              var result = (ele.getAttribute && ele.getAttribute(attr)); 
-              if( !result ) {
-                  var attrs = ele.attributes;
-                  var length = attrs.length;
-                  for(var i = 0; i < length; i++)
-                    
-                      if(attrs[i].nodeName === attr)
-                          result = attrs[i].nodeValue;
-              }
-              console.log(attrs);
     
-              return result;
-          },
-    
-      };
-    
-      var pawsToUpdate = document.querySelectorAll('.paws.hidden');
-    
-      for(var i = 0; i<7; i++) {
-    
-        if (pawsToUpdate.length == 0 ) {
-          break;
-        }
-    
-        setTimeout(function() {
-          var newPawsToUpdate = [];
-    
-          pawsToUpdate.forEach(function(paw) {
-            var time = funcs.getAttr(paw, 'timeout') - 1;
-            paw.setAttribute("timeout", time); 
-    
+document.addEventListener('DOMContentLoaded', function() {
+  var funcs = {
+      getAttr: function(ele, attr) {
+          console.log(ele);
+          var result = (ele.getAttribute && ele.getAttribute(attr)); 
+          if( !result ) {
+              var attrs = ele.attributes;
+              var length = attrs.length;
+              for(var i = 0; i < length; i++)
+                
+                  if(attrs[i].nodeName === attr)
+                      result = attrs[i].nodeValue;
+          }
+                console.log(attrs);
+
+          return result;
+      },
+  
+  };
+  for (var i = 0; i < 7; i++) {
+    (function(i) {
+      setTimeout(function() {
+        var paws = document.getElementsByClassName('paws hidden');
+        for (var paw in paws) {
+          if (paws.hasOwnProperty(paw)) {
+            var time = funcs.getAttr(paws[paw], 'timeout') - 1;
+            paws[paw].setAttribute("timeout", time); 
             if (time == 0) {
-              paw.classList.remove("hidden");
-            } else {
-              newPawsToUpdate.push(paw);
+              paws[paw].classList.remove("hidden");
             }
-          });
-    
-          pawsToUpdate = newPawsToUpdate;
-        }, 400 * i);
-    
-      }
-    }, false);
+          }
+        }
+      }, 400 * i);
+    })(i);
+  }
+  
+
+  }
+, false);
     </script>
     
 </body>
