@@ -1,38 +1,43 @@
 @import url("/stylesheets/style.css");
 
 nav {
-    background-image: url("/images/header bar.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 120px;
+    background-color: var(--dark-green);
     font-family: var(--par2-font);
-    font-size: 15pt;
-    
-    
+    color: var(--white);
   }
  
-    .logo {
-        position: absolute;
-        left: 120px;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        height: 100%;
-      }
-  
-  
- 
-  .nav-item {
-    display: flex;
-    align-items: center;
-    padding: 18px;
-    
-  }
+.logo {
+  width: 150px;
+}
+
+.login-img {
+  width: 50px;
+  margin-right: 30px;
+}
+
+.nav-link {
+  color: var(--white);
+}
+
+.nav-link:hover {
+  color: var(--light-brown);
+}
+
+.active-item {
+  background-color: var(--light-green);
+  border-radius: 50px; 
+  color: var(--black);
+}
+
+
+/*
   .navbar-nav.ml-auto{
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-  .login {
+
+.login {
     background-color: transparent;
     border: 0px;
     color: var(--white);
@@ -42,70 +47,55 @@ nav {
     top: 50%;
     transform: translate(0, -50%);
   }
-    
-  
-  
-  .login-img {
-    padding-top: 20pt;
-    max-width: 50px;
-    float:right;
-    
-    
-  }
-  
-  .nu {
-    padding-left: 50px;
-    text-decoration: none;
-  }
-  
-  .nav-link {
-    display: inline-block;
-    color: var(--white);
-    padding: 10px 20px;
-  
-  }
-  
-  .red-word {
-    color: rgb(193, 12, 12);
-  }
-  
-  .nav-link:hover {
-    color: rgb(213, 164, 74);
-  }
-
-  .active-item {
-    background-color: var(--grey);
-    border-radius: 50px;
-    display: flex;
-    align-items: center; 
   
 
-  }
+
+.nu {
+  padding-left: 50px;
+  text-decoration: none;
+}
+
+.nav-link {
+  display: inline-block;
+  color: var(--white);
+  padding: 10px 20px;
+
+}
+
+
+.active-item {
+  background-color: var(--grey);
+  border-radius: 50px;
+  display: flex;
+  align-items: center; 
+
+
+}
+
+.nav-link.red-word:hover {
+  color:  rgb(213, 164, 74);
+}
   
-  .nav-link.red-word:hover {
-    color:  rgb(213, 164, 74);
-  }
+@media (max-width: 767.98px) {
+  .navbar-nav.ml-auto {
+    margin: 0 auto;
+    display: table;
+    table-layout: fixed;
   
-  @media (max-width: 767.98px) {
-    .navbar-nav.ml-auto {
-      margin: 0 auto;
-      display: table;
-      table-layout: fixed;
-   
-    }
-    
-    .nav-item {
-      float: none;
-      display: table-cell;
-      text-align: center;
-    }
-    
-    .logo {
-      margin: 0;
-    }
-    
-    .login {
-      margin: 0;
-    }
   }
-  
+    
+.nav-item {
+  float: none;
+  display: table-cell;
+  text-align: center;
+}
+
+.logo {
+  margin: 0;
+}
+
+.login {
+  margin: 0;
+}
+}
+   */
