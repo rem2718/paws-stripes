@@ -30,6 +30,9 @@
       .cls-7 {
         mask: url(#mask);
       }
+  
+      
+      
     </style>
     <filter id="luminosity-noclip" x="47.84" y="3.04" width="99.52" height="67.87" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
       <feFlood flood-color="#fff" result="bg"/>

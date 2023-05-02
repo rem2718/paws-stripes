@@ -1,6 +1,6 @@
 
 @import url("/stylesheets/style.css");
-
+@import url('https://fonts.cdnfonts.com/css/monomaniac-one');
 body{
     background-image: url("/images/backgrounds/background-1.png");
     background-repeat: no-repeat;
@@ -15,6 +15,8 @@ body{
 
 .list-group-item {
     background-color:var(--light-brown);
+    font-family: 'Monomaniac One', sans-serif;
+    color: rgba(41, 65, 79, 1);
 }
 
 .column2 {
@@ -66,7 +68,7 @@ body{
 }
 
 .mt {
-    margin-top: 130px;
+    margin-top: 150px;
 }
 
 .bar {
@@ -79,4 +81,86 @@ body{
 .mx{
     margin: 0px 150px;
 }
+
+.tab-pane {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+ .container-bee{
+    height: 20em;
+    width: 20em;
+    position: fixed;
+    bottom: 2em;
+    right: 0;
+    margin: 0;
+    animation: fly 7s infinite;
+
+  }
+  @keyframes fly {
+    50% {
+      transform: translateY(-7.12em);
+    }
+  }
+.wings{
+    position: absolute;
+    height: 2em;
+    width: 2em;
+    background-color: var(--white);
+    border-radius: 2em 2em 0em 2em;
+    top: 6.5em;
+    left: 12.25em;
+
+}
+.bee{
+    height: 3.5em;
+    width: 7.5em;
+    background: linear-gradient(
+      to right,
+      #f4c13d 30%,
+      #0d323e 30%,
+      #0d323e 45%,
+      #f4c13d 45%,
+      #f4c13d 55%,
+      #0d323e 55%,
+      #0d323e 70%,
+      #f4c13d 70%,
+      #f4c13d 80%,
+      #0d323e 80%
+    );
+    border-radius: 5em;
+    position: absolute;
+    transform: translate(0%, -50%);
+    top: 50%;
+    left: 50%;
+    box-shadow: inset 0 -1.56em rgba(0, 0, 0, 0.15);
+
+}
+.bee:before {
+    position: absolute;
+    content: "";
+    height: 0.57em;
+    width: 0.57em;
+    background-color: #0d323e;
+    border-radius: 50%;
+    top: 1.43em;
+    left: 0.75em;
+  }
+  .bee:after {
+    position: absolute;
+    content: "";
+    height: 0.31em;
+    width: 1.27em;
+    background-color: #0d323e;
+    border-radius: 0.31em;
+    top: 1.83em;
+    left: 6.95em;
+  }
+  .wings:before {
+    position: absolute;
+    content: "";
+    height: 2em;
+    width: 2em;
+    background-color:var(--white);
+    border-radius: 2em 2em 2em 0;
+    left: 1.88em;
+  }
 
