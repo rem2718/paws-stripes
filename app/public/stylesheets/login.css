@@ -1,5 +1,7 @@
 @import url("/stylesheets/style.css");
 
+
+
 .div {
     background-image: url("/images/div-7.svg"); 
     background-repeat: no-repeat;
@@ -70,4 +72,24 @@ hr {
 
 .join-button:hover {
     background-image: url('/images/orange button-2.svg');
+}
+
+
+.fox {
+  margin-left: 79%;
+}
+.paws {
+  color: var(--brown);
+  font-size: 50px;
+  opacity: 1;
+  transition: all 0.3s ease;
+ 
+}
+ 
+.paws.hidden {
+    opacity: 0;
+  }
+
+.right {
+  margin-left: 20%;
 }

@@ -4,6 +4,7 @@
 <head>
   <%- include('./partials/head')%>
     <link href="/stylesheets/login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -37,6 +38,70 @@
         </div>
       </div>
     </div>
+    <div class="fox">
+    <div class="right paws hidden" timeout="6"><i class="fa fa-paw" aria-hidden="true"></i>
+    </div>
+    <div class="paws hidden" timeout="5"><i class="fa fa-paw" aria-hidden="true"></i>
+    </div>
+    <div class="right paws hidden" timeout="4"><i class="fa fa-paw" aria-hidden="true"></i>
+    </div>
+    <div class="paws hidden" timeout="3"><i class="fa fa-paw" aria-hidden="true"></i>
+    </div>
+    <div class="right paws hidden" timeout="2"><i class="fa fa-paw" aria-hidden="true"></i>
+    </div>
+    <div class="paws hidden" timeout="1"><i class="fa fa-paw" aria-hidden="true"></i>
+    </div>
+  </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var funcs = {
+          getAttr: function(ele, attr) {
+              console.log(ele);
+              var result = (ele.getAttribute && ele.getAttribute(attr)); 
+              if( !result ) {
+                  var attrs = ele.attributes;
+                  var length = attrs.length;
+                  for(var i = 0; i < length; i++)
+                    
+                      if(attrs[i].nodeName === attr)
+                          result = attrs[i].nodeValue;
+              }
+              console.log(attrs);
+    
+              return result;
+          },
+    
+      };
+    
+      var pawsToUpdate = document.querySelectorAll('.paws.hidden');
+    
+      for(var i = 0; i<7; i++) {
+    
+        if (pawsToUpdate.length == 0 ) {
+          break;
+        }
+    
+        setTimeout(function() {
+          var newPawsToUpdate = [];
+    
+          pawsToUpdate.forEach(function(paw) {
+            var time = funcs.getAttr(paw, 'timeout') - 1;
+            paw.setAttribute("timeout", time); 
+    
+            if (time == 0) {
+              paw.classList.remove("hidden");
+            } else {
+              newPawsToUpdate.push(paw);
+            }
+          });
+    
+          pawsToUpdate = newPawsToUpdate;
+        }, 400 * i);
+    
+      }
+    }, false);
+    </script>
+    
 </body>
 
 </html>

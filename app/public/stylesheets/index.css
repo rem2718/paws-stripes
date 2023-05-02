@@ -115,16 +115,16 @@ body{
     width: 7.5em;
     background: linear-gradient(
       to right,
-      #f4c13d 30%,
-      #0d323e 30%,
-      #0d323e 45%,
-      #f4c13d 45%,
-      #f4c13d 55%,
-      #0d323e 55%,
-      #0d323e 70%,
-      #f4c13d 70%,
-      #f4c13d 80%,
-      #0d323e 80%
+      #f8d376 30%,
+      #03141a 30%,
+      #000000 45%,
+      #ecc665 45%,
+      #d4ba76 55%,
+      #000000 55%,
+      #000000 70%,
+      #f1cd71 70%,
+      #eacd84 80%,
+      #000000 80%
     );
     border-radius: 5em;
     position: absolute;
@@ -139,7 +139,7 @@ body{
     content: "";
     height: 0.57em;
     width: 0.57em;
-    background-color: #0d323e;
+    background-color: #000000;
     border-radius: 50%;
     top: 1.43em;
     left: 0.75em;
@@ -149,7 +149,7 @@ body{
     content: "";
     height: 0.31em;
     width: 1.27em;
-    background-color: #0d323e;
+    background-color: #000000;
     border-radius: 0.31em;
     top: 1.83em;
     left: 6.95em;
