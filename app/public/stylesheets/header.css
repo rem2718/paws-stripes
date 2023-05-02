@@ -57,9 +57,11 @@ nav {
 
   .active-item {
     background-color: var(--grey);
-    border-radius: 20px;
+    border-radius: 50px;
     display: flex;
-    height: 110px; 
+    align-items: center; 
+  
+
   }
   
   .nav-link.red-word:hover {
