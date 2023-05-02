@@ -21,14 +21,18 @@ span {
 .img img {
     background-color: var(--grey);
     object-fit: contain;
-    width: 300px;
     height: 50vh;
+    max-width: 400px;
     padding: 0;
     margin: 0;
 }
 
+.img {
+    width: 30%;   
+}
+
 .info {
-    width: 300px;
+    width: 30%;
     height: 50vh;
     background-color: var(--white);
     border: 1px solid ;
