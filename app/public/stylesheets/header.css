@@ -4,35 +4,53 @@ nav {
     background-image: url("/images/header bar.svg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 110px;
+    height: 120px;
     font-family: var(--par2-font);
     font-size: 15pt;
     
     
   }
+ 
+    .logo {
+        position: absolute;
+        left: 120px;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        height: 100%;
+      }
   
-  .logo {
-    max-width: 230px; 
-    max-height: 125px;
-    
-  }
+  
+ 
   .nav-item {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 18px;
     
   }
+  .navbar-nav.ml-auto{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
   .login {
     background-color: transparent;
     border: 0px;
     color: var(--white);
     font-size: 20pt;
-    margin-left: auto;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
   }
+    
+  
   
   .login-img {
     padding-top: 20pt;
     max-width: 50px;
+    float:right;
+    
+    
   }
   
   .nu {
