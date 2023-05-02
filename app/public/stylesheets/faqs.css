@@ -48,3 +48,12 @@ background-color: var(--white);
     padding-top: 60px;
     max-width: 40%;
 }
+.blink_me {
+    animation: blinker 1s infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
