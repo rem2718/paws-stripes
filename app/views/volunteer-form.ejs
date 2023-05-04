@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head')%>
+    <link href="/stylesheets/forms.css" rel="stylesheet" />
+
+</head>
+
+<body class="form">
+  <%- include('./partials/header', {active: 'requests' })%>
+    <h1><span class="white-word">Volunteer</span> <span class="green-word">Form</span></h1>
+    <hr>
+    </hr>
+    <div class="container mt-3">
+      <form class="needs-validation p-5" novalidate action="/api/volunteer" method="post" style="max-height: 630px;">
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="volunteerBefore"><b>Have you ever volunteered in any animal shelter before?</b></label><br>
+            <input type="radio" name="volunteerBefore" id="yes" value="yes" class="form-check-input" required>
+            <label class="form-check-label" for="yes">Yes</label><br>
+            <input type="radio" name="volunteerBefore" id="no" value="no" class="form-check-input" required>
+            <label class="form-check-label" for="no">No</label>
+          </div>
+          <div class="col-6">
+            <label for="timeVolunteerBefore">If yes, how long is the duration of your volunteer service in months
+              ?</label><br>
+            <input type="number" class="form-control" id="period-num" name="timeVolunteerBefore" min="0">
+          </div>
+        </div>
+
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="animalsFamiliarWith">What animals are you familiar with?</label>
+            <select size="6" name="animalsFamiliarWith" id="animalmenu" multiple class="form-control form-select">
+              <option value="cat">Cats</option>
+              <option value="dog">Dogs</option>
+              <option value="fish">Fish</option>
+              <option value="frog">Frogs</option>
+              <option value="rabbit">Rabbits</option>
+              <option value="turtle">Turtles</option>
+              <option value="guinea pig">Guinea Pigs</option>
+              <option value="hamster">Hamsters</option>
+              <option value="bird">Birds</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label for="volunteerInterests" class="form-check-label">Select the areas that you would like to volunteer
+              in:</label><br>
+            <input class="form-check-input" type="checkbox" name="volunteerInterests" value="rescue" required checked>
+            Rescuing<br>
+            <input class="form-check-input" type="checkbox" name="volunteerInterests" value="transportation"
+              required>Transportation<br>
+            <input class="form-check-input" type="checkbox" name="volunteerInterests" value="pet screening" required>
+            Pet Screening<br>
+            <input class="form-check-input" type="checkbox" name="volunteerInterests" value="clinic" required>
+            Clinic<br>
+            <input class="form-check-input" type="checkbox" name="volunteerInterests" value="office" required>
+            Office<br>
+            <input class="form-check-input" type="checkbox" name="volunteerInterests" value="work" required> Adoption
+            Work
+          </div>
+        </div>
+
+        <div class="row p-2">
+          <div class="col-6">
+            <label class="form-check-label" for="volunteerTime">When do you prefer to volunteer?</label><br>
+            <input class="form-check-input" type="radio" id="day" name="volunteerTime" value="day " checked required>
+            Day<br>
+            <input class="form-check-input" type="radio" id="night" name="volunteerTime" value="night " required>
+            Night<br>
+          </div>
+          <div class="col-6 d-flex justify-content-end py-5">
+            <button class="button" type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+</body>
+
+</html>

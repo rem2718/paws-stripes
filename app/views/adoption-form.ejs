@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head')%>
+    <link href="/stylesheets/forms.css" rel="stylesheet" />
+</head>
+
+<body class="form">
+  <%- include('./partials/header', {active: 'requests' })%>
+    <h1><span class="white-word">Adoption</span> <span class="green-word">Form</span></h1>
+    <hr>
+    </hr>
+    <div class="container mt-3">
+      <form class="p-5" action="/api/adopt" method="post" style="max-height: 430px;">
+        <div class="row p-2">
+          <div class="col-md-6">
+            <label for="petExperience">Do you have any previous pet experience?</label><br>
+            <input class="form-check-input" type="radio" name="petExperience" value="yes">
+            <label class="form-check-label" for="petExperience">Yes</label><br>
+            <input class="form-check-input" type="radio" name="petExperience" value="no" checked>
+            <label class="form-check-label" for="petExperience">No</label>
+          </div>
+          <div class="col-md-6">
+            <label for="petType">What pet do you want?</label>
+            <select name="petType" class="form-select">
+              <option value="">Nothing specific</option>
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+              <option value="rabbit">Rabbit</option>
+              <option value="hamster">Hamster</option>
+              <option value="guinea-pig">Guinea pig</option>
+              <option value="bird">Bird</option>
+              <option value="fish">Fish</option>
+              <option value="turtle">Turtle</option>
+              <option value="frog">Frog</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row p-2">
+          <div class="col-md-6">
+            <label for="petBreed">What breed is your animal?</label>
+            <select name="petBreed" class="form-select">
+              <option value="">Nothing specific</option>
+              <option value="labrador">Labrador Retriever</option>
+              <option value="golden">Golden Retriever</option>
+              <option value="german">German Shepherd</option>
+              <option value="ragdoll">Ragdoll</option>
+              <option value="persian">Persian</option>
+              <option value="american">American shorthair</option>
+              <option value="lop">Holland Lop</option>
+              <option value="dwarf">Netherland Dwarf</option>
+              <option value="pekin">Pekin Duck</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="mbti">What is your mbti?</label>
+            <select name="mbti" class="form-select" required>
+              <option value="" disabled selected>Select mbti</option>
+              <option value="ISTJ">ISTJ</option>
+              <option value="ISFJ">ISFJ</option>
+              <option value="INFJ">INFJ</option>
+              <option value="INTJ">INTJ</option>
+              <option value="ISTP">ISTP</option>
+              <option value="ISFP">ISFP</option>
+              <option value="INFP">INFP</option>
+              <option value="INTP">INTP</option>
+              <option value="ESTP">ESTP</option>
+              <option value="ESFP">ESFP</option>
+              <option value="ENFP">ENFP</option>
+              <option value="ENTP">ENTP</option>
+              <option value="ESTJ">ESTJ</option>
+              <option value="ESFJ">ESFJ</option>
+              <option value="ENFJ">ENFJ</option>
+              <option value="ENTJ">ENTJ</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row p-2">
+          <div class="col-md-6">
+            <label for="numPeople">How many people do you live with?</label>
+            <div class="row">
+              <div class="col-1">
+                <span>0</span>
+              </div>
+              <div class="col-md-10">
+                <input type="range" class="form-range" min="0" max="10" name="numPeople">
+              </div>
+              <div class="col-md-1">
+                <span>10</span>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-6">
+            <label for="secureEnvironment">Are you willing to provide the animal with a secure environment while
+              catering to their needs?</label>
+            <input class="form-check-input" type="radio" name="secureEnvironment" value="yes">
+            <label class="form-check-label" for="secureEnvironment">Yes</label><br>
+            <input class="form-check-input" type="radio" name="secureEnvironment" value="no" checked>
+            <label class="form-check-label" for="secureEnvironment">No</label>
+          </div>
+        </div>
+
+        <div class="row p-2">
+          <div class="col-md-6">
+          </div>
+          <div class="col-md-6 d-flex justify-content-end pb-2">
+            <button type="submit" class="button">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+</body>
+
+</html>

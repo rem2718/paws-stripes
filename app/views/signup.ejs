@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head')%>
+    <link href="/stylesheets/forms.css" rel="stylesheet" />
+</head>
+
+<body class="signup">
+  <%- include('./partials/header', {active: 'who' })%>
+    <h1><span class="white-word">Sign up</span> <span class="green-word">Page</span></h1>
+    <hr>
+    <div class="container mt-3">
+      <form class="p-5" action="/api/user/signup" method="post">
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="firstName">First Name:</label><br>
+            <input type="text" class="form-control" name="firstName" minlength="3" maxlength="60" pattern="^[a-zA-Z]+$"
+              required>
+          </div>
+          <div class="col-6">
+            <label for="lastName">Last Name:</label><br>
+            <input type="text" class="form-control" name="lastName" pattern="^[a-zA-Z]+$" required>
+          </div>
+        </div>
+
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="email">Email:</label><br>
+            <input type="email" class="form-control" name="email" maxlength="255" required>
+          </div>
+          <div class="col-6">
+            <label for="phoneNumberr">Phone Number:</label><br>
+            <input type="tel" placeholder="05-XXXXXXXX" class="form-control" name="phoneNumber" pattern="05[0-9]{8}"
+              required>
+          </div>
+        </div>
+
+        <div class="row p-2">
+          <div class="col-6">
+            <label for="password">Password:</label><br>
+            <input id="password" type="password" class="form-control" name="password" minlength="10" required>
+          </div>
+          <div class="col-6">
+            <label>Confirm Password:</label><br>
+            <input id="confirm-password" type="password" class="form-control" onchange="checkPasswordMatch()"
+              minlength="10" required>
+          </div>
+        </div>
+
+        <div class="row p-2">
+          <div class="col-4">
+            <label for="gender">Gender:</label>
+            <select class="form-select" name="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="prefer not to say">Prefer not to say</option>
+            </select>
+          </div>
+          <div class="col-4">
+            <label for="age">Age:</label><br>
+            <input type="number" class="form-control" name="age" min="10" max="100" required>
+          </div>
+          <div class="col-4">
+            <label for="region">Region:</label><br>
+            <select class="form-select" name="region" required>
+              <option value="Riyadh">Riyadh</option>
+              <option value="Layla">Layla</option>
+              <option value="Afif">Afif</option>
+              <option value="al-Ghat">Al-Ghat</option>
+              <option value="al-Duwadmi">Al-Duwadmi</option>
+              <option value="al-Gwayiyyah">Al Gwayiyyah</option>
+              <option value="al-Hareeg">Al Hareeq</option>
+              <option value="Al Kharj">Al Kharj</option>
+              <option value="Al Majmaah">Al Majmaah</option>
+              <option value="Al-Muzahmiyyah">Al Muzahmiyyah</option>
+              <option value="al-Sulayyil">Al-Sulayyil</option>
+              <option value="Dhruma">Dhruma</option>
+              <option value="Diriyyah">Diriyyah</option>
+              <option value="Hotat Bani Tamim">Hotat Bani Tamim</option>
+              <option value="Huraymila">Huraymila</option>
+              <option value="Rimah">Rimah</option>
+              <option value="Shagra">Shagra</option>
+              <option value="Thadig">Thadig </option>
+              <option value="Wadi ad-Dawasir ">Al Wadi ad-Dawasir</option>
+              <option value="Yabrin">Yabrin</option>
+              <option value="Markaz">Markaz</option>
+              <option value="Zulfy City">Zulfy City</option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="row p-2">
+          <div class="col-10 px-5 form-check">
+            <input type="checkbox" class="form-check-input" value="accepted" required>
+            <label for="accept-terms" class="form-check-label">I accept the terms and conditions</label>
+          </div>
+          <div class="col-2 d-flex justify-content-end">
+            <button id="signup" type="submit" class="button">Sign up</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script>
+      function checkPasswordMatch() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirm-password").value;
+        if (password != confirmPassword) {
+          alert("passwords do not match!");
+          document.getElementById('signup').disabled = true;
+        } else {
+          document.getElementById('signup').disabled = false;
+        }
+
+      }
+    </script>
+
+</html>

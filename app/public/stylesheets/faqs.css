@@ -1,0 +1,59 @@
+@import url("/stylesheets/style.css");
+
+
+
+body{
+  background-image: url("/images/backgrounds/background-5.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.accordion{
+   font-family:var(--par1-font);
+   color: var(--light-blue);
+}
+
+h5 {
+    font-weight: bold;
+    color: var(--dark-blue);
+}
+
+.card {
+background-color: var(--white);
+}
+
+.btn {
+    background-image: url("/images/icons/collapse.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+    width: 150px;
+    height: 20px;
+}
+
+.rotated {
+    transform: rotate(180deg);
+    background-position: left;
+  }
+
+.h1 {
+    font-family: var(--header1-font);
+    margin-top: 130px;
+    margin-bottom: 0px;
+    padding: 0px;
+    font-size: 4rem;
+}
+  
+.marks {
+    padding-top: 60px;
+    max-width: 40%;
+}
+.blink_me {
+    animation: blinker 1s infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }

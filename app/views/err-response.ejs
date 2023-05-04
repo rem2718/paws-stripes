@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head')%>
+    <link href="/stylesheets/err-res.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container p-5 my-5 d-flex align-items-center row">
+    <div class="container d-flex justify-content-end col-6">
+      <% if (err==401) { %>
+        <image class="img-fluid w-50" src="/images/gifs/dog.gif"></image>
+        <% } else { %>
+          <image class="img-fluid w-50" src="/images/pngs/cat-<%=err%>.png"></image>
+          <% } %>
+    </div>
+    <div class="container text-center col-6">
+      <div class="error-message">meow..<%=err%>:</div>
+      <div class="error-message">
+        <%=msg%>
+      </div>
+      <% if (err==401) { %>
+        <a href="/login"><button class="err-button m-3 p-5">Login</button></a>
+        <% } else { %>
+          <button onclick="(() => {history.back()})()" class="err-button m-3 p-5">Go back!</button>
+          <% } %>
+
+    </div>
+  </div>
+</body>
+
+</html>

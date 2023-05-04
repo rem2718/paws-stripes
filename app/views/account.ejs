@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head')%>
+    <link href="/stylesheets/account.css" rel="stylesheet" />
+</head>
+
+<body>
+  <%- include('./partials/header', {active: '' })%>
+    <h1><span class="white-word">Account</span> <span class="green-word">Settings</span></h1>
+    <hr>
+    </hr>
+    <div class="container px-4 mt-3">
+      <div id="accordion" class="accordion">
+        <div class="card">
+          <div class="card-header row mx-1">
+            <div class="col-10 px-2">
+              <h5>Account Information</h5>
+            </div>
+            <div class="col-md-2">
+              <a class="btn btn-b" id="btn-1" onclick="rotate(event)" data-bs-toggle="collapse" href="#collapseOne"
+                style="border:0px;"></a>
+            </div>
+          </div>
+          <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+            <div class="card-body">
+              <form class="px-5">
+                <div class="row p-2">
+                  <div class="col-md-6">
+                    <label for="firstName">First Name:</label><br>
+                    <input id="fname" type="text" class="form-control" name="firstName" onchange="disableOrEnable()">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="lastName">Last Name:</label><br>
+                    <input id="lname" type="text" class="form-control" name="lastName" onchange="disableOrEnable()">
+                  </div>
+                </div>
+                <div class="row p-2">
+                  <div class="col-md-6">
+                    <label for="email">Email:</label><br>
+                    <input id="email" type="email" class="form-control" name="email" onchange="disableOrEnable()">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="phoneNumberr">Phone Number:</label><br>
+                    <input id="num" type="tel" class="form-control" name="phoneNumber" pattern="05[0-9]{8}"
+                      onchange="disableOrEnable()">
+                  </div>
+                </div>
+                <div class="row p-2">
+                  <div class="col-md-4">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" class="form-select" name="gender" onchange="disableOrEnable()">
+                      <option value="male">male</option>
+                      <option value="female">female</option>
+                      <option value="prefer not to say">Prefer not to say</option>
+
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="age">Age:</label><br>
+                    <input id="age" type="number" class="form-control" name="age" min="18" max="100"
+                      onchange="disableOrEnable()">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="region">Region:</label><br>
+                    <select id="region" class="form-select" name="region" onchange="disableOrEnable()">
+                      <option value="Riyadh">Riyadh</option>
+                      <option value="Layla">Layla</option>
+                      <option value="Afif">Afif</option>
+                      <option value="Al Gwayiyyah">Al Gway'iyyah</option>
+                      <option value="Al-Hareeg">Al Hareeq</option>
+                      <option value="Al Kharj">Al Kharj</option>
+                      <option value="Al Majaah">Al Maja'ah</option>
+                      <option value="Al Muzahmiyyah">Al Muzahmiyyah</option>
+                      <option value="Al Sulayyil">Al-Sulayyil</option>
+                      <option value="Dhruma">Dhruma</option>
+                      <option value="Diriyyah">Dir'iyyah</option>
+                      <option value="Hotat Bani Tamim">Hotat Bani Tamim</option>
+                      <option value="Huraymila">Huraymila</option>
+                      <option value="Rimah">Rimah</option>
+                      <option value="Shagra">Shagra</option>
+                      <option value="Thadig">Thadig </option>
+                      <option value="Al Wadi ad-Dawasir ">Al Wadi ad-Dawasir</option>
+                      <option value="Yabrin">Yabrin</option>
+                      <option value="Zulfy City">Zulfy City</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+              <div class="row p-2">
+                <div class="col-10 px-5">
+                </div>
+                <div class="col-2 d-flex justify-content-center">
+                  <button type="button" class="button" id="update-acc" data-bs-toggle="modal"
+                    data-bs-target="#updateModal" disabled>update</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% if (cookies && user.type !="admin" ) {%>
+          <div class="card">
+            <div class="card-header row mx-1">
+              <div class="col-10 px-2">
+                <h5>Requests Status</h5>
+              </div>
+              <div class="col-2">
+                <a class="btn btn-b" id="btn-1" onclick="rotate(event)" data-bs-toggle="collapse" href="#collapseTwo"
+                  style="border:0px;"></a>
+              </div>
+            </div>
+            <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+              <div class="card-body">
+                <div class="row mx-5 mb-2">
+                  <div class="col-md-4">
+                    <button type="button" class="button" data-bs-toggle="collapse" data-bs-target="#adopt">Adoption
+                      Requests</button>
+                  </div>
+                  <div class="col-md-4">
+                    <button type="button" class="button" data-bs-toggle="collapse" data-bs-target="#handover">Handover
+                      Requests</button>
+                  </div>
+                  <div class="col-md-4">
+                    <button type="button" class="button" data-bs-toggle="collapse" data-bs-target="#rescue">Rescue
+                      Requests</button>
+                  </div>
+                </div>
+
+                <div id="adopt" class="collapse">
+                  <hr class="b-hr">
+                </div>
+
+                <div id="handover" class="collapse">
+                  <hr class="b-hr">
+                </div>
+
+                <div id="rescue" class="collapse">
+                  <hr class="b-hr">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header row mx-1">
+              <div class="col-10 px-2">
+                <h5>Volunteer Activities</h5>
+              </div>
+              <div class="col-2">
+                <a class="btn btn-b" id="btn-1" onclick="rotate(event)" data-bs-toggle="collapse" href="#collapseThree"
+                  style="border:0px;"></a>
+              </div>
+            </div>
+            <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+              <div class="card-body px-5">
+                Completed hours of volunteering: <span id="hours">0 hours</span><br>
+                Not a volunteer? You can apply <a href="/requests/volunteer-form"><strong>here<strong></a><br>
+              </div>
+            </div>
+          </div>
+          <% } %>
+      </div>
+    </div>
+
+    <div class="row my-3">
+      <div class="col-6 d-flex justify-content-end">
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">Delete
+          Account</button>
+      </div>
+      <div class="col-6 d-flex justify-content-start">
+        <form method="POST" action="/api/user/logout">
+          <button class="button" type="submit">Logout</button>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="myModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title"><b>deactivating your account</b></h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <label for="password">Enter your password to confirm:</label>
+            <input type="password" id="password" class="form-control" minlength="10" required>
+          </div>
+          <div class="modal-footer">
+            <button class="button" data-bs-dismiss="modal" onclick="deleteAcc()">confirm</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="updateModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title"><b>Updating your account</b></h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <label for="password">Enter your password to confirm:</label>
+            <input type="password" id="updatePassword" class="form-control" minlength="10" required>
+          </div>
+          <div class="modal-footer">
+            <button class="button" data-bs-dismiss="modal" onclick="update()">confirm</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/scripts/apiController.js"></script>
+    <%- include("../public/scripts/account.ejs")%>
+
+</body>
+
+</html>

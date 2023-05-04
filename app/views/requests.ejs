@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head')%>
+    <link href="/stylesheets/requests.css" rel="stylesheet" />
+</head>
+
+<body>
+  <%- include('./partials/header', {active: 'requests' }) %>
+    <%if (!cookies || user.type !="admin" ) { %>
+      <h1 class="white-word">Forms</h1>
+      <hr>
+      <div class="container">
+        <div class="row p-3">
+          <div class="col-md-4 d-flex justify-content-center align-items-center">
+            <div class="card red">
+              <img src="/images/pngs/cat.png" alt="Card 1" />
+              <div class="card-text">
+                <a class="nu" href="/requests/adoption-form">
+                  <h2>Adoption Form</h2>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex justify-content-center align-items-center">
+            <div class="card blue">
+              <img src="/images/pngs/dog.png" alt="Card 2" />
+              <div class="card-text">
+                <a class="nu" href="/requests/volunteer-form">
+                  <h2>Volunteer Form</h2>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex justify-content-center align-items-center">
+            <div class="card yellow">
+              <img src="/images/pngs/turtle.png" alt="Card 3" />
+              <div class="card-text">
+                <a class="nu" href="/requests/rescue-form">
+                  <h2>Rescue Form</h2>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row p-3">
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-4 d-flex justify-content-center align-items-center">
+            <div class="card purple">
+              <img src="/images/pngs/crab.png" alt="Card 4" />
+              <div class="card-text">
+                <a class="nu" href="/requests/experience-form">
+                  <h2>Experience Form</h2>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex justify-content-center align-items-center">
+            <div class="card green">
+              <img src="/images/pngs/duck.png" alt="Card 5" />
+              <div class="card-text">
+                <a class="nu" href="/requests/handover-form">
+                  <h2>Handover Form</h2>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+          </div>
+        </div>
+      </div>
+      <% } else {%>
+        <h1><span class="white-word">Requests</span> <span class="green-word">Status</span></h1>
+        <hr>
+        <ul class="nav nav-pills mx-5 px-5 d-flex justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link active h2" data-bs-toggle="tab" href="#adopt">Adoption requests:</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h2" data-bs-toggle="tab" href="#handover">Handover requests:</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h2" data-bs-toggle="tab" href="#rescue">Rescue requests:</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h2" data-bs-toggle="tab" href="#volunteer">Volunteer requests:</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane container active py-3 px-5 mb-5" id="adopt">
+
+          </div>
+          <div class="tab-pane container fade py-3 px-5 mb-5" id="handover">
+
+          </div>
+          <div class="tab-pane container fade py-3 px-5 mb-5" id="rescue">
+
+          </div>
+          <div class="tab-pane container fade py-3 px-5 mb-5" id="volunteer">
+
+          </div>
+        </div>
+
+        <% } %>
+          <script src="/scripts/apiController.js"></script>
+          <%- include("../public/scripts/requests.ejs")%>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+@import url("/stylesheets/style.css");
+
+.response{
+background-image: url("/images/backgrounds/background-7.png");
+background-repeat: no-repeat;
+background-size: cover;
+
+
+}
+ .message-box {
+    background-image: url("/images/div-6.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:bottom;
+    max-width:70%;
+    text-align: center;
+    font-family: var(--par1-font);
+    font-weight: bold;
+    font-size: 20pt;
+}
+
+img {
+    max-width: 10%;
+    height: auto;
+}
+
+

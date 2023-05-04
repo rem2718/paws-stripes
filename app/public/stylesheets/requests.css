@@ -1,0 +1,78 @@
+@import url("/stylesheets/style.css");
+
+body{
+    background-image: url("/images/backgrounds/background-3.png");
+    background-repeat: no-repeat;
+    background-size: cover;    
+}
+    
+.card {
+    border-radius: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    max-width: 250px;
+    border: 0px;
+    animation: fly 3s infinite;
+}
+
+.card img {
+    object-fit: cover;
+    height: 200px;
+    max-width: 300px;
+ 
+}
+
+.card-text {
+    border-radius: 0px 0px 20px 20px;
+    background-color: var(--white);
+    margin: 0px;
+}
+
+h2 {
+    font-family: var(--par1-font);
+    font-weight: bold;
+    color: var(--dark-blue);
+    text-align: center;
+    font-size: 18pt;
+    padding: 10px;
+}
+
+.h2 {
+    font-family: var(--par1-font);
+    font-weight: bold;
+    color: var(--dark-blue);
+    text-align: left;
+    font-size: 15pt;
+}
+
+.b-hr {
+    border-color: var(--dark-green);
+    margin:0;
+}
+
+.nav-pills .nav-item .active {
+    background-color: var(--light-green);
+}
+
+.tab-pane {
+    background-color: var(--brown);
+    color: var(--dark-blue);
+    font-family: var(--par1-font);
+    border-radius: 10px;
+}
+
+.nu{
+    text-decoration: none;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+@keyframes fly {
+    50% {
+      transform: translateY(-1.12em);
+    }
+  }
+
+

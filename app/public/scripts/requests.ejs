@@ -1,0 +1,97 @@
+<script>
+    const changeStatus = (type, reqID, status) => {
+        const body = {
+            status: status
+        }
+        putRequest(`/api/${type}/status/${reqID}`, body, (response) => {
+            console.log(response);
+            document.getElementById(`status-${response._id}`).innerHTML = `<b>status: </b>${response.status}`
+            document.getElementById(`acc-${response._id}`).remove();
+            document.getElementById(`rej-${response._id}`).remove();
+        });
+    }
+
+    const getRequests = (type) => {
+        getRequest(`/api/${type}/statuses`, (response) => {
+            console.log(response);
+            var div = document.getElementById(type);
+            let content = ``;
+            response.forEach(req => {
+                content += `
+                <div id="res-${req._id}" class="row py-2">
+                    <div class="col-5">
+                        <span type="button" data-bs-toggle="collapse" data-bs-target="#div-${req._id}">
+                            <b>_id: </b>${req._id}
+                        </span>
+                    </div>
+                    <div class="col-4">
+                        <span id='status-${req._id}'><b>status: </b>${req.status}</span>
+                    </div>`;
+                if (req.status === "pending") {
+                    content += `
+                    <div class="col-3 d-flex justify-content-end">
+                        <button id="acc-${req._id}" class="button" onclick="changeStatus('${type}', '${req._id}', 'accepted')">accept</button>&nbsp
+                        <button id="rej-${req._id}" class="btn btn-danger" onclick="changeStatus('${type}', '${req._id}', 'rejected')">reject</button>
+                    </div>
+                </div>
+                <hr id="hr-${req._id}" class="b-hr">`;
+                } else {
+                    content += `
+                    <div class="col-3 d-flex justify-content-end">
+                    </div>
+                </div>
+                <hr id="hr-${req._id}" class="b-hr">`;
+                }
+
+                if (type === "adopt") {
+                    content += `
+                    <div id="div-${req._id}" class="collapse pb-3 light-blue">
+                        <b>User name:</b> ${req.userName}&nbsp&nbsp&nbsp<b>Request time:</b> ${req.createdAt.slice(0, 10)}&nbsp&nbsp&nbsp
+                        <b>Pet name:</b> ${req.petName}&nbsp&nbsp&nbsp<b>Pet type:</b> ${req.petType}
+                    </div>
+                    `;
+                } else if (type === "handover") {
+                    content += `
+                    <div id="div-${req._id}" class="collapse pb-3 light-blue">
+                        <b>User name:</b> ${req.userName} <b>Request time:</b> ${req.createdAt.slice(0, 10)} 
+                        <b>Pet name:</b> ${req.petName} <b>Pet type:</b> ${req.petType}
+                        <b>Pet breed:</b> ${req.petBreed} <b>Pet personality:</b> ${req.petPersonality}
+                        <b>Pet age:</b> ${req.petAge} <b>Handover reason:</b> ${req.handoverReason}
+                        <b>Can foster:</b> ${req.canFoster} <a href="${req.handoverAddress}" target="_blank">Handover address</a> -
+                         <a href="/api/${type}/image/${req._id}" target="_blank">Pet image</a> 
+                    </div>
+                    `;
+                } else if (type === "rescue") {
+                    content += `
+                    <div id="div-${req._id}" class="collapse pb-3 light-blue">
+                        <b>Pet type:</b> ${req.petType} <b>Request time:</b> ${req.createdAt.slice(0, 10)} 
+                        <b>Date of rescue:</b> ${req.dateOfRescue.slice(0, 10)} <b>pet is sick:</b> ${req.isSick}
+                        <b>Can foster:</b> ${req.canFoster} <b>Rescuer number:</b> ${req.rescuerPhone}
+                        <a href="${req.rescueAddress}" target="_blank">Rescue address</a> -
+                         <a href="/api/${type}/image/${req._id}" target="_blank">Pet image</a> 
+                    </div>
+                    `;
+                } else if (type === "volunteer") {
+                    content += `
+                    <div id="div-${req._id}" class="collapse pb-3 light-blue">
+                        <b>User name:</b> ${req.userName} <b>Request time:</b> ${req.createdAt.slice(0, 10)} 
+                        <b>User volunteered before:</b> ${req.volunteerBefore} <b>Previous volunteer time:</b> ${req.timeVolunteerBefore} months 
+                        <b>Animals familiar with:</b> ${req.animalsFamiliarWith} <b>Volunteer interests:</b> ${req.volunteerInterests} 
+                        <b>volunteer preferable time:</b> ${req.volunteerTime}
+
+                    </div>
+                    `;
+                }
+
+                div.innerHTML = content;
+            });
+        });
+    }
+
+    if ('<%= user.type %>' === "admin") {
+        getRequests('adopt');
+        getRequests('handover');
+        getRequests('rescue');
+        getRequests('volunteer');
+    }
+</script>

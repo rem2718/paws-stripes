@@ -1,0 +1,138 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Kirang+Haerang&family=Londrina+Solid&family=Press+Start+2P&family=Roboto+Mono&family=Swanky+and+Moo+Moo&display=swap');
+
+:root {
+    /* colors */
+    --dark-green:#435C53;
+    --light-green: #819890;
+    --green: #5A686F;
+    --grey: #E1DACC;
+    --white: #FEF5F5;
+    --beige: #EDDBD0;
+    --light-brown: #E7C2A5;
+    --brown: #D4AA89;
+    --dark-blue: #29414F;
+    --light-blue: #3A5F74;
+    --pink: #EBCAD3;
+    --blue: #BED8E3;
+    --yellow: #F2E8BA;
+    --pastel-green: #C6E5D5;
+    --red: #FAC2BB;
+    --purple: #D2D2E2;
+    /* fonts */
+    --par1-font: 'Roboto Mono', monospace;
+    --par2-font: 'Kirang Haerang', cursive;
+    --header1-font: 'Londrina Solid', cursive;
+    --header2-font: 'Swanky and Moo Moo', cursive;
+    --error-font: 'Press Start 2P', cursive;
+}
+
+h1 {
+    font-family: var(--header1-font);
+    margin: 130px 100px 5px 100px;
+    font-size: 4rem;
+}
+
+hr {
+    border-color: var(--dark-green);
+    border-width: 4px;
+    margin: 5px 80px 10px 80px;
+}
+
+.green-word {
+    color: var(--green);
+}
+
+.white-word {
+    color: var(--white);
+}
+
+.blue-word {
+    color: var(--dark-blue);
+}
+
+.light-blue {
+    color: var(--light-blue);
+}
+
+.red-word {
+    color: var(--red);
+}
+
+.blue-word{
+    color: var(--dark-blue);
+    font-family: var(--header2-font);
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.red {
+    background-color: var(--red);
+}
+
+.blue {
+    background-color: var(--blue);
+}
+
+.yellow {
+    background-color: var(--yellow);
+}
+
+.purple {
+    background-color: var(--purple);
+}
+
+.green {
+    background-color: var(--pastel-green);
+}
+
+.pink {
+    background-color: var(--pink);
+}
+.paw {
+    width: 20px;
+    height: 20px;
+}
+
+.button {
+    padding: 7px 15px;
+    background-color: var(--dark-green);
+    color:var(--white);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: var(--par1-font);
+}
+
+.button:hover {
+    background-color: var(--light-green);
+}
+
+.pagination .page-link {
+    color: var(--dark-blue);
+    font-family: var(--par1-font);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--light-green);
+    border: var(--light-green);
+    color: var(--white)
+}
+
+.modal-header, .modal-footer {
+    background-color: var(--white);
+}
+
+.modal-dialog {
+    font-family: var(--par1-font);
+}

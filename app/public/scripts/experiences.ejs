@@ -1,0 +1,93 @@
+<script>
+
+    const displayCards = (experiences, isDel) => {
+        let i = 0;
+        const cols = document.querySelectorAll(".col-4");
+        cols.forEach(col => col.innerHTML = "");
+        experiences.forEach(experience => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.id = `card-${experience._id}`;
+            let content = `
+                    <img class="card-img-top" src="/api/experiences/image/${experience._id}" alt="experience"/>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <b>Pet name: ${experience.petName}</b><br>
+                            <b>User: ${experience.isAnon ? "Anonymous" : experience.firstName + " " + experience.lastName}</b><br>
+                            ${experience.experience}
+                        </div>
+                        `;
+            if (isDel || "<%=user.type%>" === "admin") {
+                content += `
+                        <div class="row px-2 pt-2">
+                            <div class="col-2">
+                                <button onclick="like(event, '${experience._id}')" class="like-btn"></button>
+                            </div>
+                            <div class="col-2">
+                                <p id="likes-${experience._id}">${experience.numOfLikes}</p>
+                            </div>
+                            <div class="col-6">
+                            </div>
+                            <div class="col-2 d-flex justify-content-end">
+                                <button class="del-btn" onclick="delExp('${experience._id}')" ></button>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+            } else {
+                content += `
+                        <div class="row px-2 pt-2">
+                            <div class="col-2">
+                                <button onclick="like(event, '${experience._id}')" class="like-btn"></button>
+                            </div>
+                            <div class="col-2">
+                                <p id="likes-${experience._id}">${experience.numOfLikes}</p>
+                            </div>
+                            <div class="col-2">
+                            </div>
+                            <div class="col-6">
+                            </div>
+                        </div>
+                    </div>
+                    `;
+            }
+            card.innerHTML = content;
+            document.getElementById(`c${i + 1}`).appendChild(card);
+            i++;
+        });
+    };
+
+    var pressed = false;
+    const like = (event, expID) => {
+        event.target.classList.toggle('liked');
+        pressed = !pressed;
+        const body = { like: pressed ? "like" : "remove like" };
+        putRequest(`/api/experiences/${expID}`, body, (response) => {
+            console.log(response);
+            const likes = document.getElementById(`likes-${response.id}`);
+            likes.textContent = response.likes;
+        })
+    }
+
+    const delExp = (expID) => {
+        deleteRequest(`/api/experiences/${expID}`,{} ,(response) => {
+            console.log("here", response);
+            const card = document.getElementById(`card-${response._id}`);
+            card.remove();
+        })
+    }
+
+    const displayExperiences = (id, isDel, num) => {
+        num = pagination(event, num);
+        getRequest(`/api/experiences/${id}?pageNumber=${num}&pageSize=6`, (response) => {
+            if (response.end) {
+                document.getElementById('next').parentNode.classList.add("disabled");
+            } else {
+                document.getElementById('next').parentNode.classList.remove("disabled");
+            }
+            displayCards(response.experiences, isDel);
+        })
+    }
+
+    displayExperiences("", false, 1);
+</script>

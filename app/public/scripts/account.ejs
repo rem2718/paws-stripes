@@ -1,0 +1,118 @@
+<script>
+    const rotate = (event) => {
+        event.target.classList.toggle('rotated');
+    }
+
+    const disableOrEnable = () => {
+        if (curFname != document.getElementById('fname').value || curLname != document.getElementById('lname').value
+            || curEmail != document.getElementById('email').value || curNum != document.getElementById('num').value
+            || curGender != document.getElementById('gender').value || curRegion != document.getElementById('region').value
+            || curAge != document.getElementById('age').value
+        ) {
+            document.getElementById("update-acc").disabled = false;
+        }
+        else {
+            document.getElementById("update-acc").disabled = true;
+        }
+
+    }
+
+    const deleteAcc = () => {
+        deleteRequest(`/api/user`,
+            {
+                password: document.getElementById("password").value,
+            }
+            , () => {
+                window.location.href = "/";
+            })
+    }
+
+    const getHours = () => {
+        getRequest(`/api/user/hours`, (response) => {
+            var hourDiv = document.getElementById("hours");
+            hourDiv.innerHTML = `${response.hours} hours`
+        });
+    }
+
+    var curFname;
+    var curLname;
+    var curEmail;
+    var curNum;
+    var curGender;
+    var curAge;
+    var curRegion;
+
+    const updateInfo = (response) => {
+        curFname = response.firstName;
+        curLname = response.lastName;
+        curEmail = response.email;
+        curNum = response.phoneNumber;
+        curGender = response.gender;
+        curAge = response.age;
+        curRegion = response.region;
+        document.getElementById('fname').value = curFname;
+        document.getElementById('lname').value = curLname;
+        document.getElementById('email').value = curEmail;
+        document.getElementById('num').value = curNum;
+        document.getElementById('gender').value = curGender;
+        document.getElementById('region').value = curRegion;
+        document.getElementById('age').value = curAge;
+    }
+
+    const getUserInfo = () => {
+        getRequest(`/api/user`, (response) => {
+            updateInfo(response);
+        })
+    }
+
+    const getReqSt = (type) => {
+        getRequest(`/api/${type}/status`, (response) => {
+            var div = document.getElementById(type);
+            response.forEach(res => {
+                div.innerHTML += `
+                <div class="row  my-2 mx-5">
+                  <div class="col-3">
+                    <b>Name:</b> ${res.petName}
+                  </div>
+                  <div class="col-3">
+                    <b>Type:</b> ${res.petType}
+                  </div>
+                  <div class="col-3">
+                    <b>Timestamp:</b> ${res.createdAt.slice(0, 10)}
+                  </div>
+                  <div class="col-3">
+                    <b>Status:</b> ${res.status}
+                  </div>
+                </div>
+                `
+            })
+        })
+    }
+
+    const update = () => {
+        const body = {
+            firstName: document.getElementById('fname').value,
+            lastName: document.getElementById('lname').value,
+            email: document.getElementById('email').value,
+            phoneNumber: document.getElementById('num').value,
+            gender: document.getElementById('gender').value,
+            region: document.getElementById('region').value,
+            age: document.getElementById('age').value,
+            password: document.getElementById('updatePassword').value
+        }
+        putRequest(`/api/user/`, body, (response) => {
+            updateInfo(response);
+            document.getElementById("update-acc").disabled = true;
+            console.log("response updated!", response);
+        })
+    }
+
+    getUserInfo();
+    if ("<%=user.type%>" != "admin") {
+        getHours();
+        getReqSt('adopt');
+        getReqSt('rescue');
+        getReqSt('handover');
+    }
+
+</script>

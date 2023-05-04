@@ -1,0 +1,25 @@
+@import url("/stylesheets/style.css");
+
+body {
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position:top;
+}
+
+.form {
+    background-image: url("/images/backgrounds/background-6.png");
+}
+
+.signup {
+    background-image: url("/images/backgrounds/background-1.png");
+}
+
+
+form {
+    background-color: var(--brown);
+    color: var(--dark-blue);
+    font-weight: bold;
+    font-family:var(--par1-font);
+    margin-bottom: 50px;
+}
+
