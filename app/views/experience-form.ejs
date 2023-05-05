@@ -31,11 +31,11 @@
             <label for="pet">Please provide us with your pet's name</label>
             <select id="pet-name" name="pet" class="form-select" required>
               <% pets.forEach((pet)=> { %>
-                <option value="<%=pet.petID%>,<%=pet.petName%>">
+                <option value="<%=pet.pet%>,<%=pet.petName%>">
                   <%=pet.petName%>
                 </option>
                 <% }) %>
-              </select>
+            </select>
           </div>
           <div class="col-md-6">
             <label for="isAnon">Do you prefer your experience post to be anonymous?</label>
