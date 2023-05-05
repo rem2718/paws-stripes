@@ -1,7 +1,7 @@
 require("dotenv").config();
 const debug = require('debug')('app:main');
 const express = require('express');
-require('./app/utils/database.js')
+require('./app/utils/database');
 const cookieParser = require('cookie-parser');
 const err404 = require('./app/utils/handle404Middleware');
 const session = require('express-session');

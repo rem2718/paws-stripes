@@ -68,10 +68,10 @@
                       <option value="Riyadh">Riyadh</option>
                       <option value="Layla">Layla</option>
                       <option value="Afif">Afif</option>
-                      <option value="Al Gway'iyyah">Al Gway'iyyah</option>
+                      <option value="Al Gwayiyyah">Al Gway'iyyah</option>
                       <option value="Al-Hareeg">Al Hareeq</option>
                       <option value="Al Kharj">Al Kharj</option>
-                      <option value="Al Maja'ah">Al Maja'ah</option>
+                      <option value="Al Majaah">Al Maja'ah</option>
                       <option value="Al Muzahmiyyah">Al Muzahmiyyah</option>
                       <option value="Al Sulayyil">Al-Sulayyil</option>
                       <option value="Dhruma">Dhruma</option>
@@ -92,7 +92,8 @@
                 <div class="col-10 px-5">
                 </div>
                 <div class="col-2 d-flex justify-content-center">
-                  <button type="button" class="button" id="update-acc" data-bs-toggle="modal" data-bs-target="#updateModal" disabled>update</button>
+                  <button type="button" class="button" id="update-acc" data-bs-toggle="modal"
+                    data-bs-target="#updateModal" disabled>update</button>
                 </div>
               </div>
             </div>
@@ -122,7 +123,7 @@
                   </div>
                   <div class="col-md-4">
                     <button type="button" class="button" data-bs-toggle="collapse" data-bs-target="#rescue">Rescue
-                      Request </button>
+                      Requests</button>
                   </div>
                 </div>
 
@@ -161,17 +162,15 @@
       </div>
     </div>
 
-    <div class="row my-3 mx-5 px-4">
-      <div class="col-2">
+    <div class="row my-3">
+      <div class="col-6 d-flex justify-content-end">
         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">Delete
           Account</button>
       </div>
-      <div class="col-2">
+      <div class="col-6 d-flex justify-content-start">
         <form method="POST" action="/api/user/logout">
           <button class="button" type="submit">Logout</button>
         </form>
-      </div>
-      <div class="col-8">
       </div>
     </div>
     <div class="modal" id="myModal">
