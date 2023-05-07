@@ -33,6 +33,10 @@ const like = async (req, res) => {
     } else {
         experience = await Experience.findByIdAndUpdate(experienceID, { $inc: { numOfLikes: -1 } }, { new: true });
     }
+    if (experience.numOfLikes < 0) {
+        experience.numOfLikes = 0;
+        await experience.save();
+    }
 
     res.send({ id: experienceID, likes: experience.numOfLikes });
 };

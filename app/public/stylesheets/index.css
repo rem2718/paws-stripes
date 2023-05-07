@@ -85,82 +85,16 @@ body{
 .tab-pane {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   }
- .container-bee{
-    height: 20em;
-    width: 20em;
-    position: fixed;
-    bottom: 2em;
-    right: 0;
-    margin: 0;
-    animation: fly 7s infinite;
 
-  }
-  @keyframes fly {
-    50% {
-      transform: translateY(-7.12em);
-    }
-  }
-.wings{
-    position: absolute;
-    height: 2em;
-    width: 2em;
-    background-color: var(--white);
-    border-radius: 2em 2em 0em 2em;
-    top: 6.5em;
-    left: 12.25em;
-
+.hero-section{
+    background-image: url('/images/header bar.svg');
 }
-.bee{
-    height: 3.5em;
-    width: 7.5em;
-    background: linear-gradient(
-      to right,
-      #f8d376 30%,
-      #03141a 30%,
-      #000000 45%,
-      #ecc665 45%,
-      #d4ba76 55%,
-      #000000 55%,
-      #000000 70%,
-      #f1cd71 70%,
-      #eacd84 80%,
-      #000000 80%
-    );
-    border-radius: 5em;
-    position: absolute;
-    transform: translate(0%, -50%);
-    top: 50%;
-    left: 50%;
-    box-shadow: inset 0 -1.56em rgba(0, 0, 0, 0.15);
-
+  
+p{
+    font-family: var(--part1-font);
+    color: var(--white);
+    font-size: 18px;
 }
-.bee:before {
-    position: absolute;
-    content: "";
-    height: 0.57em;
-    width: 0.57em;
-    background-color: #000000;
-    border-radius: 50%;
-    top: 1.43em;
-    left: 0.75em;
+body {
+    min-height: 190vh;
   }
-  .bee:after {
-    position: absolute;
-    content: "";
-    height: 0.31em;
-    width: 1.27em;
-    background-color: #000000;
-    border-radius: 0.31em;
-    top: 1.83em;
-    left: 6.95em;
-  }
-  .wings:before {
-    position: absolute;
-    content: "";
-    height: 2em;
-    width: 2em;
-    background-color:var(--white);
-    border-radius: 2em 2em 2em 0;
-    left: 1.88em;
-  }
-
