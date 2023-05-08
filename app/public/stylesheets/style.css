@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Kirang+Haerang&family=Londrina+Solid&family=Press+Start+2P&family=Roboto+Mono&family=Swanky+and+Moo+Moo&display=swap');
+@import url('https://fonts.googleapis.com/css?family=DM Sans');
 
 :root {
     /* colors */
@@ -21,7 +22,7 @@
     --purple: #D2D2E2;
     /* fonts */
     --par1-font: 'Roboto Mono', monospace;
-    --par2-font: 'Kirang Haerang', cursive;
+    --par2-font: 'DM Sans', cursive;
     --header1-font: 'Londrina Solid', cursive;
     --header2-font: 'Swanky and Moo Moo', cursive;
     --error-font: 'Press Start 2P', cursive;

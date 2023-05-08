@@ -1,7 +1,9 @@
 @import url("/stylesheets/style.css");
 
 nav {
-    background-color: var(--dark-green);
+    background-image: url('/images/header bar.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
     font-family: var(--par2-font);
     color: var(--white);
   }
@@ -30,6 +32,8 @@ nav {
 }
 
 
+
+
 /*
   .navbar-nav.ml-auto{
   display: flex;
@@ -55,7 +59,7 @@ nav {
   text-decoration: none;
 }
 
-.nav-link {
+ nav-link {
   display: inline-block;
   color: var(--white);
   padding: 10px 20px;
@@ -72,9 +76,7 @@ nav {
 
 }
 
-.nav-link.red-word:hover {
-  color:  rgb(213, 164, 74);
-}
+
   
 @media (max-width: 767.98px) {
   .navbar-nav.ml-auto {
