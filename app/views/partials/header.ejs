@@ -17,7 +17,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
-      <div class="col-7 mt-1 mx-5">
+      <div class="col-6 mt-1 mx-5">
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav">
             <li class="nav-item <%= active === 'who' ? 'active-item' : '' %> px-2">
@@ -45,14 +45,24 @@
           <% } %>
         </div>
       </div>
-      <div class="col-2">
+      <div class="col-3">
+
         <% if (cookies) { %>
+          <div class="row">
+            <div class="col-4">
           <a href="/account">
             <img class="login-img" src="/images/icons/account.svg" alt="Account">
           </a>
+        </div>
+        <div class="col-8">
+          <form method="POST" action="/api/user/logout">
+            <button class="button" type="submit" style="background-color:rgb(237, 95, 95)">Logout</button>
+          </form>
+        </div>
+        </div>
           <% } else { %>
             <a href="/login">
-              <img class="login-img" src="/images/icons/login.svg" alt="Login">
+              <button class="btn btn-outline-secondary rounded login-button" style="background-color: rgba(212, 170, 137, 1); color: #fff;"">Login</button>
             </a>
             <% } %>
 

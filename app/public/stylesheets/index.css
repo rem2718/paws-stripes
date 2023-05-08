@@ -55,8 +55,8 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
-    height: 300px;
-    width: 700px;
+    height: 100%;
+    width: 100%;
     padding: 35px 70px 30px 70px;
     border-radius: 5px;
     position: absolute;
@@ -64,7 +64,7 @@ body{
     left: 0;
     font-family: var(--par2-font);
     color: var(--white);
-    font-size: 15pt;
+    font-size: 1rem;
 }
 
 .mt {
@@ -93,7 +93,7 @@ body{
 p{
     font-family: var(--part1-font);
     color: var(--white);
-    font-size: 18px;
+    font-size: 1rem;
 }
 body {
     min-height: 190vh;
