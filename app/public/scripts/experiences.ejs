@@ -2,7 +2,7 @@
 
     const displayCards = (experiences, isDel) => {
         let i = 0;
-        const cols = document.querySelectorAll(".col-4");
+        const cols = document.querySelectorAll(".col-md-4");
         cols.forEach(col => col.innerHTML = "");
         experiences.forEach(experience => {
             const card = document.createElement("div");
@@ -70,7 +70,7 @@
     }
 
     const delExp = (expID) => {
-        deleteRequest(`/api/experiences/${expID}`,{} ,(response) => {
+        deleteRequest(`/api/experiences/${expID}`, {}, (response) => {
             console.log("here", response);
             const card = document.getElementById(`card-${response._id}`);
             card.remove();
