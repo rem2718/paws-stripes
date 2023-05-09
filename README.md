@@ -42,7 +42,7 @@ pets shelter website, that uses node.js (express) for backend, ejs for frontend 
 
 ## THANK YOU!
 
-Hope you enjoy this simple website app :)
+Hope you enjoy this simple web app :)
 
 If you face any problems please contact me
 
