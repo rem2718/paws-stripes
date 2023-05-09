@@ -12,89 +12,89 @@
     <h1><span class="text-white">Login</span> <span class="green-word">Page</span></h1>
     <hr>
     <div class=" row">
-    <div class="container-md div col-md-8 p-5 mt-5">
-      <div class="container row">
-        <div class="col-md-6">
-          <form action="/api/user/login" method="post">
-            <label for="email">Email:</label>
-            <input type="text" class="form-control" maxlength="255" name="email">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" minlength="10" name="password">
-            <div class="row pt-5">
-              <div class="col-md-6">
-                <input class="form-check-input" type="radio" name="userType" value="admin">
-                <label class="form-check-label" for="userType">admin</label><br>
-                <input class="form-check-input" type="radio" name="userType" value="user" checked>
-                <label class="form-check-label" for="userType">user</label>
+      <div class="container-md div col-md-8 p-5 mt-5 mb-5">
+        <div class="container row">
+          <div class="col-md-6">
+            <form action="/api/user/login" method="post">
+              <label for="email">Email:</label>
+              <input type="text" class="form-control" maxlength="255" name="email">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" minlength="10" name="password">
+              <div class="row pt-5">
+                <div class="col-md-6">
+                  <input class="form-check-input" type="radio" name="userType" value="admin">
+                  <label class="form-check-label" for="userType">admin</label><br>
+                  <input class="form-check-input" type="radio" name="userType" value="user" checked>
+                  <label class="form-check-label" for="userType">user</label>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                  <button class="button" type="submit">Sign in</button>
+                </div>
               </div>
-              <div class="col-md-6 d-flex justify-content-end">
-                <button class="button" type="submit">Sign in</button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
+          <div class="col-md-6 p-5">
+            <h5 class="dont">Don't have an account?</h5>
+            <a href="/signup" style="color: var(--dark-green); font-weight: bold;">click here to join!</a>
+          </div>
         </div>
-        <div class="col-md-6 p-5">
-          <h5 class="dont">Don't have an account?</h5>
-          <a href="/signup" style="color: var(--dark-green); font-weight: bold;">click here to join!</a>
+      </div>
+
+      <div class="fox col-md-4">
+
+        <div class="right paws hidden" timeout="4"><i class="fa fa-paw" aria-hidden="true"></i>
+        </div>
+        <div class="paws hidden" timeout="3"><i class="fa fa-paw" aria-hidden="true"></i>
+        </div>
+        <div class="right paws hidden" timeout="2"><i class="fa fa-paw" aria-hidden="true"></i>
+        </div>
+        <div class="paws hidden" timeout="1"><i class="fa fa-paw" aria-hidden="true"></i>
         </div>
       </div>
     </div>
-    
-    <div class="fox col-md-4">
-
-    <div class="right paws hidden" timeout="4"><i class="fa fa-paw" aria-hidden="true"></i>
-    </div>
-    <div class="paws hidden" timeout="3"><i class="fa fa-paw" aria-hidden="true"></i>
-    </div>
-    <div class="right paws hidden" timeout="2"><i class="fa fa-paw" aria-hidden="true"></i>
-    </div>
-    <div class="paws hidden" timeout="1"><i class="fa fa-paw" aria-hidden="true"></i>
-    </div>
-  </div>
-  </div>
     <script>
-    
-document.addEventListener('DOMContentLoaded', function() {
-  var funcs = {
-      getAttr: function(ele, attr) {
-          console.log(ele);
-          var result = (ele.getAttribute && ele.getAttribute(attr)); 
-          if( !result ) {
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var funcs = {
+          getAttr: function (ele, attr) {
+            console.log(ele);
+            var result = (ele.getAttribute && ele.getAttribute(attr));
+            if (!result) {
               var attrs = ele.attributes;
               var length = attrs.length;
-              for(var i = 0; i < length; i++)
-                
-                  if(attrs[i].nodeName === attr)
-                      result = attrs[i].nodeValue;
-          }
-                console.log(attrs);
+              for (var i = 0; i < length; i++)
 
-          return result;
-      },
-  
-  };
-  for (var i = 0; i < 7; i++) {
-    (function(i) {
-      setTimeout(function() {
-        var paws = document.getElementsByClassName('paws hidden');
-        for (var paw in paws) {
-          if (paws.hasOwnProperty(paw)) {
-            var time = funcs.getAttr(paws[paw], 'timeout') - 1;
-            paws[paw].setAttribute("timeout", time); 
-            if (time == 0) {
-              paws[paw].classList.remove("hidden");
+                if (attrs[i].nodeName === attr)
+                  result = attrs[i].nodeValue;
             }
-          }
-        }
-      }, 400 * i);
-    })(i);
-  }
-  
+            console.log(attrs);
 
-  }
-, false);
+            return result;
+          },
+
+        };
+        for (var i = 0; i < 7; i++) {
+          (function (i) {
+            setTimeout(function () {
+              var paws = document.getElementsByClassName('paws hidden');
+              for (var paw in paws) {
+                if (paws.hasOwnProperty(paw)) {
+                  var time = funcs.getAttr(paws[paw], 'timeout') - 1;
+                  paws[paw].setAttribute("timeout", time);
+                  if (time == 0) {
+                    paws[paw].classList.remove("hidden");
+                  }
+                }
+              }
+            }, 400 * i);
+          })(i);
+        }
+
+
+      }
+        , false);
     </script>
-    
+
 </body>
 
 </html>

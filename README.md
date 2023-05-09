@@ -4,7 +4,7 @@ pets shelter website, that uses node.js (express) for backend, ejs for frontend 
 
 ## HOW TO RUN IT:
 
-1. Download _paws-stripes.zip_ file
+1. Download _paws-stripes.zip_ file and extract it 
 
 2. Install all the dependencies
 
@@ -32,9 +32,13 @@ pets shelter website, that uses node.js (express) for backend, ejs for frontend 
    http://127.0.0.1:3001
    ```
 
-6. If you wanna know more about the website services check _report.pdf_
+## NOTES:
 
-7. The website is already deployed on this url
+- If you wanna know more about the website features and services check _report.pdf_
+
+- Check _demo.mp4_ video to see how the website works
+
+- The website is already deployed on this url
 
    ```
    https://paws-stripes.onrender.com
