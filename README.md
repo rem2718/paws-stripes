@@ -17,6 +17,12 @@ pets shelter website, that uses node.js (express) for backend, ejs for frontend 
 4. Run the server
 
    ```
+   node app.js
+   ```
+
+   or if you have nodemon
+
+   ```
    nodemon
    ```
 
