@@ -133,7 +133,6 @@
         putRequest(`/api/pets/${_id}`, body, (response) => {
             document.getElementById(`p-${_id}`).innerHTML = `
                 <b>Name:</b> ${response.petName}<br>
-                <b>Pet ID:</b> ${response._id}<br>
                 <b>Type:</b> ${response.petType}<br>
                 <b>Breed:</b> ${response.petBreed}<br>
                 <b>Age:</b> ${response.petAge}<br>
