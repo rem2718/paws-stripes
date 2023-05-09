@@ -28,6 +28,12 @@ pets shelter website, that uses node.js (express) for backend, ejs for frontend 
 
 6. If you wanna know more about the website services check _report.pdf_
 
+7. The website is already deployed on this url
+
+   ```
+   https://paws-stripes.onrender.com
+   ```
+
 ## THANK YOU!
 
 Hope you enjoy this simple website app :)
