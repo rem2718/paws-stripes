@@ -11,7 +11,7 @@ const volunteer = async (req, res) => {
     volunteer.volunteerBefore = volunteer.volunteerBefore === "yes" ? true : false;
     if (!volunteer.volunteerBefore) delete volunteer.timeVolunteerBefore;
 
-    let { error } = validate(volunteer);
+    let { error } = validate(volunteer); 
     if (error) return res.status(400).render("err-response", { err: 400, msg: 'Cat detected a bad request..' });
 
     await new Volunteer(volunteer).save();

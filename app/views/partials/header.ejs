@@ -50,19 +50,20 @@
         <% if (cookies) { %>
           <div class="row">
             <div class="col-4">
-          <a href="/account">
-            <img class="login-img" src="/images/icons/account.svg" alt="Account">
-          </a>
-        </div>
-        <div class="col-8">
-          <form method="POST" action="/api/user/logout">
-            <button class="button" type="submit" style="background-color:rgb(237, 95, 95)">Logout</button>
-          </form>
-        </div>
-        </div>
+              <a href="/account">
+                <img class="login-img" src="/images/icons/account.svg" alt="Account">
+              </a>
+            </div>
+            <div class="col-8">
+              <form style="background-color: transparent;" method="POST" action="/api/user/logout">
+                <button class="button" type="submit" style="background-color:rgb(237, 95, 95)">Logout</button>
+              </form>
+            </div>
+          </div>
           <% } else { %>
             <a href="/login">
-              <button class="btn btn-outline-secondary rounded login-button" style="background-color: rgba(212, 170, 137, 1); color: #fff;"">Login</button>
+              <button class="btn btn-outline-secondary rounded login-button"
+                style="background-color: rgba(212, 170, 137, 1); color: #fff;">Login</button>
             </a>
             <% } %>
 
