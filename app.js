@@ -22,7 +22,6 @@ app.use(session({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
 app.use(express.static(__dirname + '/app/public'));
 
 app.use('/api', api);
